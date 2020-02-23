@@ -1,26 +1,47 @@
-import React, { useContext } from 'react'
-import { Link } from 'gatsby'
-import { SEO, GatsbyImage } from '@components'
-import { ThemesContext } from '@context'
+import React from 'react'
+import { SEO, Typograhy, WordSpinner } from '@components'
+import styled from '@emotion/styled'
+import { rhythm } from '@theme/typography'
+
+const brands = [
+  {
+    value: 'React',
+    filename: 'react-icon.svg',
+  },
+]
 
 const IndexPage = () => {
-  const { setTheme } = useContext(ThemesContext)
-
   return (
     <>
       <SEO title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <GatsbyImage filename="gatsby-astronaut.png" />
-      </div>
-      <button onClick={() => setTheme('light')} type="button">
-        Light theme
-      </button>
-      <Link to="/page-2/">Go to page 2</Link>
+      <Container>
+        <Content>
+          <Typograhy as="h1" size={11}>
+            Hi, I am Sebastian Luque
+          </Typograhy>
+          <Typograhy as="p">
+            <Typograhy as="span" weight="light" size={7}>
+              Full stack web developer specialized in JavaScript
+              <br />
+              with experience working with technologies like{' '}
+            </Typograhy>
+            <WordSpinner items={brands} />
+          </Typograhy>
+        </Content>
+      </Container>
     </>
   )
 }
+
+const Container = styled.div`
+  padding: 0 ${rhythm(5.5)};
+  display: flex;
+  align-items: center;
+  height: 100%;
+`
+
+const Content = styled.div`
+  margin-bottom: 18%;
+`
 
 export default IndexPage

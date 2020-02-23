@@ -1,13 +1,14 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { find } from 'lodash'
-import Img, { FluidObject } from 'gatsby-image'
+import Img, { FluidObject, GatsbyImageProps } from 'gatsby-image'
 import { AllImagesQuery } from '@generated/gatsby-types'
 
 interface Props {
   filename: string
   style?: object
   alt?: string
+  other?: GatsbyImageProps
 }
 
 const GatsbyImage = (props: Props) => {

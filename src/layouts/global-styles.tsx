@@ -282,6 +282,18 @@ const styles = (theme: Theme) => css`
     height: 100%;
     overflow: hidden;
   }
+
+  html {
+    font-size: 125%;
+
+    @media (max-width: 900px) {
+      font-size: 110%;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 100%;
+    }
+  }
 `
 
 const GlobalStyles = () => {
