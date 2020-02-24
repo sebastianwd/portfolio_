@@ -2326,18 +2326,18 @@ export type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>,
 };
 
-export type AllImagesQueryVariables = {};
+export type GatsbyImageFluidQueryVariables = {};
 
 
-export type AllImagesQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly node: (
+export type GatsbyImageFluidQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<File, 'relativePath' | 'name'>
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
 
-export type SiteMetadataQueryVariables = {};
+export type HelmetDataQueryVariables = {};
 
 
-export type SiteMetadataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

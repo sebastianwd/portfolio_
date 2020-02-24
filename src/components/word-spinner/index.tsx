@@ -1,51 +1,80 @@
-import React from 'react'
-import { map } from 'lodash'
+import React, { useState } from 'react'
 import { Typograhy } from '@components'
 import styled from '@emotion/styled'
 import { rhythm } from '@theme/typography'
+import { keyframes } from '@emotion/core'
 
 interface Item {
   value: string
   filename?: string
 }
 
-interface Props {
+interface WordSpinnerProps {
   items: Array<Item>
 }
 
-const WordSpinner = (props: Props) => {
+const WordSpinner = (props: WordSpinnerProps) => {
   const { items } = props
 
-  const renderLabel = (item: Item, index: number) => {
-    const { value, filename } = item
+  const [active, setActive] = useState(0)
 
-    return (
-      <Inner as="span" key={index}>
-        <Item as="span">
-          {filename && <Icon src={require(`@images/${filename}`)} alt="" />}
-          <Typograhy as="span" variant="secondary" size={7}>
-            {value}
-          </Typograhy>
-        </Item>
-      </Inner>
-    )
+  const { filename, value } = items[active]
+
+  const animateNext = () => {
+    if (items.length - 1 < active + 1) {
+      setActive(0)
+
+      return
+    }
+
+    setActive(active + 1)
   }
 
-  return <>{map(items, renderLabel)}</>
+  return (
+    <Container>
+      <Item onAnimationIteration={animateNext}>
+        {filename && <Icon src={require(`@images/${filename}`)} alt="" />}
+        <Typograhy as="span" variant="secondary" size={7}>
+          {value}
+        </Typograhy>
+      </Item>
+    </Container>
+  )
 }
 
+const swipeUp = keyframes`
+  0% {
+    transform: translateY(-44px);
+  }
+  10% {
+    transform: translateY(0px);
+  }
+  90% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(44px);
+  }
+ 
+`
+
 const Icon = styled.img`
+  height: ${rhythm(1.3)};
   margin: 0 6px;
 `
 
-const Inner = styled(Typograhy)`
-  height: ${rhythm(1)};
-  display: inline-block;
+const Container = styled.span`
+  height: ${rhythm(1.4)};
+  display: inline-flex;
   vertical-align: top;
+  position: relative;
+  overflow: hidden;
 `
 
-const Item = styled(Typograhy)`
-  display: inline-flex;
+const Item = styled.span`
+  display: flex;
+  align-items: center;
+  animation: ${swipeUp} 2s infinite ease-in-out;
 `
 
 export default WordSpinner

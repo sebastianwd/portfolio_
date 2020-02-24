@@ -1,4 +1,4 @@
-query AllImages {
+query GatsbyImageFluid {
     images: allFile {
       edges {
         node {
@@ -15,7 +15,7 @@ query AllImages {
   }
 
 
-    query SiteMetadata {
+    query HelmetData {
       site {
         siteMetadata {
           title

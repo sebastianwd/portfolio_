@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { find } from 'lodash'
 import Img, { FluidObject, GatsbyImageProps } from 'gatsby-image'
-import { AllImagesQuery } from '@generated/gatsby-types'
+import { GatsbyImageFluidQuery } from '@generated/gatsby-types'
 
 interface Props {
   filename: string
@@ -14,8 +14,8 @@ interface Props {
 const GatsbyImage = (props: Props) => {
   const { filename, style, alt, ...other } = props
 
-  const data = useStaticQuery<AllImagesQuery>(graphql`
-    query AllImages {
+  const data = useStaticQuery<GatsbyImageFluidQuery>(graphql`
+    query GatsbyImageFluid {
       images: allFile {
         edges {
           node {

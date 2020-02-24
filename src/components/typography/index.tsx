@@ -1,19 +1,18 @@
 import React from 'react'
 
-interface Props {
-  children: React.ReactNode
+interface Props extends React.HTMLAttributes<HTMLElement> {
   as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
   weight?: 'bold' | 'semibold' | 'regular' | 'light'
   variant?: 'primary' | 'secondary' | 'alternate'
-  style?: React.CSSProperties
   size?: number
-  other?: React.HTMLAttributes<HTMLParagraphElement>
+  inline?: boolean
+  [x: string]: any
 }
 
 const fontFamilies = {
   primary: 'Roboto',
   secondary: 'Poppins',
-  alternate: 'Titillium Web',
+  alternate: 'La Belle Aurore',
 }
 
 const fontWeights = {
@@ -31,6 +30,7 @@ const Typography = (props: Props) => {
     variant = 'primary',
     style,
     size,
+    inline,
     ...other
   } = props
 
@@ -38,6 +38,7 @@ const Typography = (props: Props) => {
     fontWeight: fontWeights[weight],
     fontFamily: fontFamilies[variant],
     ...(size && { fontSize: `${size / 5}em` }),
+    ...(inline && { display: 'inline-block' }),
   }
 
   return (

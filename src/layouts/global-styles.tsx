@@ -135,6 +135,7 @@ const styles = (theme: Theme) => css`
 
   img {
     border-style: none;
+    margin-bottom: 0;
   }
 
   button,

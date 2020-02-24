@@ -15,8 +15,8 @@ const typography = new Typography({
       styles: ['400', '500'],
     },
     {
-      name: 'Titillium Web',
-      styles: ['300'],
+      name: 'La Belle Aurore',
+      styles: [],
     },
   ],
 })

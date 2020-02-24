@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
-import { SiteMetadataQuery } from '@generated/gatsby-types'
+import { HelmetDataQuery } from '@generated/gatsby-types'
 
 interface Props {
   description?: string
@@ -16,9 +16,9 @@ interface Props {
 const SEO = (props: Props) => {
   const { description, lang = 'en', meta = [], title } = props
 
-  const { site } = useStaticQuery<SiteMetadataQuery>(
+  const { site } = useStaticQuery<HelmetDataQuery>(
     graphql`
-      query SiteMetadata {
+      query HelmetData {
         site {
           siteMetadata {
             title

@@ -3,6 +3,7 @@ import { ThemeProvider } from 'emotion-theming'
 import { rhythm } from '@theme/typography'
 import styled from '@emotion/styled'
 import { ThemesContextProvider, ThemesContext } from '@context'
+import { Nav } from '@components'
 import GlobalStyles from '../global-styles'
 
 interface Props {
@@ -18,6 +19,7 @@ const App = (props: Props) => {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Container>{children}</Container>
+      <Nav />
     </ThemeProvider>
   )
 }

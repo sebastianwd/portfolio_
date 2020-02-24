@@ -9,6 +9,11 @@ export interface Theme {
   textSecondary: string
 }
 
+export interface StyledComponent extends React.HTMLAttributes<HTMLElement> {
+  [x: string]: any
+  theme?: Theme
+}
+
 const themes: Record<string, Theme> = {
   default: {
     name: 'default',
@@ -18,7 +23,7 @@ const themes: Record<string, Theme> = {
     primary: '#00fff5',
     secondary: '#1D1D21',
     textPrimary: '#FAF3F3',
-    textSecondary: 'rgba(245, 245, 247, 0.8)',
+    textSecondary: '#BBBBBB',
   },
   light: {
     name: 'light',
