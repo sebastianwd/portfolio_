@@ -18,7 +18,7 @@ const App = (props: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Container>{children}</Container>
+      <Container id="scroller">{children}</Container>
       <Nav />
     </ThemeProvider>
   )
@@ -35,8 +35,6 @@ const Layout = (props: Props) => {
 }
 
 const Container = styled.div`
-  max-width: ${rhythm(100)};
-  margin: 0 auto;
   height: 100%;
   overflow-y: auto;
 `

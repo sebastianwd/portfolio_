@@ -284,6 +284,10 @@ const styles = (theme: Theme) => css`
     overflow: hidden;
   }
 
+  a {
+    cursor: pointer;
+  }
+
   html {
     font-size: 125%;
 

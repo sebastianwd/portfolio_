@@ -16,19 +16,17 @@ interface Props {
 const SEO = (props: Props) => {
   const { description, lang = 'en', meta = [], title } = props
 
-  const { site } = useStaticQuery<HelmetDataQuery>(
-    graphql`
-      query HelmetData {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+  const { site } = useStaticQuery<HelmetDataQuery>(graphql`
+    query HelmetData {
+      site {
+        siteMetadata {
+          title
+          description
+          author
         }
       }
-    `
-  )
+    }
+  `)
 
   const siteMetadata = site?.siteMetadata
 

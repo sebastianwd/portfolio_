@@ -1,11 +1,12 @@
 import React from 'react'
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span'
+  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a'
   weight?: 'bold' | 'semibold' | 'regular' | 'light'
   variant?: 'primary' | 'secondary' | 'alternate'
   size?: number
   inline?: boolean
+  color?: string
   [x: string]: any
 }
 
@@ -30,6 +31,7 @@ const Typography = (props: Props) => {
     variant = 'primary',
     style,
     size,
+    color,
     inline,
     ...other
   } = props
@@ -39,10 +41,20 @@ const Typography = (props: Props) => {
     fontFamily: fontFamilies[variant],
     ...(size && { fontSize: `${size / 5}em` }),
     ...(inline && { display: 'inline-block' }),
+    ...(color && { color }),
+  }
+
+  const linkProps = {
+    target: '_blank',
+    rel: 'noopener noreferrer',
   }
 
   return (
-    <Component style={{ ...textStyle, ...style }} {...other}>
+    <Component
+      style={{ ...textStyle, ...style }}
+      {...(Component === 'a' && linkProps)}
+      {...other}
+    >
       {children}
     </Component>
   )

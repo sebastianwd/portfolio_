@@ -12,5 +12,6 @@ module.exports = {
       localSchemaFile: './src/__generated__/gatsby-schema.graphql',
       skipSSLValidation: true,
     },
+    excludes: ['**/public/**/*.js', '**/node_modules/**/*', '**/.cache/**/*'],
   },
 }
