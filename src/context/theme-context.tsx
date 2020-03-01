@@ -14,6 +14,8 @@ interface ThemesContext {
 
 const defaultTheme = themes.default
 
+const themeKey = 'kodoku'
+
 export const ThemesContext = createContext<ThemesContext>({
   theme: defaultTheme,
   setTheme: () => null,
@@ -31,12 +33,12 @@ export const ThemesContextProvider = (props: Props) => {
 
     if (newTheme) {
       setTheme(newTheme)
-      storage.set('kodoku', themeName)
+      storage.set(themeKey, themeName)
     }
   }
 
   useEffect(() => {
-    const savedThemeName = storage.get('kodoku')
+    const savedThemeName = storage.get(themeKey)
 
     const savedTheme = get(themes, `${savedThemeName}`)
 

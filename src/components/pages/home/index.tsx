@@ -3,7 +3,8 @@ import { Typograhy, WordSpinner } from '@components'
 import styled from '@emotion/styled'
 import { rhythm } from '@theme/typography'
 import { StyledComponent } from '@theme'
-import { Link, Element } from 'react-scroll'
+import { Element } from 'react-scroll'
+import { Link } from 'gatsby'
 
 const brands = [
   {
@@ -67,7 +68,7 @@ const HomePage = () => {
           </Typograhy>
           <WordSpinner items={brands} />
         </Typograhy>
-        <Link to="about" smooth containerId="scroller">
+        <Link to="/project/ghostfm/">
           Go to second element inside container
         </Link>
       </Content>
@@ -80,8 +81,9 @@ const Container = styled(Element)`
   margin: 0 auto;
   padding: 0 ${rhythm(5.5)};
   display: flex;
-  height: 100%;
+  min-height: 100%;
   align-items: center;
+  flex-grow: 1;
 `
 
 const Content = styled.div`

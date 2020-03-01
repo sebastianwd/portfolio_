@@ -1,18 +1,16 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Nav } from '@components'
 
 interface Props {
   children: React.ReactNode
 }
 
-const DefaultLayout = (props: Props) => {
+const ProjectLayout = (props: Props) => {
   const { children } = props
 
   return (
-    <Wrapper id="scroller">
+    <Wrapper>
       <Container>{children}</Container>
-      <Nav />
     </Wrapper>
   )
 }
@@ -26,11 +24,6 @@ const Wrapper = styled.div`
   display: grid;
   height: 100%;
   overflow-y: auto;
-  grid-template-areas:
-    'main nav'
-    'main nav'
-    'main nav';
-  grid-template-columns: 1fr auto;
 `
 
-export default DefaultLayout
+export default ProjectLayout

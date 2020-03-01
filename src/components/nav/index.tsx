@@ -15,42 +15,44 @@ import { keyframes } from '@emotion/core'
 const Nav = () => {
   return (
     <NavContainer>
-      <Circle />
-      <ul>
-        <NavItem>
-          <NavLink to="home" smooth containerId="scroller">
-            <Title as="span" data-text="HOME" weight="light" size={3}>
-              home
-            </Title>
-            <img src={home} alt="home" />
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink>
-            <Title as="span" weight="light" size={3}>
-              portfolio
-            </Title>
-            <img src={portfolio} alt="portfolio" />
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="about" smooth containerId="scroller">
-            <Title as="span" weight="light" size={3}>
-              about
-            </Title>
-            <img src={about} alt="about" />
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink>
-            <Title as="span" weight="light" size={3}>
-              contact
-            </Title>
-            <img src={contact} alt="contact" />
-          </NavLink>
-        </NavItem>
-      </ul>
-      <Circle />
+      <Inner>
+        <Circle />
+        <ul>
+          <NavItem>
+            <NavLink to="home" smooth containerId="scroller">
+              <Title as="span" data-text="HOME" weight="light" size={3}>
+                home
+              </Title>
+              <img src={home} alt="home" />
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink>
+              <Title as="span" weight="light" size={3}>
+                portfolio
+              </Title>
+              <img src={portfolio} alt="portfolio" />
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="about" smooth containerId="scroller">
+              <Title as="span" weight="light" size={3}>
+                about
+              </Title>
+              <img src={about} alt="about" />
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink>
+              <Title as="span" weight="light" size={3}>
+                contact
+              </Title>
+              <img src={contact} alt="contact" />
+            </NavLink>
+          </NavItem>
+        </ul>
+        <Circle />
+      </Inner>
     </NavContainer>
   )
 }
@@ -88,20 +90,16 @@ const Circle = styled.div<StyledComponent>`
   margin-left: 80%;
 `
 
-const NavContainer = styled.nav<StyledComponent>`
-  position: fixed;
+const Inner = styled.div<StyledComponent>`
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  top: 0;
-  right: 48px;
-  height: 100%;
+  align-self: center;
 
   & > ul {
     position: relative;
     margin-bottom: 0;
 
-    & li:first-child {
+    & li:first-of-type {
       margin-top: ${rhythm(1.3)};
     }
 
@@ -115,6 +113,17 @@ const NavContainer = styled.nav<StyledComponent>`
       z-index: -1;
     }
   }
+`
+
+const NavContainer = styled.nav<StyledComponent>`
+  position: sticky;
+  grid-area: nav;
+  display: flex;
+  padding-right: ${rhythm(1)};
+  top: 0;
+  max-height: 100%;
+  overflow: hidden;
+  right: 0;
 `
 
 const Title = styled(Typograhy)<StyledComponent>`

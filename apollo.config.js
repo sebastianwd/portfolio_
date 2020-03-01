@@ -1,6 +1,6 @@
 module.exports = {
   client: {
-    name: 'gatsby-essential-starter',
+    name: 'your-project-name',
     tagName: 'graphql',
     includes: [
       './src/**/*.{ts,tsx}',
@@ -8,9 +8,9 @@ module.exports = {
     ],
     service: {
       name: 'GatsbyJS',
-      url: ' http://localhost:8000/___graphql',
+      // url: ' http://localhost:8000/___graphql',
       localSchemaFile: './src/__generated__/gatsby-schema.graphql',
-      skipSSLValidation: true,
+      // skipSSLValidation: true,
     },
     excludes: ['**/public/**/*.js', '**/node_modules/**/*', '**/.cache/**/*'],
   },

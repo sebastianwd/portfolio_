@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 
 export type Maybe<T> = T | undefined;
 /** All built-in and custom scalars, mapped to their actual values */
@@ -372,6 +372,7 @@ export type File = Node & {
   readonly ctime: Scalars['Date'],
   readonly birthtime: Maybe<Scalars['Date']>,
   readonly birthtimeMs: Maybe<Scalars['Float']>,
+  readonly url: Maybe<Scalars['String']>,
   /** Copy file to static directory and return public url to it */
   readonly publicURL: Maybe<Scalars['String']>,
   readonly childImageSharp: Maybe<ImageSharp>,
@@ -496,6 +497,7 @@ export enum FileFieldsEnum {
   ctime = 'ctime',
   birthtime = 'birthtime',
   birthtimeMs = 'birthtimeMs',
+  url = 'url',
   publicURL = 'publicURL',
   childImageSharp___fixed___base64 = 'childImageSharp.fixed.base64',
   childImageSharp___fixed___tracedSVG = 'childImageSharp.fixed.tracedSVG',
@@ -708,6 +710,7 @@ export type FileFilterInput = {
   readonly ctime: Maybe<DateQueryOperatorInput>,
   readonly birthtime: Maybe<DateQueryOperatorInput>,
   readonly birthtimeMs: Maybe<FloatQueryOperatorInput>,
+  readonly url: Maybe<StringQueryOperatorInput>,
   readonly publicURL: Maybe<StringQueryOperatorInput>,
   readonly childImageSharp: Maybe<ImageSharpFilterInput>,
   readonly id: Maybe<StringQueryOperatorInput>,
@@ -1321,19 +1324,956 @@ export enum PotraceTurnPolicy {
   TURNPOLICY_MAJORITY = 'majority'
 }
 
+export type PrismicCategory = Node & {
+  readonly id: Scalars['ID'],
+  readonly parent: Maybe<Node>,
+  readonly children: ReadonlyArray<Node>,
+  readonly internal: Internal,
+  readonly type: Maybe<Scalars['String']>,
+  readonly href: Maybe<Scalars['String']>,
+  readonly first_publication_date: Maybe<Scalars['Date']>,
+  readonly last_publication_date: Maybe<Scalars['Date']>,
+  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>,
+  readonly lang: Maybe<Scalars['String']>,
+  readonly data: Maybe<PrismicCategoryData>,
+  readonly prismicId: Maybe<Scalars['String']>,
+  readonly dataString: Maybe<Scalars['String']>,
+};
+
+
+export type PrismicCategory_first_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>,
+  fromNow: Maybe<Scalars['Boolean']>,
+  difference: Maybe<Scalars['String']>,
+  locale: Maybe<Scalars['String']>
+};
+
+
+export type PrismicCategory_last_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>,
+  fromNow: Maybe<Scalars['Boolean']>,
+  difference: Maybe<Scalars['String']>,
+  locale: Maybe<Scalars['String']>
+};
+
+export type PrismicCategoryConnection = {
+  readonly totalCount: Scalars['Int'],
+  readonly edges: ReadonlyArray<PrismicCategoryEdge>,
+  readonly nodes: ReadonlyArray<PrismicCategory>,
+  readonly pageInfo: PageInfo,
+  readonly distinct: ReadonlyArray<Scalars['String']>,
+  readonly group: ReadonlyArray<PrismicCategoryGroupConnection>,
+};
+
+
+export type PrismicCategoryConnection_distinctArgs = {
+  field: PrismicCategoryFieldsEnum
+};
+
+
+export type PrismicCategoryConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>,
+  field: PrismicCategoryFieldsEnum
+};
+
+export type PrismicCategoryData = {
+  readonly name: Maybe<Scalars['String']>,
+  readonly image: Maybe<PrismicCategoryDataImage>,
+};
+
+export type PrismicCategoryDataFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>,
+  readonly image: Maybe<PrismicCategoryDataImageFilterInput>,
+};
+
+export type PrismicCategoryDataImage = {
+  readonly dimensions: Maybe<PrismicCategoryDataImageDimensions>,
+  readonly alt: Maybe<Scalars['String']>,
+  readonly copyright: Maybe<Scalars['String']>,
+  readonly url: Maybe<Scalars['String']>,
+  readonly localFile: Maybe<File>,
+};
+
+export type PrismicCategoryDataImageDimensions = {
+  readonly width: Maybe<Scalars['Int']>,
+  readonly height: Maybe<Scalars['Int']>,
+};
+
+export type PrismicCategoryDataImageDimensionsFilterInput = {
+  readonly width: Maybe<IntQueryOperatorInput>,
+  readonly height: Maybe<IntQueryOperatorInput>,
+};
+
+export type PrismicCategoryDataImageFilterInput = {
+  readonly dimensions: Maybe<PrismicCategoryDataImageDimensionsFilterInput>,
+  readonly alt: Maybe<StringQueryOperatorInput>,
+  readonly copyright: Maybe<StringQueryOperatorInput>,
+  readonly url: Maybe<StringQueryOperatorInput>,
+  readonly localFile: Maybe<FileFilterInput>,
+};
+
+export type PrismicCategoryEdge = {
+  readonly next: Maybe<PrismicCategory>,
+  readonly node: PrismicCategory,
+  readonly previous: Maybe<PrismicCategory>,
+};
+
+export enum PrismicCategoryFieldsEnum {
+  id = 'id',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type',
+  type = 'type',
+  href = 'href',
+  first_publication_date = 'first_publication_date',
+  last_publication_date = 'last_publication_date',
+  slugs = 'slugs',
+  lang = 'lang',
+  data___name = 'data.name',
+  data___image___dimensions___width = 'data.image.dimensions.width',
+  data___image___dimensions___height = 'data.image.dimensions.height',
+  data___image___alt = 'data.image.alt',
+  data___image___copyright = 'data.image.copyright',
+  data___image___url = 'data.image.url',
+  data___image___localFile___sourceInstanceName = 'data.image.localFile.sourceInstanceName',
+  data___image___localFile___absolutePath = 'data.image.localFile.absolutePath',
+  data___image___localFile___relativePath = 'data.image.localFile.relativePath',
+  data___image___localFile___extension = 'data.image.localFile.extension',
+  data___image___localFile___size = 'data.image.localFile.size',
+  data___image___localFile___prettySize = 'data.image.localFile.prettySize',
+  data___image___localFile___modifiedTime = 'data.image.localFile.modifiedTime',
+  data___image___localFile___accessTime = 'data.image.localFile.accessTime',
+  data___image___localFile___changeTime = 'data.image.localFile.changeTime',
+  data___image___localFile___birthTime = 'data.image.localFile.birthTime',
+  data___image___localFile___root = 'data.image.localFile.root',
+  data___image___localFile___dir = 'data.image.localFile.dir',
+  data___image___localFile___base = 'data.image.localFile.base',
+  data___image___localFile___ext = 'data.image.localFile.ext',
+  data___image___localFile___name = 'data.image.localFile.name',
+  data___image___localFile___relativeDirectory = 'data.image.localFile.relativeDirectory',
+  data___image___localFile___dev = 'data.image.localFile.dev',
+  data___image___localFile___mode = 'data.image.localFile.mode',
+  data___image___localFile___nlink = 'data.image.localFile.nlink',
+  data___image___localFile___uid = 'data.image.localFile.uid',
+  data___image___localFile___gid = 'data.image.localFile.gid',
+  data___image___localFile___rdev = 'data.image.localFile.rdev',
+  data___image___localFile___ino = 'data.image.localFile.ino',
+  data___image___localFile___atimeMs = 'data.image.localFile.atimeMs',
+  data___image___localFile___mtimeMs = 'data.image.localFile.mtimeMs',
+  data___image___localFile___ctimeMs = 'data.image.localFile.ctimeMs',
+  data___image___localFile___atime = 'data.image.localFile.atime',
+  data___image___localFile___mtime = 'data.image.localFile.mtime',
+  data___image___localFile___ctime = 'data.image.localFile.ctime',
+  data___image___localFile___birthtime = 'data.image.localFile.birthtime',
+  data___image___localFile___birthtimeMs = 'data.image.localFile.birthtimeMs',
+  data___image___localFile___url = 'data.image.localFile.url',
+  data___image___localFile___publicURL = 'data.image.localFile.publicURL',
+  data___image___localFile___id = 'data.image.localFile.id',
+  data___image___localFile___children = 'data.image.localFile.children',
+  prismicId = 'prismicId',
+  dataString = 'dataString'
+}
+
+export type PrismicCategoryFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>,
+  readonly parent: Maybe<NodeFilterInput>,
+  readonly children: Maybe<NodeFilterListInput>,
+  readonly internal: Maybe<InternalFilterInput>,
+  readonly type: Maybe<StringQueryOperatorInput>,
+  readonly href: Maybe<StringQueryOperatorInput>,
+  readonly first_publication_date: Maybe<DateQueryOperatorInput>,
+  readonly last_publication_date: Maybe<DateQueryOperatorInput>,
+  readonly slugs: Maybe<StringQueryOperatorInput>,
+  readonly lang: Maybe<StringQueryOperatorInput>,
+  readonly data: Maybe<PrismicCategoryDataFilterInput>,
+  readonly prismicId: Maybe<StringQueryOperatorInput>,
+  readonly dataString: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicCategoryFilterListInput = {
+  readonly elemMatch: Maybe<PrismicCategoryFilterInput>,
+};
+
+export type PrismicCategoryGroupConnection = {
+  readonly totalCount: Scalars['Int'],
+  readonly edges: ReadonlyArray<PrismicCategoryEdge>,
+  readonly nodes: ReadonlyArray<PrismicCategory>,
+  readonly pageInfo: PageInfo,
+  readonly field: Scalars['String'],
+  readonly fieldValue: Maybe<Scalars['String']>,
+};
+
+export type PrismicCategorySortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<PrismicCategoryFieldsEnum>>>,
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>,
+};
+
+export type PrismicProject = Node & {
+  readonly id: Scalars['ID'],
+  readonly parent: Maybe<Node>,
+  readonly children: ReadonlyArray<Node>,
+  readonly internal: Internal,
+  readonly uid: Maybe<Scalars['String']>,
+  readonly type: Maybe<Scalars['String']>,
+  readonly href: Maybe<Scalars['String']>,
+  readonly first_publication_date: Maybe<Scalars['Date']>,
+  readonly last_publication_date: Maybe<Scalars['Date']>,
+  readonly slugs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>,
+  readonly lang: Maybe<Scalars['String']>,
+  readonly data: Maybe<PrismicProjectData>,
+  readonly prismicId: Maybe<Scalars['String']>,
+  readonly dataString: Maybe<Scalars['String']>,
+};
+
+
+export type PrismicProject_first_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>,
+  fromNow: Maybe<Scalars['Boolean']>,
+  difference: Maybe<Scalars['String']>,
+  locale: Maybe<Scalars['String']>
+};
+
+
+export type PrismicProject_last_publication_dateArgs = {
+  formatString: Maybe<Scalars['String']>,
+  fromNow: Maybe<Scalars['Boolean']>,
+  difference: Maybe<Scalars['String']>,
+  locale: Maybe<Scalars['String']>
+};
+
+export type PrismicProjectBodyImageGallery = Node & {
+  readonly id: Scalars['ID'],
+  readonly parent: Maybe<Node>,
+  readonly children: ReadonlyArray<Node>,
+  readonly internal: Internal,
+  readonly slice_type: Maybe<Scalars['String']>,
+  readonly items: Maybe<ReadonlyArray<Maybe<PrismicProjectBodyImageGalleryItems>>>,
+  readonly prismicId: Maybe<Scalars['String']>,
+};
+
+export type PrismicProjectBodyImageGalleryConnection = {
+  readonly totalCount: Scalars['Int'],
+  readonly edges: ReadonlyArray<PrismicProjectBodyImageGalleryEdge>,
+  readonly nodes: ReadonlyArray<PrismicProjectBodyImageGallery>,
+  readonly pageInfo: PageInfo,
+  readonly distinct: ReadonlyArray<Scalars['String']>,
+  readonly group: ReadonlyArray<PrismicProjectBodyImageGalleryGroupConnection>,
+};
+
+
+export type PrismicProjectBodyImageGalleryConnection_distinctArgs = {
+  field: PrismicProjectBodyImageGalleryFieldsEnum
+};
+
+
+export type PrismicProjectBodyImageGalleryConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>,
+  field: PrismicProjectBodyImageGalleryFieldsEnum
+};
+
+export type PrismicProjectBodyImageGalleryEdge = {
+  readonly next: Maybe<PrismicProjectBodyImageGallery>,
+  readonly node: PrismicProjectBodyImageGallery,
+  readonly previous: Maybe<PrismicProjectBodyImageGallery>,
+};
+
+export enum PrismicProjectBodyImageGalleryFieldsEnum {
+  id = 'id',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type',
+  slice_type = 'slice_type',
+  items = 'items',
+  items___image_captions___html = 'items.image_captions.html',
+  items___image_captions___text = 'items.image_captions.text',
+  items___image_captions___raw = 'items.image_captions.raw',
+  items___image_captions___raw___type = 'items.image_captions.raw.type',
+  items___image_captions___raw___text = 'items.image_captions.raw.text',
+  items___gallery_image___dimensions___width = 'items.gallery_image.dimensions.width',
+  items___gallery_image___dimensions___height = 'items.gallery_image.dimensions.height',
+  items___gallery_image___alt = 'items.gallery_image.alt',
+  items___gallery_image___copyright = 'items.gallery_image.copyright',
+  items___gallery_image___url = 'items.gallery_image.url',
+  items___gallery_image___localFile___sourceInstanceName = 'items.gallery_image.localFile.sourceInstanceName',
+  items___gallery_image___localFile___absolutePath = 'items.gallery_image.localFile.absolutePath',
+  items___gallery_image___localFile___relativePath = 'items.gallery_image.localFile.relativePath',
+  items___gallery_image___localFile___extension = 'items.gallery_image.localFile.extension',
+  items___gallery_image___localFile___size = 'items.gallery_image.localFile.size',
+  items___gallery_image___localFile___prettySize = 'items.gallery_image.localFile.prettySize',
+  items___gallery_image___localFile___modifiedTime = 'items.gallery_image.localFile.modifiedTime',
+  items___gallery_image___localFile___accessTime = 'items.gallery_image.localFile.accessTime',
+  items___gallery_image___localFile___changeTime = 'items.gallery_image.localFile.changeTime',
+  items___gallery_image___localFile___birthTime = 'items.gallery_image.localFile.birthTime',
+  items___gallery_image___localFile___root = 'items.gallery_image.localFile.root',
+  items___gallery_image___localFile___dir = 'items.gallery_image.localFile.dir',
+  items___gallery_image___localFile___base = 'items.gallery_image.localFile.base',
+  items___gallery_image___localFile___ext = 'items.gallery_image.localFile.ext',
+  items___gallery_image___localFile___name = 'items.gallery_image.localFile.name',
+  items___gallery_image___localFile___relativeDirectory = 'items.gallery_image.localFile.relativeDirectory',
+  items___gallery_image___localFile___dev = 'items.gallery_image.localFile.dev',
+  items___gallery_image___localFile___mode = 'items.gallery_image.localFile.mode',
+  items___gallery_image___localFile___nlink = 'items.gallery_image.localFile.nlink',
+  items___gallery_image___localFile___uid = 'items.gallery_image.localFile.uid',
+  items___gallery_image___localFile___gid = 'items.gallery_image.localFile.gid',
+  items___gallery_image___localFile___rdev = 'items.gallery_image.localFile.rdev',
+  items___gallery_image___localFile___ino = 'items.gallery_image.localFile.ino',
+  items___gallery_image___localFile___atimeMs = 'items.gallery_image.localFile.atimeMs',
+  items___gallery_image___localFile___mtimeMs = 'items.gallery_image.localFile.mtimeMs',
+  items___gallery_image___localFile___ctimeMs = 'items.gallery_image.localFile.ctimeMs',
+  items___gallery_image___localFile___atime = 'items.gallery_image.localFile.atime',
+  items___gallery_image___localFile___mtime = 'items.gallery_image.localFile.mtime',
+  items___gallery_image___localFile___ctime = 'items.gallery_image.localFile.ctime',
+  items___gallery_image___localFile___birthtime = 'items.gallery_image.localFile.birthtime',
+  items___gallery_image___localFile___birthtimeMs = 'items.gallery_image.localFile.birthtimeMs',
+  items___gallery_image___localFile___url = 'items.gallery_image.localFile.url',
+  items___gallery_image___localFile___publicURL = 'items.gallery_image.localFile.publicURL',
+  items___gallery_image___localFile___id = 'items.gallery_image.localFile.id',
+  items___gallery_image___localFile___children = 'items.gallery_image.localFile.children',
+  prismicId = 'prismicId'
+}
+
+export type PrismicProjectBodyImageGalleryFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>,
+  readonly parent: Maybe<NodeFilterInput>,
+  readonly children: Maybe<NodeFilterListInput>,
+  readonly internal: Maybe<InternalFilterInput>,
+  readonly slice_type: Maybe<StringQueryOperatorInput>,
+  readonly items: Maybe<PrismicProjectBodyImageGalleryItemsFilterListInput>,
+  readonly prismicId: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicProjectBodyImageGalleryFilterListInput = {
+  readonly elemMatch: Maybe<PrismicProjectBodyImageGalleryFilterInput>,
+};
+
+export type PrismicProjectBodyImageGalleryGroupConnection = {
+  readonly totalCount: Scalars['Int'],
+  readonly edges: ReadonlyArray<PrismicProjectBodyImageGalleryEdge>,
+  readonly nodes: ReadonlyArray<PrismicProjectBodyImageGallery>,
+  readonly pageInfo: PageInfo,
+  readonly field: Scalars['String'],
+  readonly fieldValue: Maybe<Scalars['String']>,
+};
+
+export type PrismicProjectBodyImageGalleryItems = {
+  readonly image_captions: Maybe<PrismicProjectBodyImageGalleryItemsImage_captions>,
+  readonly gallery_image: Maybe<PrismicProjectBodyImageGalleryItemsGallery_image>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsFilterInput = {
+  readonly image_captions: Maybe<PrismicProjectBodyImageGalleryItemsImage_captionsFilterInput>,
+  readonly gallery_image: Maybe<PrismicProjectBodyImageGalleryItemsGallery_imageFilterInput>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsFilterListInput = {
+  readonly elemMatch: Maybe<PrismicProjectBodyImageGalleryItemsFilterInput>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsGallery_image = {
+  readonly dimensions: Maybe<PrismicProjectBodyImageGalleryItemsGallery_imageDimensions>,
+  readonly alt: Maybe<Scalars['String']>,
+  readonly copyright: Maybe<Scalars['String']>,
+  readonly url: Maybe<Scalars['String']>,
+  readonly localFile: Maybe<File>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsGallery_imageDimensions = {
+  readonly width: Maybe<Scalars['Int']>,
+  readonly height: Maybe<Scalars['Int']>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsGallery_imageDimensionsFilterInput = {
+  readonly width: Maybe<IntQueryOperatorInput>,
+  readonly height: Maybe<IntQueryOperatorInput>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsGallery_imageFilterInput = {
+  readonly dimensions: Maybe<PrismicProjectBodyImageGalleryItemsGallery_imageDimensionsFilterInput>,
+  readonly alt: Maybe<StringQueryOperatorInput>,
+  readonly copyright: Maybe<StringQueryOperatorInput>,
+  readonly url: Maybe<StringQueryOperatorInput>,
+  readonly localFile: Maybe<FileFilterInput>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsImage_captions = {
+  readonly html: Maybe<Scalars['String']>,
+  readonly text: Maybe<Scalars['String']>,
+  readonly raw: Maybe<ReadonlyArray<Maybe<PrismicProjectBodyImageGalleryItemsImage_captionsRaw>>>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsImage_captionsFilterInput = {
+  readonly html: Maybe<StringQueryOperatorInput>,
+  readonly text: Maybe<StringQueryOperatorInput>,
+  readonly raw: Maybe<PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterListInput>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsImage_captionsRaw = {
+  readonly type: Maybe<Scalars['String']>,
+  readonly text: Maybe<Scalars['String']>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>,
+  readonly text: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterListInput = {
+  readonly elemMatch: Maybe<PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterInput>,
+};
+
+export type PrismicProjectBodyImageGallerySortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<PrismicProjectBodyImageGalleryFieldsEnum>>>,
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>,
+};
+
+export type PrismicProjectConnection = {
+  readonly totalCount: Scalars['Int'],
+  readonly edges: ReadonlyArray<PrismicProjectEdge>,
+  readonly nodes: ReadonlyArray<PrismicProject>,
+  readonly pageInfo: PageInfo,
+  readonly distinct: ReadonlyArray<Scalars['String']>,
+  readonly group: ReadonlyArray<PrismicProjectGroupConnection>,
+};
+
+
+export type PrismicProjectConnection_distinctArgs = {
+  field: PrismicProjectFieldsEnum
+};
+
+
+export type PrismicProjectConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>,
+  field: PrismicProjectFieldsEnum
+};
+
+export type PrismicProjectData = {
+  readonly title: Maybe<Scalars['String']>,
+  readonly preview_image: Maybe<PrismicProjectDataPreview_image>,
+  readonly overview: Maybe<Scalars['String']>,
+  readonly repository: Maybe<Scalars['String']>,
+  readonly live: Maybe<Scalars['String']>,
+  readonly content: Maybe<PrismicProjectDataContent>,
+  readonly categories: Maybe<ReadonlyArray<Maybe<PrismicProjectDataCategories>>>,
+  readonly body: Maybe<ReadonlyArray<Maybe<PrismicProjectBodyImageGallery>>>,
+};
+
+export type PrismicProjectDataCategories = {
+  readonly category: Maybe<PrismicProjectDataCategoriesCategory>,
+};
+
+export type PrismicProjectDataCategoriesCategory = {
+  readonly id: Maybe<Scalars['String']>,
+  readonly type: Maybe<Scalars['String']>,
+  readonly slug: Maybe<Scalars['String']>,
+  readonly lang: Maybe<Scalars['String']>,
+  readonly link_type: Maybe<Scalars['String']>,
+  readonly isBroken: Maybe<Scalars['Boolean']>,
+  readonly document: Maybe<ReadonlyArray<Maybe<PrismicCategory>>>,
+  readonly url: Maybe<Scalars['String']>,
+  readonly target: Maybe<Scalars['String']>,
+  readonly raw: Maybe<PrismicProjectDataCategoriesCategoryRaw>,
+};
+
+export type PrismicProjectDataCategoriesCategoryFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>,
+  readonly type: Maybe<StringQueryOperatorInput>,
+  readonly slug: Maybe<StringQueryOperatorInput>,
+  readonly lang: Maybe<StringQueryOperatorInput>,
+  readonly link_type: Maybe<StringQueryOperatorInput>,
+  readonly isBroken: Maybe<BooleanQueryOperatorInput>,
+  readonly document: Maybe<PrismicCategoryFilterListInput>,
+  readonly url: Maybe<StringQueryOperatorInput>,
+  readonly target: Maybe<StringQueryOperatorInput>,
+  readonly raw: Maybe<PrismicProjectDataCategoriesCategoryRawFilterInput>,
+};
+
+export type PrismicProjectDataCategoriesCategoryRaw = {
+  readonly id: Maybe<Scalars['String']>,
+  readonly type: Maybe<Scalars['String']>,
+  readonly slug: Maybe<Scalars['String']>,
+  readonly lang: Maybe<Scalars['String']>,
+  readonly link_type: Maybe<Scalars['String']>,
+  readonly isBroken: Maybe<Scalars['Boolean']>,
+};
+
+export type PrismicProjectDataCategoriesCategoryRawFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>,
+  readonly type: Maybe<StringQueryOperatorInput>,
+  readonly slug: Maybe<StringQueryOperatorInput>,
+  readonly lang: Maybe<StringQueryOperatorInput>,
+  readonly link_type: Maybe<StringQueryOperatorInput>,
+  readonly isBroken: Maybe<BooleanQueryOperatorInput>,
+};
+
+export type PrismicProjectDataCategoriesFilterInput = {
+  readonly category: Maybe<PrismicProjectDataCategoriesCategoryFilterInput>,
+};
+
+export type PrismicProjectDataCategoriesFilterListInput = {
+  readonly elemMatch: Maybe<PrismicProjectDataCategoriesFilterInput>,
+};
+
+export type PrismicProjectDataContent = {
+  readonly html: Maybe<Scalars['String']>,
+  readonly text: Maybe<Scalars['String']>,
+  readonly raw: Maybe<ReadonlyArray<Maybe<PrismicProjectDataContentRaw>>>,
+};
+
+export type PrismicProjectDataContentFilterInput = {
+  readonly html: Maybe<StringQueryOperatorInput>,
+  readonly text: Maybe<StringQueryOperatorInput>,
+  readonly raw: Maybe<PrismicProjectDataContentRawFilterListInput>,
+};
+
+export type PrismicProjectDataContentRaw = {
+  readonly type: Maybe<Scalars['String']>,
+  readonly text: Maybe<Scalars['String']>,
+};
+
+export type PrismicProjectDataContentRawFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>,
+  readonly text: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicProjectDataContentRawFilterListInput = {
+  readonly elemMatch: Maybe<PrismicProjectDataContentRawFilterInput>,
+};
+
+export type PrismicProjectDataFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>,
+  readonly preview_image: Maybe<PrismicProjectDataPreview_imageFilterInput>,
+  readonly overview: Maybe<StringQueryOperatorInput>,
+  readonly repository: Maybe<StringQueryOperatorInput>,
+  readonly live: Maybe<StringQueryOperatorInput>,
+  readonly content: Maybe<PrismicProjectDataContentFilterInput>,
+  readonly categories: Maybe<PrismicProjectDataCategoriesFilterListInput>,
+  readonly body: Maybe<PrismicProjectBodyImageGalleryFilterListInput>,
+};
+
+export type PrismicProjectDataPreview_image = {
+  readonly dimensions: Maybe<PrismicProjectDataPreview_imageDimensions>,
+  readonly alt: Maybe<Scalars['String']>,
+  readonly copyright: Maybe<Scalars['String']>,
+  readonly url: Maybe<Scalars['String']>,
+  readonly localFile: Maybe<File>,
+};
+
+export type PrismicProjectDataPreview_imageDimensions = {
+  readonly width: Maybe<Scalars['Int']>,
+  readonly height: Maybe<Scalars['Int']>,
+};
+
+export type PrismicProjectDataPreview_imageDimensionsFilterInput = {
+  readonly width: Maybe<IntQueryOperatorInput>,
+  readonly height: Maybe<IntQueryOperatorInput>,
+};
+
+export type PrismicProjectDataPreview_imageFilterInput = {
+  readonly dimensions: Maybe<PrismicProjectDataPreview_imageDimensionsFilterInput>,
+  readonly alt: Maybe<StringQueryOperatorInput>,
+  readonly copyright: Maybe<StringQueryOperatorInput>,
+  readonly url: Maybe<StringQueryOperatorInput>,
+  readonly localFile: Maybe<FileFilterInput>,
+};
+
+export type PrismicProjectEdge = {
+  readonly next: Maybe<PrismicProject>,
+  readonly node: PrismicProject,
+  readonly previous: Maybe<PrismicProject>,
+};
+
+export enum PrismicProjectFieldsEnum {
+  id = 'id',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type',
+  uid = 'uid',
+  type = 'type',
+  href = 'href',
+  first_publication_date = 'first_publication_date',
+  last_publication_date = 'last_publication_date',
+  slugs = 'slugs',
+  lang = 'lang',
+  data___title = 'data.title',
+  data___preview_image___dimensions___width = 'data.preview_image.dimensions.width',
+  data___preview_image___dimensions___height = 'data.preview_image.dimensions.height',
+  data___preview_image___alt = 'data.preview_image.alt',
+  data___preview_image___copyright = 'data.preview_image.copyright',
+  data___preview_image___url = 'data.preview_image.url',
+  data___preview_image___localFile___sourceInstanceName = 'data.preview_image.localFile.sourceInstanceName',
+  data___preview_image___localFile___absolutePath = 'data.preview_image.localFile.absolutePath',
+  data___preview_image___localFile___relativePath = 'data.preview_image.localFile.relativePath',
+  data___preview_image___localFile___extension = 'data.preview_image.localFile.extension',
+  data___preview_image___localFile___size = 'data.preview_image.localFile.size',
+  data___preview_image___localFile___prettySize = 'data.preview_image.localFile.prettySize',
+  data___preview_image___localFile___modifiedTime = 'data.preview_image.localFile.modifiedTime',
+  data___preview_image___localFile___accessTime = 'data.preview_image.localFile.accessTime',
+  data___preview_image___localFile___changeTime = 'data.preview_image.localFile.changeTime',
+  data___preview_image___localFile___birthTime = 'data.preview_image.localFile.birthTime',
+  data___preview_image___localFile___root = 'data.preview_image.localFile.root',
+  data___preview_image___localFile___dir = 'data.preview_image.localFile.dir',
+  data___preview_image___localFile___base = 'data.preview_image.localFile.base',
+  data___preview_image___localFile___ext = 'data.preview_image.localFile.ext',
+  data___preview_image___localFile___name = 'data.preview_image.localFile.name',
+  data___preview_image___localFile___relativeDirectory = 'data.preview_image.localFile.relativeDirectory',
+  data___preview_image___localFile___dev = 'data.preview_image.localFile.dev',
+  data___preview_image___localFile___mode = 'data.preview_image.localFile.mode',
+  data___preview_image___localFile___nlink = 'data.preview_image.localFile.nlink',
+  data___preview_image___localFile___uid = 'data.preview_image.localFile.uid',
+  data___preview_image___localFile___gid = 'data.preview_image.localFile.gid',
+  data___preview_image___localFile___rdev = 'data.preview_image.localFile.rdev',
+  data___preview_image___localFile___ino = 'data.preview_image.localFile.ino',
+  data___preview_image___localFile___atimeMs = 'data.preview_image.localFile.atimeMs',
+  data___preview_image___localFile___mtimeMs = 'data.preview_image.localFile.mtimeMs',
+  data___preview_image___localFile___ctimeMs = 'data.preview_image.localFile.ctimeMs',
+  data___preview_image___localFile___atime = 'data.preview_image.localFile.atime',
+  data___preview_image___localFile___mtime = 'data.preview_image.localFile.mtime',
+  data___preview_image___localFile___ctime = 'data.preview_image.localFile.ctime',
+  data___preview_image___localFile___birthtime = 'data.preview_image.localFile.birthtime',
+  data___preview_image___localFile___birthtimeMs = 'data.preview_image.localFile.birthtimeMs',
+  data___preview_image___localFile___url = 'data.preview_image.localFile.url',
+  data___preview_image___localFile___publicURL = 'data.preview_image.localFile.publicURL',
+  data___preview_image___localFile___id = 'data.preview_image.localFile.id',
+  data___preview_image___localFile___children = 'data.preview_image.localFile.children',
+  data___overview = 'data.overview',
+  data___repository = 'data.repository',
+  data___live = 'data.live',
+  data___content___html = 'data.content.html',
+  data___content___text = 'data.content.text',
+  data___content___raw = 'data.content.raw',
+  data___content___raw___type = 'data.content.raw.type',
+  data___content___raw___text = 'data.content.raw.text',
+  data___categories = 'data.categories',
+  data___categories___category___id = 'data.categories.category.id',
+  data___categories___category___type = 'data.categories.category.type',
+  data___categories___category___slug = 'data.categories.category.slug',
+  data___categories___category___lang = 'data.categories.category.lang',
+  data___categories___category___link_type = 'data.categories.category.link_type',
+  data___categories___category___isBroken = 'data.categories.category.isBroken',
+  data___categories___category___document = 'data.categories.category.document',
+  data___categories___category___url = 'data.categories.category.url',
+  data___categories___category___target = 'data.categories.category.target',
+  data___body = 'data.body',
+  data___body___id = 'data.body.id',
+  data___body___parent___id = 'data.body.parent.id',
+  data___body___parent___children = 'data.body.parent.children',
+  data___body___children = 'data.body.children',
+  data___body___children___id = 'data.body.children.id',
+  data___body___children___children = 'data.body.children.children',
+  data___body___internal___content = 'data.body.internal.content',
+  data___body___internal___contentDigest = 'data.body.internal.contentDigest',
+  data___body___internal___description = 'data.body.internal.description',
+  data___body___internal___fieldOwners = 'data.body.internal.fieldOwners',
+  data___body___internal___ignoreType = 'data.body.internal.ignoreType',
+  data___body___internal___mediaType = 'data.body.internal.mediaType',
+  data___body___internal___owner = 'data.body.internal.owner',
+  data___body___internal___type = 'data.body.internal.type',
+  data___body___slice_type = 'data.body.slice_type',
+  data___body___items = 'data.body.items',
+  data___body___prismicId = 'data.body.prismicId',
+  prismicId = 'prismicId',
+  dataString = 'dataString'
+}
+
+export type PrismicProjectFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>,
+  readonly parent: Maybe<NodeFilterInput>,
+  readonly children: Maybe<NodeFilterListInput>,
+  readonly internal: Maybe<InternalFilterInput>,
+  readonly uid: Maybe<StringQueryOperatorInput>,
+  readonly type: Maybe<StringQueryOperatorInput>,
+  readonly href: Maybe<StringQueryOperatorInput>,
+  readonly first_publication_date: Maybe<DateQueryOperatorInput>,
+  readonly last_publication_date: Maybe<DateQueryOperatorInput>,
+  readonly slugs: Maybe<StringQueryOperatorInput>,
+  readonly lang: Maybe<StringQueryOperatorInput>,
+  readonly data: Maybe<PrismicProjectDataFilterInput>,
+  readonly prismicId: Maybe<StringQueryOperatorInput>,
+  readonly dataString: Maybe<StringQueryOperatorInput>,
+};
+
+export type PrismicProjectGroupConnection = {
+  readonly totalCount: Scalars['Int'],
+  readonly edges: ReadonlyArray<PrismicProjectEdge>,
+  readonly nodes: ReadonlyArray<PrismicProject>,
+  readonly pageInfo: PageInfo,
+  readonly field: Scalars['String'],
+  readonly fieldValue: Maybe<Scalars['String']>,
+};
+
+export type PrismicProjectSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<PrismicProjectFieldsEnum>>>,
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>,
+};
+
 export type Query = {
   readonly file: Maybe<File>,
   readonly allFile: FileConnection,
   readonly directory: Maybe<Directory>,
   readonly allDirectory: DirectoryConnection,
+  readonly sitePage: Maybe<SitePage>,
+  readonly allSitePage: SitePageConnection,
   readonly imageSharp: Maybe<ImageSharp>,
   readonly allImageSharp: ImageSharpConnection,
+  readonly prismicProject: Maybe<PrismicProject>,
+  readonly allPrismicProject: PrismicProjectConnection,
+  readonly prismicProjectBodyImageGallery: Maybe<PrismicProjectBodyImageGallery>,
+  readonly allPrismicProjectBodyImageGallery: PrismicProjectBodyImageGalleryConnection,
+  readonly prismicCategory: Maybe<PrismicCategory>,
+  readonly allPrismicCategory: PrismicCategoryConnection,
   readonly site: Maybe<Site>,
   readonly allSite: SiteConnection,
   readonly sitePlugin: Maybe<SitePlugin>,
   readonly allSitePlugin: SitePluginConnection,
-  readonly sitePage: Maybe<SitePage>,
-  readonly allSitePage: SitePageConnection,
 };
 
 
@@ -1369,6 +2309,7 @@ export type Query_fileArgs = {
   ctime: Maybe<DateQueryOperatorInput>,
   birthtime: Maybe<DateQueryOperatorInput>,
   birthtimeMs: Maybe<FloatQueryOperatorInput>,
+  url: Maybe<StringQueryOperatorInput>,
   publicURL: Maybe<StringQueryOperatorInput>,
   childImageSharp: Maybe<ImageSharpFilterInput>,
   id: Maybe<StringQueryOperatorInput>,
@@ -1433,6 +2374,32 @@ export type Query_allDirectoryArgs = {
 };
 
 
+export type Query_sitePageArgs = {
+  path: Maybe<StringQueryOperatorInput>,
+  component: Maybe<StringQueryOperatorInput>,
+  internalComponentName: Maybe<StringQueryOperatorInput>,
+  componentChunkName: Maybe<StringQueryOperatorInput>,
+  matchPath: Maybe<StringQueryOperatorInput>,
+  id: Maybe<StringQueryOperatorInput>,
+  parent: Maybe<NodeFilterInput>,
+  children: Maybe<NodeFilterListInput>,
+  internal: Maybe<InternalFilterInput>,
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>,
+  context: Maybe<SitePageContextFilterInput>,
+  pluginCreator: Maybe<SitePluginFilterInput>,
+  pluginCreatorId: Maybe<StringQueryOperatorInput>,
+  componentPath: Maybe<StringQueryOperatorInput>
+};
+
+
+export type Query_allSitePageArgs = {
+  filter: Maybe<SitePageFilterInput>,
+  sort: Maybe<SitePageSortInput>,
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>
+};
+
+
 export type Query_imageSharpArgs = {
   fixed: Maybe<ImageSharpFixedFilterInput>,
   resolutions: Maybe<ImageSharpResolutionsFilterInput>,
@@ -1450,6 +2417,76 @@ export type Query_imageSharpArgs = {
 export type Query_allImageSharpArgs = {
   filter: Maybe<ImageSharpFilterInput>,
   sort: Maybe<ImageSharpSortInput>,
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>
+};
+
+
+export type Query_prismicProjectArgs = {
+  id: Maybe<StringQueryOperatorInput>,
+  parent: Maybe<NodeFilterInput>,
+  children: Maybe<NodeFilterListInput>,
+  internal: Maybe<InternalFilterInput>,
+  uid: Maybe<StringQueryOperatorInput>,
+  type: Maybe<StringQueryOperatorInput>,
+  href: Maybe<StringQueryOperatorInput>,
+  first_publication_date: Maybe<DateQueryOperatorInput>,
+  last_publication_date: Maybe<DateQueryOperatorInput>,
+  slugs: Maybe<StringQueryOperatorInput>,
+  lang: Maybe<StringQueryOperatorInput>,
+  data: Maybe<PrismicProjectDataFilterInput>,
+  prismicId: Maybe<StringQueryOperatorInput>,
+  dataString: Maybe<StringQueryOperatorInput>
+};
+
+
+export type Query_allPrismicProjectArgs = {
+  filter: Maybe<PrismicProjectFilterInput>,
+  sort: Maybe<PrismicProjectSortInput>,
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>
+};
+
+
+export type Query_prismicProjectBodyImageGalleryArgs = {
+  id: Maybe<StringQueryOperatorInput>,
+  parent: Maybe<NodeFilterInput>,
+  children: Maybe<NodeFilterListInput>,
+  internal: Maybe<InternalFilterInput>,
+  slice_type: Maybe<StringQueryOperatorInput>,
+  items: Maybe<PrismicProjectBodyImageGalleryItemsFilterListInput>,
+  prismicId: Maybe<StringQueryOperatorInput>
+};
+
+
+export type Query_allPrismicProjectBodyImageGalleryArgs = {
+  filter: Maybe<PrismicProjectBodyImageGalleryFilterInput>,
+  sort: Maybe<PrismicProjectBodyImageGallerySortInput>,
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>
+};
+
+
+export type Query_prismicCategoryArgs = {
+  id: Maybe<StringQueryOperatorInput>,
+  parent: Maybe<NodeFilterInput>,
+  children: Maybe<NodeFilterListInput>,
+  internal: Maybe<InternalFilterInput>,
+  type: Maybe<StringQueryOperatorInput>,
+  href: Maybe<StringQueryOperatorInput>,
+  first_publication_date: Maybe<DateQueryOperatorInput>,
+  last_publication_date: Maybe<DateQueryOperatorInput>,
+  slugs: Maybe<StringQueryOperatorInput>,
+  lang: Maybe<StringQueryOperatorInput>,
+  data: Maybe<PrismicCategoryDataFilterInput>,
+  prismicId: Maybe<StringQueryOperatorInput>,
+  dataString: Maybe<StringQueryOperatorInput>
+};
+
+
+export type Query_allPrismicCategoryArgs = {
+  filter: Maybe<PrismicCategoryFilterInput>,
+  sort: Maybe<PrismicCategorySortInput>,
   skip: Maybe<Scalars['Int']>,
   limit: Maybe<Scalars['Int']>
 };
@@ -1497,30 +2534,6 @@ export type Query_sitePluginArgs = {
 export type Query_allSitePluginArgs = {
   filter: Maybe<SitePluginFilterInput>,
   sort: Maybe<SitePluginSortInput>,
-  skip: Maybe<Scalars['Int']>,
-  limit: Maybe<Scalars['Int']>
-};
-
-
-export type Query_sitePageArgs = {
-  id: Maybe<StringQueryOperatorInput>,
-  parent: Maybe<NodeFilterInput>,
-  children: Maybe<NodeFilterListInput>,
-  internal: Maybe<InternalFilterInput>,
-  path: Maybe<StringQueryOperatorInput>,
-  internalComponentName: Maybe<StringQueryOperatorInput>,
-  component: Maybe<StringQueryOperatorInput>,
-  componentChunkName: Maybe<StringQueryOperatorInput>,
-  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>,
-  pluginCreator: Maybe<SitePluginFilterInput>,
-  pluginCreatorId: Maybe<StringQueryOperatorInput>,
-  componentPath: Maybe<StringQueryOperatorInput>
-};
-
-
-export type Query_allSitePageArgs = {
-  filter: Maybe<SitePageFilterInput>,
-  sort: Maybe<SitePageSortInput>,
   skip: Maybe<Scalars['Int']>,
   limit: Maybe<Scalars['Int']>
 };
@@ -1693,15 +2706,17 @@ export type SiteGroupConnection = {
 };
 
 export type SitePage = Node & {
+  readonly path: Scalars['String'],
+  readonly component: Scalars['String'],
+  readonly internalComponentName: Scalars['String'],
+  readonly componentChunkName: Scalars['String'],
+  readonly matchPath: Maybe<Scalars['String']>,
   readonly id: Scalars['ID'],
   readonly parent: Maybe<Node>,
   readonly children: ReadonlyArray<Node>,
   readonly internal: Internal,
-  readonly path: Maybe<Scalars['String']>,
-  readonly internalComponentName: Maybe<Scalars['String']>,
-  readonly component: Maybe<Scalars['String']>,
-  readonly componentChunkName: Maybe<Scalars['String']>,
   readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>,
+  readonly context: Maybe<SitePageContext>,
   readonly pluginCreator: Maybe<SitePlugin>,
   readonly pluginCreatorId: Maybe<Scalars['String']>,
   readonly componentPath: Maybe<Scalars['String']>,
@@ -1728,6 +2743,16 @@ export type SitePageConnection_groupArgs = {
   field: SitePageFieldsEnum
 };
 
+export type SitePageContext = {
+  readonly layout: Maybe<Scalars['String']>,
+  readonly uid: Maybe<Scalars['String']>,
+};
+
+export type SitePageContextFilterInput = {
+  readonly layout: Maybe<StringQueryOperatorInput>,
+  readonly uid: Maybe<StringQueryOperatorInput>,
+};
+
 export type SitePageEdge = {
   readonly next: Maybe<SitePage>,
   readonly node: SitePage,
@@ -1735,6 +2760,11 @@ export type SitePageEdge = {
 };
 
 export enum SitePageFieldsEnum {
+  path = 'path',
+  component = 'component',
+  internalComponentName = 'internalComponentName',
+  componentChunkName = 'componentChunkName',
+  matchPath = 'matchPath',
   id = 'id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -1821,11 +2851,9 @@ export enum SitePageFieldsEnum {
   internal___mediaType = 'internal.mediaType',
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
-  path = 'path',
-  internalComponentName = 'internalComponentName',
-  component = 'component',
-  componentChunkName = 'componentChunkName',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___layout = 'context.layout',
+  context___uid = 'context.uid',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -1890,6 +2918,8 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginCreator___pluginOptions___repositoryName = 'pluginCreator.pluginOptions.repositoryName',
+  pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
@@ -1915,15 +2945,17 @@ export enum SitePageFieldsEnum {
 }
 
 export type SitePageFilterInput = {
+  readonly path: Maybe<StringQueryOperatorInput>,
+  readonly component: Maybe<StringQueryOperatorInput>,
+  readonly internalComponentName: Maybe<StringQueryOperatorInput>,
+  readonly componentChunkName: Maybe<StringQueryOperatorInput>,
+  readonly matchPath: Maybe<StringQueryOperatorInput>,
   readonly id: Maybe<StringQueryOperatorInput>,
   readonly parent: Maybe<NodeFilterInput>,
   readonly children: Maybe<NodeFilterListInput>,
   readonly internal: Maybe<InternalFilterInput>,
-  readonly path: Maybe<StringQueryOperatorInput>,
-  readonly internalComponentName: Maybe<StringQueryOperatorInput>,
-  readonly component: Maybe<StringQueryOperatorInput>,
-  readonly componentChunkName: Maybe<StringQueryOperatorInput>,
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>,
+  readonly context: Maybe<SitePageContextFilterInput>,
   readonly pluginCreator: Maybe<SitePluginFilterInput>,
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>,
   readonly componentPath: Maybe<StringQueryOperatorInput>,
@@ -2099,6 +3131,8 @@ export enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginOptions___repositoryName = 'pluginOptions.repositoryName',
+  pluginOptions___accessToken = 'pluginOptions.accessToken',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -2228,6 +3262,8 @@ export type SitePluginPluginOptions = {
   readonly outputPath: Maybe<Scalars['String']>,
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>,
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>,
+  readonly repositoryName: Maybe<Scalars['String']>,
+  readonly accessToken: Maybe<Scalars['String']>,
   readonly pathCheck: Maybe<Scalars['Boolean']>,
 };
 
@@ -2287,6 +3323,8 @@ export type SitePluginPluginOptionsFilterInput = {
   readonly outputPath: Maybe<StringQueryOperatorInput>,
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>,
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>,
+  readonly repositoryName: Maybe<StringQueryOperatorInput>,
+  readonly accessToken: Maybe<StringQueryOperatorInput>,
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>,
 };
 
@@ -2326,13 +3364,31 @@ export type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>,
 };
 
-export type FluidImageQueryVariables = {};
+export type GatsbyFluidImageQueryVariables = {};
 
 
-export type FluidImageQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly node: (
+export type GatsbyFluidImageQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<File, 'relativePath' | 'name'>
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
+
+export type ProjectBySlugQueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
+    Pick<PrismicProject, 'uid'>
+    & { readonly data: Maybe<(
+      Pick<PrismicProjectData, 'title'>
+      & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
+    )> }
+  )> };
+
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -2381,11 +3437,6 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type PagesQueryQueryVariables = {};
 

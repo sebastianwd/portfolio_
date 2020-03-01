@@ -4,11 +4,12 @@ import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
 import { rhythm } from '@theme/typography'
 import { StyledComponent, Theme } from '@theme'
-import { Link as AnchorLink, Element } from 'react-scroll'
+import { Element } from 'react-scroll'
 import { keyframes } from '@emotion/core'
 import reactIcon from '@images/react-icon-big.svg'
 import graphqlIcon from '@images/graphql-icon-big.png'
 import nodejsIcon from '@images/nodejs-icon-big.svg'
+import csharpIcon from '@images/c-sharp-logo-big.svg'
 
 const HomePage = () => {
   const theme: Theme = useTheme()
@@ -85,8 +86,7 @@ const Container = styled(Element)`
   padding: 0 ${rhythm(5.5)};
   display: flex;
   align-items: center;
-  height: 100%;
-  flex-wrap: wrap;
+  min-height: 100%;
 `
 
 const LeftContent = styled.div`
@@ -125,7 +125,7 @@ const Pyramid = styled.div`
     border-width: 200px 0 200px 346px;
     transform-origin: 0 0;
 
-    &:first-child {
+    &:first-of-type {
       border-color: transparent transparent transparent rgba(50, 50, 50, 0.6);
       transform: rotateY(-19.5deg) rotateX(180deg) translateY(-400px);
       &::after {
@@ -133,7 +133,7 @@ const Pyramid = styled.div`
         content: url(${reactIcon});
       }
     }
-    &:nth-child(2) {
+    &:nth-of-type(2) {
       border-color: transparent transparent transparent rgba(50, 50, 50, 0.6);
       transform: rotateY(90deg) rotateZ(60deg) rotateX(180deg)
         translateY(-400px);
@@ -142,7 +142,7 @@ const Pyramid = styled.div`
         content: url(${graphqlIcon});
       }
     }
-    &:nth-child(3) {
+    &:nth-of-type(3) {
       border-color: transparent transparent transparent rgba(50, 50, 50, 0.9);
       transform: rotateX(60deg) rotateY(19.5deg);
       &::after {
@@ -150,14 +150,14 @@ const Pyramid = styled.div`
         content: url(${nodejsIcon});
       }
     }
-    &:nth-child(4) {
+    &:nth-of-type(4) {
       border-color: transparent transparent transparent rgba(50, 50, 50, 0.8);
       transform: rotateX(-60deg) rotateY(19.5deg) translateX(-116px)
         translateY(-200px) translateZ(326px);
       &::after {
         position: absolute;
         width: 150px;
-        content: url(https://www.shareicon.net/data/128x128/2016/07/08/117367_logo_512x512.png);
+        content: url(${csharpIcon});
         left: -315px;
         top: -91px;
       }

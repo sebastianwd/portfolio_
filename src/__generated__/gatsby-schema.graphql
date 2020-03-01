@@ -556,6 +556,7 @@ type File implements Node {
   ): Date!
   birthtime: Date @deprecated(reason: "Use `birthTime` instead")
   birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+  url: String
 
   # Copy file to static directory and return public url to it
   publicURL: String
@@ -613,6 +614,7 @@ enum FileFieldsEnum {
   ctime
   birthtime
   birthtimeMs
+  url
   publicURL
   childImageSharp___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fixed___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -825,6 +827,7 @@ input FileFilterInput {
   ctime: DateQueryOperatorInput
   birthtime: DateQueryOperatorInput
   birthtimeMs: FloatQueryOperatorInput
+  url: StringQueryOperatorInput
   publicURL: StringQueryOperatorInput
   childImageSharp: ImageSharpFilterInput
   id: StringQueryOperatorInput
@@ -1357,19 +1360,952 @@ enum PotraceTurnPolicy {
   TURNPOLICY_MAJORITY
 }
 
+type PrismicCategory implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  type: String
+  href: String
+  first_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  last_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  slugs: [String]
+  lang: String
+  data: PrismicCategoryData
+  prismicId: String
+  dataString: String
+}
+
+type PrismicCategoryConnection {
+  totalCount: Int!
+  edges: [PrismicCategoryEdge!]!
+  nodes: [PrismicCategory!]!
+  pageInfo: PageInfo!
+  distinct(field: PrismicCategoryFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: PrismicCategoryFieldsEnum!): [PrismicCategoryGroupConnection!]!
+}
+
+type PrismicCategoryData {
+  name: String
+  image: PrismicCategoryDataImage
+}
+
+input PrismicCategoryDataFilterInput {
+  name: StringQueryOperatorInput
+  image: PrismicCategoryDataImageFilterInput
+}
+
+type PrismicCategoryDataImage {
+  dimensions: PrismicCategoryDataImageDimensions
+  alt: String
+  copyright: String
+  url: String
+  localFile: File
+}
+
+type PrismicCategoryDataImageDimensions {
+  width: Int
+  height: Int
+}
+
+input PrismicCategoryDataImageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicCategoryDataImageFilterInput {
+  dimensions: PrismicCategoryDataImageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  localFile: FileFilterInput
+}
+
+type PrismicCategoryEdge {
+  next: PrismicCategory
+  node: PrismicCategory!
+  previous: PrismicCategory
+}
+
+enum PrismicCategoryFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  type
+  href
+  first_publication_date
+  last_publication_date
+  slugs
+  lang
+  data___name
+  data___image___dimensions___width
+  data___image___dimensions___height
+  data___image___alt
+  data___image___copyright
+  data___image___url
+  data___image___localFile___sourceInstanceName
+  data___image___localFile___absolutePath
+  data___image___localFile___relativePath
+  data___image___localFile___extension
+  data___image___localFile___size
+  data___image___localFile___prettySize
+  data___image___localFile___modifiedTime
+  data___image___localFile___accessTime
+  data___image___localFile___changeTime
+  data___image___localFile___birthTime
+  data___image___localFile___root
+  data___image___localFile___dir
+  data___image___localFile___base
+  data___image___localFile___ext
+  data___image___localFile___name
+  data___image___localFile___relativeDirectory
+  data___image___localFile___dev
+  data___image___localFile___mode
+  data___image___localFile___nlink
+  data___image___localFile___uid
+  data___image___localFile___gid
+  data___image___localFile___rdev
+  data___image___localFile___ino
+  data___image___localFile___atimeMs
+  data___image___localFile___mtimeMs
+  data___image___localFile___ctimeMs
+  data___image___localFile___atime
+  data___image___localFile___mtime
+  data___image___localFile___ctime
+  data___image___localFile___birthtime
+  data___image___localFile___birthtimeMs
+  data___image___localFile___url
+  data___image___localFile___publicURL
+  data___image___localFile___id
+  data___image___localFile___children
+  prismicId
+  dataString
+}
+
+input PrismicCategoryFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  type: StringQueryOperatorInput
+  href: StringQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  slugs: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  data: PrismicCategoryDataFilterInput
+  prismicId: StringQueryOperatorInput
+  dataString: StringQueryOperatorInput
+}
+
+input PrismicCategoryFilterListInput {
+  elemMatch: PrismicCategoryFilterInput
+}
+
+type PrismicCategoryGroupConnection {
+  totalCount: Int!
+  edges: [PrismicCategoryEdge!]!
+  nodes: [PrismicCategory!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input PrismicCategorySortInput {
+  fields: [PrismicCategoryFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type PrismicProject implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  uid: String
+  type: String
+  href: String
+  first_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  last_publication_date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  slugs: [String]
+  lang: String
+  data: PrismicProjectData
+  prismicId: String
+  dataString: String
+}
+
+type PrismicProjectBodyImageGallery implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  slice_type: String
+  items: [PrismicProjectBodyImageGalleryItems]
+  prismicId: String
+}
+
+type PrismicProjectBodyImageGalleryConnection {
+  totalCount: Int!
+  edges: [PrismicProjectBodyImageGalleryEdge!]!
+  nodes: [PrismicProjectBodyImageGallery!]!
+  pageInfo: PageInfo!
+  distinct(field: PrismicProjectBodyImageGalleryFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: PrismicProjectBodyImageGalleryFieldsEnum!): [PrismicProjectBodyImageGalleryGroupConnection!]!
+}
+
+type PrismicProjectBodyImageGalleryEdge {
+  next: PrismicProjectBodyImageGallery
+  node: PrismicProjectBodyImageGallery!
+  previous: PrismicProjectBodyImageGallery
+}
+
+enum PrismicProjectBodyImageGalleryFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  slice_type
+  items
+  items___image_captions___html
+  items___image_captions___text
+  items___image_captions___raw
+  items___image_captions___raw___type
+  items___image_captions___raw___text
+  items___gallery_image___dimensions___width
+  items___gallery_image___dimensions___height
+  items___gallery_image___alt
+  items___gallery_image___copyright
+  items___gallery_image___url
+  items___gallery_image___localFile___sourceInstanceName
+  items___gallery_image___localFile___absolutePath
+  items___gallery_image___localFile___relativePath
+  items___gallery_image___localFile___extension
+  items___gallery_image___localFile___size
+  items___gallery_image___localFile___prettySize
+  items___gallery_image___localFile___modifiedTime
+  items___gallery_image___localFile___accessTime
+  items___gallery_image___localFile___changeTime
+  items___gallery_image___localFile___birthTime
+  items___gallery_image___localFile___root
+  items___gallery_image___localFile___dir
+  items___gallery_image___localFile___base
+  items___gallery_image___localFile___ext
+  items___gallery_image___localFile___name
+  items___gallery_image___localFile___relativeDirectory
+  items___gallery_image___localFile___dev
+  items___gallery_image___localFile___mode
+  items___gallery_image___localFile___nlink
+  items___gallery_image___localFile___uid
+  items___gallery_image___localFile___gid
+  items___gallery_image___localFile___rdev
+  items___gallery_image___localFile___ino
+  items___gallery_image___localFile___atimeMs
+  items___gallery_image___localFile___mtimeMs
+  items___gallery_image___localFile___ctimeMs
+  items___gallery_image___localFile___atime
+  items___gallery_image___localFile___mtime
+  items___gallery_image___localFile___ctime
+  items___gallery_image___localFile___birthtime
+  items___gallery_image___localFile___birthtimeMs
+  items___gallery_image___localFile___url
+  items___gallery_image___localFile___publicURL
+  items___gallery_image___localFile___id
+  items___gallery_image___localFile___children
+  prismicId
+}
+
+input PrismicProjectBodyImageGalleryFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  slice_type: StringQueryOperatorInput
+  items: PrismicProjectBodyImageGalleryItemsFilterListInput
+  prismicId: StringQueryOperatorInput
+}
+
+input PrismicProjectBodyImageGalleryFilterListInput {
+  elemMatch: PrismicProjectBodyImageGalleryFilterInput
+}
+
+type PrismicProjectBodyImageGalleryGroupConnection {
+  totalCount: Int!
+  edges: [PrismicProjectBodyImageGalleryEdge!]!
+  nodes: [PrismicProjectBodyImageGallery!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+type PrismicProjectBodyImageGalleryItems {
+  image_captions: PrismicProjectBodyImageGalleryItemsImage_captions
+  gallery_image: PrismicProjectBodyImageGalleryItemsGallery_image
+}
+
+input PrismicProjectBodyImageGalleryItemsFilterInput {
+  image_captions: PrismicProjectBodyImageGalleryItemsImage_captionsFilterInput
+  gallery_image: PrismicProjectBodyImageGalleryItemsGallery_imageFilterInput
+}
+
+input PrismicProjectBodyImageGalleryItemsFilterListInput {
+  elemMatch: PrismicProjectBodyImageGalleryItemsFilterInput
+}
+
+type PrismicProjectBodyImageGalleryItemsGallery_image {
+  dimensions: PrismicProjectBodyImageGalleryItemsGallery_imageDimensions
+  alt: String
+  copyright: String
+  url: String
+  localFile: File
+}
+
+type PrismicProjectBodyImageGalleryItemsGallery_imageDimensions {
+  width: Int
+  height: Int
+}
+
+input PrismicProjectBodyImageGalleryItemsGallery_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicProjectBodyImageGalleryItemsGallery_imageFilterInput {
+  dimensions: PrismicProjectBodyImageGalleryItemsGallery_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  localFile: FileFilterInput
+}
+
+type PrismicProjectBodyImageGalleryItemsImage_captions {
+  html: String
+  text: String
+  raw: [PrismicProjectBodyImageGalleryItemsImage_captionsRaw]
+}
+
+input PrismicProjectBodyImageGalleryItemsImage_captionsFilterInput {
+  html: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  raw: PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterListInput
+}
+
+type PrismicProjectBodyImageGalleryItemsImage_captionsRaw {
+  type: String
+  text: String
+}
+
+input PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterListInput {
+  elemMatch: PrismicProjectBodyImageGalleryItemsImage_captionsRawFilterInput
+}
+
+input PrismicProjectBodyImageGallerySortInput {
+  fields: [PrismicProjectBodyImageGalleryFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type PrismicProjectConnection {
+  totalCount: Int!
+  edges: [PrismicProjectEdge!]!
+  nodes: [PrismicProject!]!
+  pageInfo: PageInfo!
+  distinct(field: PrismicProjectFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: PrismicProjectFieldsEnum!): [PrismicProjectGroupConnection!]!
+}
+
+type PrismicProjectData {
+  title: String
+  preview_image: PrismicProjectDataPreview_image
+  overview: String
+  repository: String
+  live: String
+  content: PrismicProjectDataContent
+  categories: [PrismicProjectDataCategories]
+  body: [PrismicProjectBodyImageGallery]
+}
+
+type PrismicProjectDataCategories {
+  category: PrismicProjectDataCategoriesCategory
+}
+
+type PrismicProjectDataCategoriesCategory {
+  id: String
+  type: String
+  slug: String
+  lang: String
+  link_type: String
+  isBroken: Boolean
+  document: [PrismicCategory]
+  url: String
+  target: String
+  raw: PrismicProjectDataCategoriesCategoryRaw
+}
+
+input PrismicProjectDataCategoriesCategoryFilterInput {
+  id: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  link_type: StringQueryOperatorInput
+  isBroken: BooleanQueryOperatorInput
+  document: PrismicCategoryFilterListInput
+  url: StringQueryOperatorInput
+  target: StringQueryOperatorInput
+  raw: PrismicProjectDataCategoriesCategoryRawFilterInput
+}
+
+type PrismicProjectDataCategoriesCategoryRaw {
+  id: String
+  type: String
+  slug: String
+  lang: String
+  link_type: String
+  isBroken: Boolean
+}
+
+input PrismicProjectDataCategoriesCategoryRawFilterInput {
+  id: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  link_type: StringQueryOperatorInput
+  isBroken: BooleanQueryOperatorInput
+}
+
+input PrismicProjectDataCategoriesFilterInput {
+  category: PrismicProjectDataCategoriesCategoryFilterInput
+}
+
+input PrismicProjectDataCategoriesFilterListInput {
+  elemMatch: PrismicProjectDataCategoriesFilterInput
+}
+
+type PrismicProjectDataContent {
+  html: String
+  text: String
+  raw: [PrismicProjectDataContentRaw]
+}
+
+input PrismicProjectDataContentFilterInput {
+  html: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+  raw: PrismicProjectDataContentRawFilterListInput
+}
+
+type PrismicProjectDataContentRaw {
+  type: String
+  text: String
+}
+
+input PrismicProjectDataContentRawFilterInput {
+  type: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input PrismicProjectDataContentRawFilterListInput {
+  elemMatch: PrismicProjectDataContentRawFilterInput
+}
+
+input PrismicProjectDataFilterInput {
+  title: StringQueryOperatorInput
+  preview_image: PrismicProjectDataPreview_imageFilterInput
+  overview: StringQueryOperatorInput
+  repository: StringQueryOperatorInput
+  live: StringQueryOperatorInput
+  content: PrismicProjectDataContentFilterInput
+  categories: PrismicProjectDataCategoriesFilterListInput
+  body: PrismicProjectBodyImageGalleryFilterListInput
+}
+
+type PrismicProjectDataPreview_image {
+  dimensions: PrismicProjectDataPreview_imageDimensions
+  alt: String
+  copyright: String
+  url: String
+  localFile: File
+}
+
+type PrismicProjectDataPreview_imageDimensions {
+  width: Int
+  height: Int
+}
+
+input PrismicProjectDataPreview_imageDimensionsFilterInput {
+  width: IntQueryOperatorInput
+  height: IntQueryOperatorInput
+}
+
+input PrismicProjectDataPreview_imageFilterInput {
+  dimensions: PrismicProjectDataPreview_imageDimensionsFilterInput
+  alt: StringQueryOperatorInput
+  copyright: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  localFile: FileFilterInput
+}
+
+type PrismicProjectEdge {
+  next: PrismicProject
+  node: PrismicProject!
+  previous: PrismicProject
+}
+
+enum PrismicProjectFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  uid
+  type
+  href
+  first_publication_date
+  last_publication_date
+  slugs
+  lang
+  data___title
+  data___preview_image___dimensions___width
+  data___preview_image___dimensions___height
+  data___preview_image___alt
+  data___preview_image___copyright
+  data___preview_image___url
+  data___preview_image___localFile___sourceInstanceName
+  data___preview_image___localFile___absolutePath
+  data___preview_image___localFile___relativePath
+  data___preview_image___localFile___extension
+  data___preview_image___localFile___size
+  data___preview_image___localFile___prettySize
+  data___preview_image___localFile___modifiedTime
+  data___preview_image___localFile___accessTime
+  data___preview_image___localFile___changeTime
+  data___preview_image___localFile___birthTime
+  data___preview_image___localFile___root
+  data___preview_image___localFile___dir
+  data___preview_image___localFile___base
+  data___preview_image___localFile___ext
+  data___preview_image___localFile___name
+  data___preview_image___localFile___relativeDirectory
+  data___preview_image___localFile___dev
+  data___preview_image___localFile___mode
+  data___preview_image___localFile___nlink
+  data___preview_image___localFile___uid
+  data___preview_image___localFile___gid
+  data___preview_image___localFile___rdev
+  data___preview_image___localFile___ino
+  data___preview_image___localFile___atimeMs
+  data___preview_image___localFile___mtimeMs
+  data___preview_image___localFile___ctimeMs
+  data___preview_image___localFile___atime
+  data___preview_image___localFile___mtime
+  data___preview_image___localFile___ctime
+  data___preview_image___localFile___birthtime
+  data___preview_image___localFile___birthtimeMs
+  data___preview_image___localFile___url
+  data___preview_image___localFile___publicURL
+  data___preview_image___localFile___id
+  data___preview_image___localFile___children
+  data___overview
+  data___repository
+  data___live
+  data___content___html
+  data___content___text
+  data___content___raw
+  data___content___raw___type
+  data___content___raw___text
+  data___categories
+  data___categories___category___id
+  data___categories___category___type
+  data___categories___category___slug
+  data___categories___category___lang
+  data___categories___category___link_type
+  data___categories___category___isBroken
+  data___categories___category___document
+  data___categories___category___url
+  data___categories___category___target
+  data___body
+  data___body___id
+  data___body___parent___id
+  data___body___parent___children
+  data___body___children
+  data___body___children___id
+  data___body___children___children
+  data___body___internal___content
+  data___body___internal___contentDigest
+  data___body___internal___description
+  data___body___internal___fieldOwners
+  data___body___internal___ignoreType
+  data___body___internal___mediaType
+  data___body___internal___owner
+  data___body___internal___type
+  data___body___slice_type
+  data___body___items
+  data___body___prismicId
+  prismicId
+  dataString
+}
+
+input PrismicProjectFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  uid: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  href: StringQueryOperatorInput
+  first_publication_date: DateQueryOperatorInput
+  last_publication_date: DateQueryOperatorInput
+  slugs: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
+  data: PrismicProjectDataFilterInput
+  prismicId: StringQueryOperatorInput
+  dataString: StringQueryOperatorInput
+}
+
+type PrismicProjectGroupConnection {
+  totalCount: Int!
+  edges: [PrismicProjectEdge!]!
+  nodes: [PrismicProject!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input PrismicProjectSortInput {
+  fields: [PrismicProjectFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 type Query {
-  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, publicURL: StringQueryOperatorInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
+  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, url: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
+  allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, resolutions: ImageSharpResolutionsFilterInput, fluid: ImageSharpFluidFilterInput, sizes: ImageSharpSizesFilterInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
+  prismicProject(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, uid: StringQueryOperatorInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicProjectDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput): PrismicProject
+  allPrismicProject(filter: PrismicProjectFilterInput, sort: PrismicProjectSortInput, skip: Int, limit: Int): PrismicProjectConnection!
+  prismicProjectBodyImageGallery(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, slice_type: StringQueryOperatorInput, items: PrismicProjectBodyImageGalleryItemsFilterListInput, prismicId: StringQueryOperatorInput): PrismicProjectBodyImageGallery
+  allPrismicProjectBodyImageGallery(filter: PrismicProjectBodyImageGalleryFilterInput, sort: PrismicProjectBodyImageGallerySortInput, skip: Int, limit: Int): PrismicProjectBodyImageGalleryConnection!
+  prismicCategory(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicCategoryDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput): PrismicCategory
+  allPrismicCategory(filter: PrismicCategoryFilterInput, sort: PrismicCategorySortInput, skip: Int, limit: Int): PrismicCategoryConnection!
   site(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, buildTime: DateQueryOperatorInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
   allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
-  sitePage(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, path: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
-  allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
 }
 
 type Site implements Node {
@@ -1536,15 +2472,17 @@ type SiteGroupConnection {
 }
 
 type SitePage implements Node {
+  path: String!
+  component: String!
+  internalComponentName: String!
+  componentChunkName: String!
+  matchPath: String
   id: ID!
   parent: Node
   children: [Node!]!
   internal: Internal!
-  path: String
-  internalComponentName: String
-  component: String
-  componentChunkName: String
   isCreatedByStatefulCreatePages: Boolean
+  context: SitePageContext
   pluginCreator: SitePlugin
   pluginCreatorId: String
   componentPath: String
@@ -1559,6 +2497,16 @@ type SitePageConnection {
   group(skip: Int, limit: Int, field: SitePageFieldsEnum!): [SitePageGroupConnection!]!
 }
 
+type SitePageContext {
+  layout: String
+  uid: String
+}
+
+input SitePageContextFilterInput {
+  layout: StringQueryOperatorInput
+  uid: StringQueryOperatorInput
+}
+
 type SitePageEdge {
   next: SitePage
   node: SitePage!
@@ -1566,6 +2514,11 @@ type SitePageEdge {
 }
 
 enum SitePageFieldsEnum {
+  path
+  component
+  internalComponentName
+  componentChunkName
+  matchPath
   id
   parent___id
   parent___parent___id
@@ -1652,11 +2605,9 @@ enum SitePageFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
-  path
-  internalComponentName
-  component
-  componentChunkName
   isCreatedByStatefulCreatePages
+  context___layout
+  context___uid
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -1721,6 +2672,8 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginCreator___pluginOptions___repositoryName
+  pluginCreator___pluginOptions___accessToken
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
@@ -1746,15 +2699,17 @@ enum SitePageFieldsEnum {
 }
 
 input SitePageFilterInput {
+  path: StringQueryOperatorInput
+  component: StringQueryOperatorInput
+  internalComponentName: StringQueryOperatorInput
+  componentChunkName: StringQueryOperatorInput
+  matchPath: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
-  path: StringQueryOperatorInput
-  internalComponentName: StringQueryOperatorInput
-  component: StringQueryOperatorInput
-  componentChunkName: StringQueryOperatorInput
   isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
+  context: SitePageContextFilterInput
   pluginCreator: SitePluginFilterInput
   pluginCreatorId: StringQueryOperatorInput
   componentPath: StringQueryOperatorInput
@@ -1918,6 +2873,8 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginOptions___repositoryName
+  pluginOptions___accessToken
   pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
@@ -2047,6 +3004,8 @@ type SitePluginPluginOptions {
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
+  repositoryName: String
+  accessToken: String
   pathCheck: Boolean
 }
 
@@ -2106,6 +3065,8 @@ input SitePluginPluginOptionsFilterInput {
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
+  repositoryName: StringQueryOperatorInput
+  accessToken: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
 }
 

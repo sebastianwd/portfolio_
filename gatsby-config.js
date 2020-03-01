@@ -1,4 +1,7 @@
 const path = require('path')
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -57,7 +60,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/layouts/default/index.tsx`),
+        component: require.resolve(`./src/layouts/index.tsx`),
       },
     },
     `gatsby-plugin-typescript`,
@@ -72,6 +75,14 @@ module.exports = {
         emitPluginDocuments: {
           'src/__generated__/gatsby-plugin-documents.graphql': true,
         },
+      },
+    },
+    {
+      resolve: `gatsby-source-prismic`,
+      options: {
+        repositoryName: `sportfolio`,
+        accessToken: `${process.env.API_KEY}`,
+        linkResolver: ({ node, key, value }) => doc => `/${doc.uid}`,
       },
     },
   ],

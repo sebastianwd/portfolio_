@@ -1,4 +1,4 @@
-query FluidImage {
+query GatsbyFluidImage {
     images: allFile {
       edges {
         node {
@@ -10,6 +10,30 @@ query FluidImage {
             }
           }
         }
+      }
+    }
+  }
+
+
+query ProjectBySlug($uid: String!) {
+  prismicProject(uid: { eq: $uid }) {
+    uid
+    data {
+      title
+      content {
+        html
+      }
+    }
+  }
+}
+
+
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
       }
     }
   }
@@ -222,17 +246,6 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
   srcSetWebp
   sizes
 }
-
-
-  query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
 
 
 query PagesQuery {
