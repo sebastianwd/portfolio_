@@ -2,22 +2,18 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { StyledComponent } from '@theme'
 import { rhythm } from '@theme/typography'
-import { Typograhy } from '@components'
 
 interface Props {
-  id: string
-  size?: number
+  id?: string
 }
 
 const Checkbox: React.FC<Props> = props => {
-  const { id, children, size } = props
+  const { id, children } = props
 
   return (
     <Wrapper>
       <Input type="checkbox" id={id} />
-      <Label size={size} as="label" htmlFor={id}>
-        {children}
-      </Label>
+      <Label htmlFor={id}>{children}</Label>
     </Wrapper>
   )
 }
@@ -28,7 +24,7 @@ const Wrapper = styled.div<StyledComponent>`
   text-align: left;
 `
 
-const Label = styled(Typograhy)<StyledComponent>`
+const Label = styled.label<StyledComponent>`
   cursor: pointer;
   display: inline;
   line-height: 1.25em;

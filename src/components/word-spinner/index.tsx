@@ -6,7 +6,7 @@ import { keyframes } from '@emotion/core'
 
 interface Item {
   value: string
-  filename?: string
+  file: any
 }
 
 interface WordSpinnerProps {
@@ -18,7 +18,7 @@ const WordSpinner = (props: WordSpinnerProps) => {
 
   const [active, setActive] = useState(0)
 
-  const { filename, value } = items[active]
+  const { file, value } = items[active]
 
   const animateNext = () => {
     if (items.length - 1 < active + 1) {
@@ -33,7 +33,7 @@ const WordSpinner = (props: WordSpinnerProps) => {
   return (
     <Container>
       <Item onAnimationIteration={animateNext}>
-        {filename && <Icon src={require(`@images/${filename}`)} alt="" />}
+        {file && <Icon src={file} alt="" />}
         <Typograhy as="span" variant="secondary" size={7}>
           {value}
         </Typograhy>

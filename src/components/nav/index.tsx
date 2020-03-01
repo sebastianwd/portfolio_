@@ -27,19 +27,19 @@ const Nav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="#projects">
-              <Title as="span" weight="light" size={3}>
-                portfolio
-              </Title>
-              <img src={portfolio} alt="portfolio" />
-            </NavLink>
-          </NavItem>
-          <NavItem>
             <NavLink to="#about">
               <Title as="span" weight="light" size={3}>
                 about
               </Title>
               <img src={about} alt="about" />
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="#projects">
+              <Title as="span" weight="light" size={3}>
+                portfolio
+              </Title>
+              <img src={portfolio} alt="portfolio" />
             </NavLink>
           </NavItem>
           <NavItem>

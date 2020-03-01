@@ -15,6 +15,19 @@ query GatsbyFluidImage {
   }
 
 
+  query PrismicCategories {
+    allPrismicCategory {
+      edges {
+        node {
+          data {
+            name
+          }
+        }
+      }
+    }
+  }
+
+
 query ProjectBySlug($uid: String!) {
   prismicProject(uid: { eq: $uid }) {
     uid
@@ -245,13 +258,4 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
   srcWebp
   srcSetWebp
   sizes
-}
-
-
-query PagesQuery {
-  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
-    nodes {
-      path
-    }
-  }
 }

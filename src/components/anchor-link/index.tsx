@@ -13,7 +13,7 @@ const AnchorLink: React.FC<Props> = props => {
   const handleClick = () => {
     gsap.to('#scroller', {
       duration: 1,
-      scrollTo: { y: to, offsetY: 70 },
+      scrollTo: { y: to, offsetY: 0 },
       ease: 'expo',
     })
   }

@@ -15,56 +15,58 @@ const AboutPage = () => {
 
   return (
     <Container id="about">
-      <LeftContent>
-        <Typograhy as="h2" weight="bold" color={theme.primary} size={13}>
-          About me /&gt;
-        </Typograhy>
-        <Typograhy as="p">
-          I am Sebastian. A full stack web developer based in Lima, Peru.
-          <br /> I like to create cool stuff using my web development skills.
-        </Typograhy>
-        <Typograhy as="p">
-          Over the years, I have gained a lot of experience with designing
-          <br /> and developing websites, web services and mobile apps.
-        </Typograhy>
-        <Typograhy as="p">
-          Currently I’m mainly developing with{' '}
-          <ExternalLink as="a" href="https://reactjs.org/">
-            React
-          </ExternalLink>{' '}
-          and{' '}
-          <ExternalLink as="a" href="https://graphql.org/">
-            GraphQL
-          </ExternalLink>{' '}
-          at work,
-          <br /> but I like to experiment with different kind of languages and
-          programming tools.
-          <br /> Some other things I’ve dealt with are:
-        </Typograhy>
-        <ul>
-          <li>
-            <ExternalLink as="a" href="https://www.docker.com/">
-              Docker
+      <Inner>
+        <LeftContent>
+          <Typograhy as="h2" weight="bold" color={theme.primary} size={13}>
+            About me /&gt;
+          </Typograhy>
+          <Typograhy as="p">
+            I am Sebastian. A full stack web developer based in Lima, Peru.
+            <br /> I like to create cool stuff using my web development skills.
+          </Typograhy>
+          <Typograhy as="p">
+            Over the years, I have gained a lot of experience with designing
+            <br /> and developing websites, web services and mobile apps.
+          </Typograhy>
+          <Typograhy as="p">
+            Currently I’m mainly developing with{' '}
+            <ExternalLink as="a" href="https://reactjs.org/">
+              React
             </ExternalLink>{' '}
-            containers
-          </li>
-          <li>Setting up CI/CD pipelines</li>
-          <li>
-            UI design with{' '}
-            <ExternalLink as="a" href="https://www.figma.com/">
-              Figma{' '}
-            </ExternalLink>
-          </li>
-        </ul>
-      </LeftContent>
-      <RightContent>
-        <Pyramid>
-          <div />
-          <div />
-          <div />
-          <div />
-        </Pyramid>
-      </RightContent>
+            and{' '}
+            <ExternalLink as="a" href="https://graphql.org/">
+              GraphQL
+            </ExternalLink>{' '}
+            at work,
+            <br /> but I like to experiment with different kind of languages and
+            programming tools.
+            <br /> Some other things I’ve dealt with are:
+          </Typograhy>
+          <ul>
+            <li>
+              <ExternalLink as="a" href="https://www.docker.com/">
+                Docker
+              </ExternalLink>{' '}
+              containers
+            </li>
+            <li>Setting up CI/CD pipelines</li>
+            <li>
+              UI design with{' '}
+              <ExternalLink as="a" href="https://www.figma.com/">
+                Figma{' '}
+              </ExternalLink>
+            </li>
+          </ul>
+        </LeftContent>
+        <RightContent>
+          <Pyramid>
+            <div />
+            <div />
+            <div />
+            <div />
+          </Pyramid>
+        </RightContent>
+      </Inner>
     </Container>
   )
 }
@@ -79,7 +81,7 @@ const spin = keyframes`
 `
 
 const Container = styled.div`
-  max-width: ${rhythm(100)};
+  max-width: ${rhythm(90)};
   margin: 0 auto;
   padding: 0 ${rhythm(5.5)};
   display: flex;
@@ -87,17 +89,18 @@ const Container = styled.div`
   min-height: 100%;
 `
 
+const Inner = styled.div`
+  display: flex;
+  flex-basis: 100%;
+`
+
 const LeftContent = styled.div`
-  margin-bottom: 16%;
   max-width: 50%;
 `
 
 const RightContent = styled.div`
-  margin-bottom: 16%;
-  width: 36%;
+  flex-basis: 40%;
   position: relative;
-  align-items: center;
-  justify-content: center;
 `
 
 const ExternalLink = styled(Typograhy)<StyledComponent>`
@@ -108,9 +111,6 @@ const ExternalLink = styled(Typograhy)<StyledComponent>`
 const Pyramid = styled.div`
   position: absolute;
   left: 50%;
-  margin-left: 120px;
-  top: 50%;
-  margin-top: -250px;
   height: 500px;
   width: 100px;
   transform-style: preserve-3d;

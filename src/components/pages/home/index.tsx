@@ -4,31 +4,37 @@ import styled from '@emotion/styled'
 import { rhythm } from '@theme/typography'
 import { StyledComponent } from '@theme'
 import { Link } from 'gatsby'
+import reactIcon from '@images/react-icon.svg'
+import graphqlIcon from '@images/graphql-icon.svg'
+import reactNativeIcon from '@images/react-native-icon.svg'
+import nodejsIcon from '@images/nodejs-icon.svg'
+import netIcon from '@images/net-icon.svg'
+import sqlIcon from '@images/sql-icon.svg'
 
 const brands = [
   {
     value: 'React',
-    filename: 'react-icon.svg',
+    file: reactIcon,
   },
   {
     value: 'GraphQL',
-    filename: 'graphql-icon.svg',
+    file: graphqlIcon,
   },
   {
     value: 'React Native',
-    filename: 'react-native-icon.svg',
+    file: reactNativeIcon,
   },
   {
     value: 'NodeJS',
-    filename: 'nodejs-icon.svg',
+    file: nodejsIcon,
   },
   {
     value: 'Microsoft .NET',
-    filename: 'net-icon.svg',
+    file: netIcon,
   },
   {
     value: 'SQL',
-    filename: 'sql-icon.svg',
+    file: sqlIcon,
   },
 ]
 
@@ -76,7 +82,7 @@ const HomePage = () => {
 }
 
 const Container = styled.div`
-  max-width: ${rhythm(100)};
+  max-width: ${rhythm(90)};
   margin: 0 auto;
   padding: 0 ${rhythm(5.5)};
   display: flex;

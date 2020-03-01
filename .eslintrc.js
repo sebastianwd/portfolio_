@@ -54,6 +54,7 @@ module.exports = {
     'import/no-dynamic-require': 0,
     'global-require': 0,
     'react/jsx-props-no-spreading': 0,
+    '@typescript-eslint/lines-between-class-members': 0,
     'react/jsx-filename-extension': [
       'warn',
       {
