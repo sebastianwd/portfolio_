@@ -24,6 +24,7 @@
     "gatsby-source-filesystem": "^2.1.40",
     "gatsby-source-prismic": "^2.3.0-alpha.3",
     "gatsby-transformer-sharp": "^2.3.7",
+    "gsap": "^3.2.2",
     "lodash": "^4.17.15",
     "netlify-cms-app": "^2.11.23",
     "polished": "^3.4.4",
@@ -31,7 +32,6 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "react-scroll": "^1.7.16",
     "react-typography": "^0.16.19",
     "typography": "^0.16.19"
   },

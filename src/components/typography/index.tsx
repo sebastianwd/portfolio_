@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a'
+  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a' | 'label'
   weight?: 'bold' | 'semibold' | 'regular' | 'light'
   variant?: 'primary' | 'secondary' | 'alternate'
   size?: number

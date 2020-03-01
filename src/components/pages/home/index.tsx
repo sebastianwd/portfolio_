@@ -3,7 +3,6 @@ import { Typograhy, WordSpinner } from '@components'
 import styled from '@emotion/styled'
 import { rhythm } from '@theme/typography'
 import { StyledComponent } from '@theme'
-import { Element } from 'react-scroll'
 import { Link } from 'gatsby'
 
 const brands = [
@@ -35,7 +34,7 @@ const brands = [
 
 const HomePage = () => {
   return (
-    <Container name="home">
+    <Container id="home">
       <Content>
         <Tag
           as="span"
@@ -76,7 +75,7 @@ const HomePage = () => {
   )
 }
 
-const Container = styled(Element)`
+const Container = styled.div`
   max-width: ${rhythm(100)};
   margin: 0 auto;
   padding: 0 ${rhythm(5.5)};

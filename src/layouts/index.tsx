@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { ThemeProvider } from 'emotion-theming'
 import { ThemesContextProvider, ThemesContext } from '@context'
 import { SitePageContext } from '@generated/gatsby-types'
+import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import GlobalStyles from './global-styles'
 import ProjectLayout from './project'
 import DefaultLayout from './default'
@@ -12,6 +14,10 @@ interface Props {
 
 interface LayoutProps extends Props {
   pageContext: SitePageContext
+}
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollToPlugin)
 }
 
 const App = (props: Props) => {

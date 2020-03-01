@@ -5,12 +5,12 @@ import portfolio from '@images/portfolio.svg'
 import contact from '@images/contact.svg'
 import styled from '@emotion/styled'
 import { times, random, floor } from 'lodash'
-import { Link } from 'react-scroll'
 import { rhythm } from '@theme/typography'
 import { lighten } from 'polished'
 import { Typograhy } from '@components'
 import { StyledComponent } from '@theme'
 import { keyframes } from '@emotion/core'
+import AnchorLink from '../anchor-link'
 
 const Nav = () => {
   return (
@@ -19,7 +19,7 @@ const Nav = () => {
         <Circle />
         <ul>
           <NavItem>
-            <NavLink to="home" smooth containerId="scroller">
+            <NavLink to="#home">
               <Title as="span" data-text="HOME" weight="light" size={3}>
                 home
               </Title>
@@ -27,7 +27,7 @@ const Nav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink>
+            <NavLink to="#projects">
               <Title as="span" weight="light" size={3}>
                 portfolio
               </Title>
@@ -35,7 +35,7 @@ const Nav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="about" smooth containerId="scroller">
+            <NavLink to="#about">
               <Title as="span" weight="light" size={3}>
                 about
               </Title>
@@ -43,7 +43,7 @@ const Nav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink>
+            <NavLink to="#contact">
               <Title as="span" weight="light" size={3}>
                 contact
               </Title>
@@ -157,7 +157,7 @@ const Title = styled(Typograhy)<StyledComponent>`
   }
 `
 
-const NavLink = styled(Link)<StyledComponent>`
+const NavLink = styled(AnchorLink)<StyledComponent>`
   display: flex;
   align-items: center;
   transition: filter 0.2s;

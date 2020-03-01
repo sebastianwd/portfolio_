@@ -7139,6 +7139,11 @@ gray-percentage@^2.0.0:
   resolved "https://registry.yarnpkg.com/gray-percentage/-/gray-percentage-2.0.0.tgz#b72a274d1b1379104a0050b63b207dc53fe56f99"
   integrity sha1-tyonTRsTeRBKAFC2OyB9xT/lb5k=
 
+gsap@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.2.2.tgz#f8364c3c146602dd648ca62811afb69e6868b524"
+  integrity sha512-NGZkzIMHSpUvC+cVdlMk2Dwwou0tJTIitMoNe4LICgHDgOnwoOcklXlyF3E1sX21TVk0FeSNNMs8x7G+Ee8Hig==
+
 gud@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
@@ -12184,14 +12189,6 @@ react-scroll-sync@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/react-scroll-sync/-/react-scroll-sync-0.6.0.tgz#c87eba2cdd55ae35874277d74b034419d73df59a"
   integrity sha512-Frc7pNPIEQY6rUAUwm1wW0an57Xau6X1Sag+Ra2FJT+oDBEBdh4cahrE3oGwtYHPcyWMt74q7vRKLw73cPy6aw==
-
-react-scroll@^1.7.16:
-  version "1.7.16"
-  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.7.16.tgz#814f0b97ed171aad1f27e45dad16a8444817fec8"
-  integrity sha512-f4M5AdL+3cw3MJ7c/T0hPMY2iHCeQLDXV13lRanAFQ6JIt9xyAdHCpTH9mLUQt9SQh4pRarD+Qc7KhU6qMx3Yg==
-  dependencies:
-    lodash.throttle "^4.1.1"
-    prop-types "^15.5.8"
 
 react-select@^2.4.2, react-select@^2.4.3:
   version "2.4.4"

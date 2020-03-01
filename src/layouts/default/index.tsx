@@ -26,6 +26,7 @@ const Wrapper = styled.div`
   display: grid;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   grid-template-areas:
     'main nav'
     'main nav'

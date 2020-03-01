@@ -4,18 +4,17 @@ import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
 import { rhythm } from '@theme/typography'
 import { StyledComponent, Theme } from '@theme'
-import { Element } from 'react-scroll'
 import { keyframes } from '@emotion/core'
 import reactIcon from '@images/react-icon-big.svg'
 import graphqlIcon from '@images/graphql-icon-big.png'
 import nodejsIcon from '@images/nodejs-icon-big.svg'
 import csharpIcon from '@images/c-sharp-logo-big.svg'
 
-const HomePage = () => {
+const AboutPage = () => {
   const theme: Theme = useTheme()
 
   return (
-    <Container name="about">
+    <Container id="about">
       <LeftContent>
         <Typograhy as="h2" weight="bold" color={theme.primary} size={13}>
           About me /&gt;
@@ -74,13 +73,12 @@ const spin = keyframes`
  from {
         transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     }
-  
     to {
         transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
     }
 `
 
-const Container = styled(Element)`
+const Container = styled.div`
   max-width: ${rhythm(100)};
   margin: 0 auto;
   padding: 0 ${rhythm(5.5)};
@@ -174,4 +172,4 @@ const Pyramid = styled.div`
   }
 `
 
-export default HomePage
+export default AboutPage
