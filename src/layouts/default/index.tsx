@@ -20,7 +20,7 @@ const DefaultLayout = (props: Props) => {
 
   const [isScrolled, setScrolled] = useState(false)
 
-  const pathName = document.location.pathname
+  const pathName = typeof document !== 'undefined' && document.location.pathname
 
   const sessionKey = `scrollPosition_${pathName}`
 

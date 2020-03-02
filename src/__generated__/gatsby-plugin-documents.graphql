@@ -1,4 +1,21 @@
-query PrismicProjectsAndCategories {
+query GatsbyFluidImage {
+    images: allFile {
+      edges {
+        node {
+          relativePath
+          name
+          childImageSharp {
+            fluid(maxWidth: 600) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  query PrismicProjectsAndCategories {
     allPrismicCategory {
       edges {
         node {
@@ -41,32 +58,17 @@ query PrismicProjectsAndCategories {
   }
 
 
-  query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
+query ProjectBySlug($uid: String!) {
+  prismicProject(uid: { eq: $uid }) {
+    uid
+    data {
+      title
+      content {
+        html
       }
     }
   }
-
-
-  query GatsbyFluidImage {
-    images: allFile {
-      edges {
-        node {
-          relativePath
-          name
-          childImageSharp {
-            fluid(maxWidth: 600) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    }
-  }
+}
 
 
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
@@ -278,23 +280,12 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
 }
 
 
-query ProjectBySlug($uid: String!) {
-  prismicProject(uid: { eq: $uid }) {
-    uid
-    data {
-      title
-      content {
-        html
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
       }
     }
   }
-}
-
-
-query PagesQuery {
-  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
-    nodes {
-      path
-    }
-  }
-}
