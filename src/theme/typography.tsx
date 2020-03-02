@@ -15,6 +15,10 @@ const typography = new Typography({
       styles: ['400', '500'],
     },
     {
+      name: 'Open Sans',
+      styles: ['400'],
+    },
+    {
       name: 'La Belle Aurore',
       styles: [],
     },

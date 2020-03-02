@@ -46,6 +46,7 @@ module.exports = {
           '@context': path.resolve(__dirname, 'src/context'),
           '@theme': path.resolve(__dirname, 'src/theme'),
           '@generated': path.resolve(__dirname, 'src/__generated__'),
+          '@utils': path.resolve(__dirname, 'src/utils'),
         },
         extensions: ['js', 'jsx'],
       },

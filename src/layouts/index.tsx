@@ -7,6 +7,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import GlobalStyles from './global-styles'
 import ProjectLayout from './project'
 import DefaultLayout from './default'
+import 'animate.css'
 
 interface Props {
   children: React.ReactNode

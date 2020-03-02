@@ -14,7 +14,8 @@
       "@context": ["src/context"],
       "@theme": ["src/theme"],
       "@theme/*": ["src/theme/*"],
-      "@generated/*": ["src/__generated__/*"]
+      "@generated/*": ["src/__generated__/*"],
+      "@utils": ["src/utils"]
     }
   },
   "exclude": ["node_modules"]

@@ -2498,6 +2498,8 @@ export type Query_siteArgs = {
   children: Maybe<NodeFilterListInput>,
   internal: Maybe<InternalFilterInput>,
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>,
+  port: Maybe<IntQueryOperatorInput>,
+  host: Maybe<StringQueryOperatorInput>,
   polyfill: Maybe<BooleanQueryOperatorInput>,
   pathPrefix: Maybe<StringQueryOperatorInput>,
   buildTime: Maybe<DateQueryOperatorInput>
@@ -2542,6 +2544,8 @@ export type Site = Node & {
   readonly children: ReadonlyArray<Node>,
   readonly internal: Internal,
   readonly siteMetadata: Maybe<SiteSiteMetadata>,
+  readonly port: Maybe<Scalars['Int']>,
+  readonly host: Maybe<Scalars['String']>,
   readonly polyfill: Maybe<Scalars['Boolean']>,
   readonly pathPrefix: Maybe<Scalars['String']>,
   readonly buildTime: Maybe<Scalars['Date']>,
@@ -2672,6 +2676,8 @@ export enum SiteFieldsEnum {
   siteMetadata___title = 'siteMetadata.title',
   siteMetadata___description = 'siteMetadata.description',
   siteMetadata___author = 'siteMetadata.author',
+  port = 'port',
+  host = 'host',
   polyfill = 'polyfill',
   pathPrefix = 'pathPrefix',
   buildTime = 'buildTime'
@@ -2683,6 +2689,8 @@ export type SiteFilterInput = {
   readonly children: Maybe<NodeFilterListInput>,
   readonly internal: Maybe<InternalFilterInput>,
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>,
+  readonly port: Maybe<IntQueryOperatorInput>,
+  readonly host: Maybe<StringQueryOperatorInput>,
   readonly polyfill: Maybe<BooleanQueryOperatorInput>,
   readonly pathPrefix: Maybe<StringQueryOperatorInput>,
   readonly buildTime: Maybe<DateQueryOperatorInput>,
@@ -2903,6 +2911,7 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___alias____context = 'pluginCreator.pluginOptions.alias._context',
   pluginCreator___pluginOptions___alias____theme = 'pluginCreator.pluginOptions.alias._theme',
   pluginCreator___pluginOptions___alias____generated = 'pluginCreator.pluginOptions.alias._generated',
+  pluginCreator___pluginOptions___alias____utils = 'pluginCreator.pluginOptions.alias._utils',
   pluginCreator___pluginOptions___extensions = 'pluginCreator.pluginOptions.extensions',
   pluginCreator___pluginOptions___pathToConfigModule = 'pluginCreator.pluginOptions.pathToConfigModule',
   pluginCreator___pluginOptions___component = 'pluginCreator.pluginOptions.component',
@@ -3116,6 +3125,7 @@ export enum SitePluginFieldsEnum {
   pluginOptions___alias____context = 'pluginOptions.alias._context',
   pluginOptions___alias____theme = 'pluginOptions.alias._theme',
   pluginOptions___alias____generated = 'pluginOptions.alias._generated',
+  pluginOptions___alias____utils = 'pluginOptions.alias._utils',
   pluginOptions___extensions = 'pluginOptions.extensions',
   pluginOptions___pathToConfigModule = 'pluginOptions.pathToConfigModule',
   pluginOptions___component = 'pluginOptions.component',
@@ -3268,6 +3278,7 @@ export type SitePluginPluginOptionsAlias = {
   readonly _context: Maybe<Scalars['String']>,
   readonly _theme: Maybe<Scalars['String']>,
   readonly _generated: Maybe<Scalars['String']>,
+  readonly _utils: Maybe<Scalars['String']>,
 };
 
 export type SitePluginPluginOptionsAliasFilterInput = {
@@ -3279,6 +3290,7 @@ export type SitePluginPluginOptionsAliasFilterInput = {
   readonly _context: Maybe<StringQueryOperatorInput>,
   readonly _theme: Maybe<StringQueryOperatorInput>,
   readonly _generated: Maybe<StringQueryOperatorInput>,
+  readonly _utils: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePluginPluginOptionsEmitPluginDocuments = {
@@ -3356,6 +3368,25 @@ export type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>,
 };
 
+export type PrismicProjectsAndCategoriesQueryVariables = {};
+
+
+export type PrismicProjectsAndCategoriesQuery = { readonly allPrismicCategory: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<PrismicCategoryData, 'name'>> } }> }, readonly allPrismicProject: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<PrismicProject, 'uid'>
+        & { readonly data: Maybe<(
+          Pick<PrismicProjectData, 'title' | 'overview'>
+          & { readonly categories: Maybe<ReadonlyArray<Maybe<{ readonly category: Maybe<(
+              Pick<PrismicProjectDataCategoriesCategory, 'id'>
+              & { readonly document: Maybe<ReadonlyArray<Maybe<{ readonly data: Maybe<Pick<PrismicCategoryData, 'name'>> }>>> }
+            )> }>>>, readonly preview_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }> }
+        )> }
+      ) }> } };
+
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
 export type GatsbyFluidImageQueryVariables = {};
 
 
@@ -3363,29 +3394,6 @@ export type GatsbyFluidImageQuery = { readonly images: { readonly edges: Readonl
         Pick<File, 'relativePath' | 'name'>
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
-
-export type PrismicCategoriesQueryVariables = {};
-
-
-export type PrismicCategoriesQuery = { readonly allPrismicCategory: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<PrismicCategoryData, 'name'>> } }> } };
-
-export type ProjectBySlugQueryVariables = {
-  uid: Scalars['String']
-};
-
-
-export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
-    Pick<PrismicProject, 'uid'>
-    & { readonly data: Maybe<(
-      Pick<PrismicProjectData, 'title'>
-      & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
-    )> }
-  )> };
-
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3434,3 +3442,21 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+export type ProjectBySlugQueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
+    Pick<PrismicProject, 'uid'>
+    & { readonly data: Maybe<(
+      Pick<PrismicProjectData, 'title'>
+      & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
+    )> }
+  )> };
+
+export type PagesQueryQueryVariables = {};
+
+
+export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typograhy, WordSpinner } from '@components'
+import { Typograhy, WordSpinner, WordAnimator } from '@components'
 import styled from '@emotion/styled'
 import { rhythm } from '@theme/typography'
 import { StyledComponent } from '@theme'
@@ -10,6 +10,7 @@ import reactNativeIcon from '@images/react-native-icon.svg'
 import nodejsIcon from '@images/nodejs-icon.svg'
 import netIcon from '@images/net-icon.svg'
 import sqlIcon from '@images/sql-icon.svg'
+import { css } from '@emotion/core'
 
 const brands = [
   {
@@ -53,18 +54,24 @@ const HomePage = () => {
         <Tag as="span" size={5} variant="alternate">
           {'<h1>'}
         </Tag>
-        <Heading as="h1" size={11} inline>
-          Hi, I am Sebastian Luque{' '}
+        <WordAnimator
+          as="h1"
+          size={11}
+          css={heading}
+          words="Hi, I am Sebastian Luque "
+          delay={80}
+        >
           <Tag
             as="span"
             size={5}
             variant="alternate"
             inline
-            style={{ fontSize: 20, marginLeft: 30 }}
+            className="animated fadeIn"
+            css={inlineTag}
           >
             {'</h1>'}
           </Tag>
-        </Heading>
+        </WordAnimator>
         <Typograhy as="p">
           <Typograhy as="span" weight="light" size={7}>
             Full stack web and mobile developer specialized in JavaScript
@@ -81,8 +88,21 @@ const HomePage = () => {
   )
 }
 
+const heading = css`
+  margin-top: ${rhythm(0.3)};
+  display: flex;
+  transition: all 0.3s ease-out;
+`
+
+const inlineTag = css`
+  font-size: ${rhythm(0.7)} !important;
+  margin-left: ${rhythm(1)};
+  align-self: flex-end;
+  animation-delay: 2s;
+`
+
 const Container = styled.div`
-  max-width: ${rhythm(90)};
+  max-width: ${rhythm(70)};
   margin: 0 auto;
   padding: 0 ${rhythm(5.5)};
   display: flex;
@@ -98,10 +118,6 @@ const Content = styled.div`
 const Tag = styled(Typograhy)<StyledComponent>`
   color: ${props => props.theme.textSecondary};
   display: block;
-`
-
-const Heading = styled(Typograhy)`
-  margin-top: ${rhythm(0.3)};
 `
 
 export default HomePage

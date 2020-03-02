@@ -1,4 +1,58 @@
-query GatsbyFluidImage {
+query PrismicProjectsAndCategories {
+    allPrismicCategory {
+      edges {
+        node {
+          data {
+            name
+          }
+        }
+      }
+    }
+    allPrismicProject {
+      edges {
+        node {
+          uid
+          data {
+            title
+            overview
+            categories {
+              category {
+                id
+                document {
+                  data {
+                    name
+                  }
+                }
+              }
+            }
+            preview_image {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
+
+
+  query GatsbyFluidImage {
     images: allFile {
       edges {
         node {
@@ -10,43 +64,6 @@ query GatsbyFluidImage {
             }
           }
         }
-      }
-    }
-  }
-
-
-  query PrismicCategories {
-    allPrismicCategory {
-      edges {
-        node {
-          data {
-            name
-          }
-        }
-      }
-    }
-  }
-
-
-query ProjectBySlug($uid: String!) {
-  prismicProject(uid: { eq: $uid }) {
-    uid
-    data {
-      title
-      content {
-        html
-      }
-    }
-  }
-}
-
-
-  query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
       }
     }
   }
@@ -258,4 +275,26 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
   srcWebp
   srcSetWebp
   sizes
+}
+
+
+query ProjectBySlug($uid: String!) {
+  prismicProject(uid: { eq: $uid }) {
+    uid
+    data {
+      title
+      content {
+        html
+      }
+    }
+  }
+}
+
+
+query PagesQuery {
+  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
+    nodes {
+      path
+    }
+  }
 }

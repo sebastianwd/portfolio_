@@ -81,7 +81,7 @@ const spin = keyframes`
 `
 
 const Container = styled.div`
-  max-width: ${rhythm(90)};
+  max-width: ${rhythm(70)};
   margin: 0 auto;
   padding: 0 ${rhythm(5.5)};
   display: flex;

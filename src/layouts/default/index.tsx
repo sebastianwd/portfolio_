@@ -16,27 +16,55 @@ const DefaultLayout = (props: Props) => {
 
   const sceneRef = useRef<HTMLDivElement>(null)
 
-  const [coords, setCoords] = useState({ x: 0, y: 0 })
+  const scrollerRef = useRef<HTMLDivElement>(null)
 
-  console.log('coords', coords)
+  const [isScrolled, setScrolled] = useState(false)
 
-  const handler = useCallback(
-    ({ clientX, clientY }: MouseEvent) => {
-      setCoords({ x: clientX, y: clientY })
-    },
-    [setCoords]
-  )
+  const pathName = document.location.pathname
 
-  useEventListener('mousemove', handler)
+  const sessionKey = `scrollPosition_${pathName}`
+
+  const handleMouseMove = useCallback(({ clientX, clientY }: MouseEvent) => {
+    console.log(clientX, clientY)
+  }, [])
+
+  const handleScroll = useCallback(() => {
+    if (isScrolled) {
+      return
+    }
+    sessionStorage.setItem(sessionKey, '')
+
+    setScrolled(true)
+  }, [setScrolled])
+
+  const handleBeforeUnload = () => {
+    const scrollPosition = scrollerRef.current?.scrollTop
+
+    sessionStorage.setItem(sessionKey, String(scrollPosition))
+  }
+
+  useEventListener('mousemove', handleMouseMove)
+
+  useEventListener('scroll', handleScroll, scrollerRef.current)
 
   useEffect(() => {
     const parallax = new Parallax(sceneRef.current) as any
 
-    return () => parallax.disable()
+    const scrollPosition = sessionStorage.getItem(sessionKey)
+
+    if (scrollPosition && scrollerRef.current) {
+      scrollerRef.current.scrollTop = Number(scrollPosition)
+    }
+
+    return () => {
+      handleBeforeUnload()
+
+      parallax.disable()
+    }
   }, [])
 
   return (
-    <Wrapper id="scroller">
+    <Wrapper id="scroller" ref={scrollerRef}>
       <Scene ref={sceneRef}>
         <Circles data-depth="0.2" />
         <Triangles data-depth="0.6" />
@@ -53,7 +81,7 @@ const fullHeight = css`
   height: 100%;
 `
 
-const Container = styled.div`
+const Container = styled.main`
   grid-area: main;
   min-height: 100%;
 `
@@ -78,11 +106,12 @@ const Wrapper = styled.div`
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  width: 100%;
   grid-template-areas:
     'main nav'
     'main nav'
     'main nav';
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
 `
 
 export default DefaultLayout

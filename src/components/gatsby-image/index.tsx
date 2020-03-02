@@ -5,14 +5,15 @@ import Img, { FluidObject, GatsbyImageProps } from 'gatsby-image'
 import { GatsbyFluidImageQuery } from '@generated/gatsby-types'
 
 interface Props extends GatsbyImageProps {
-  filename: string
+  filename?: string
   style?: React.CSSProperties
+  fluidFile?: FluidObject | FluidObject[]
   alt?: string
   [x: string]: any
 }
 
 const GatsbyImage = (props: Props) => {
-  const { filename, style, alt, ...other } = props
+  const { filename = '', fluidFile, style, alt, ...other } = props
 
   const data = useStaticQuery<GatsbyFluidImageQuery>(graphql`
     query GatsbyFluidImage {
@@ -36,11 +37,11 @@ const GatsbyImage = (props: Props) => {
     edge.node.relativePath.includes(filename)
   )
 
-  if (!image) {
+  if (!image && !fluidFile) {
     return null
   }
 
-  const fluid = image.node.childImageSharp?.fluid as FluidObject
+  const fluid = (image?.node.childImageSharp?.fluid as FluidObject) || fluidFile
 
   return <Img style={style} alt={alt} fluid={fluid} {...other} />
 }

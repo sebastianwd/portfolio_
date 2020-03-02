@@ -1,7 +1,7 @@
 import React from 'react'
 
-interface Props extends React.HTMLAttributes<HTMLElement> {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a' | 'label'
+export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a' | 'label'
   weight?: 'bold' | 'semibold' | 'regular' | 'light'
   variant?: 'primary' | 'secondary' | 'alternate'
   size?: number
@@ -23,7 +23,7 @@ const fontWeights = {
   light: 300,
 }
 
-const Typography = (props: Props) => {
+const Typography = (props: TypographyProps) => {
   const {
     children,
     as: Component = 'p',

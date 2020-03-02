@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { isNil } from 'lodash'
 
 const windowElement = () => {
   return (typeof window !== 'undefined' && window) || undefined
@@ -7,7 +8,7 @@ const windowElement = () => {
 const useEventListener = (
   eventName: string,
   handler: (event: any) => void,
-  element: HTMLElement | Window | undefined = windowElement()
+  element: HTMLElement | Window | undefined | null = windowElement()
 ) => {
   const savedHandler = useRef<(event: any) => void>()
 
@@ -36,12 +37,12 @@ const useEventListener = (
         }
       }
 
-      if (typeof element !== 'undefined') {
+      if (!isNil(element)) {
         element.addEventListener(eventName, eventListener)
       }
 
       return () => {
-        if (typeof element !== 'undefined') {
+        if (!isNil(element)) {
           element.removeEventListener(eventName, eventListener)
         }
       }

@@ -19,7 +19,7 @@ const themes: Record<string, Theme> = {
     name: 'default',
     background: '#17171A',
     surface: '#0E0E0F',
-    black: '#0C0C0C ',
+    black: '#0C0C0C',
     primary: '#00fff5',
     secondary: '#1D1D21',
     textPrimary: '#FAF3F3',
