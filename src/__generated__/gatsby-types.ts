@@ -3368,6 +3368,11 @@ export type GatsbyFluidImageQuery = { readonly images: { readonly edges: Readonl
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
 
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
 export type PrismicProjectsAndCategoriesQueryVariables = {};
 
 
@@ -3442,8 +3447,3 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };

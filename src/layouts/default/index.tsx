@@ -45,8 +45,6 @@ const DefaultLayout = (props: Props) => {
 
   useEventListener('mousemove', handleMouseMove)
 
-  useEventListener('scroll', handleScroll, scrollerRef.current)
-
   useEffect(() => {
     const parallax = new Parallax(sceneRef.current) as any
 
@@ -64,7 +62,7 @@ const DefaultLayout = (props: Props) => {
   }, [])
 
   return (
-    <Wrapper id="scroller" ref={scrollerRef}>
+    <Wrapper id="scroller" ref={scrollerRef} onScroll={handleScroll}>
       <Scene ref={sceneRef}>
         <Circles data-depth="0.2" />
         <Triangles data-depth="0.6" />
