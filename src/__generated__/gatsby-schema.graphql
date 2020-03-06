@@ -2302,7 +2302,7 @@ type Query {
   allPrismicProjectBodyImageGallery(filter: PrismicProjectBodyImageGalleryFilterInput, sort: PrismicProjectBodyImageGallerySortInput, skip: Int, limit: Int): PrismicProjectBodyImageGalleryConnection!
   prismicCategory(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, type: StringQueryOperatorInput, href: StringQueryOperatorInput, first_publication_date: DateQueryOperatorInput, last_publication_date: DateQueryOperatorInput, slugs: StringQueryOperatorInput, lang: StringQueryOperatorInput, data: PrismicCategoryDataFilterInput, prismicId: StringQueryOperatorInput, dataString: StringQueryOperatorInput): PrismicCategory
   allPrismicCategory(filter: PrismicCategoryFilterInput, sort: PrismicCategorySortInput, skip: Int, limit: Int): PrismicCategoryConnection!
-  site(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, siteMetadata: SiteSiteMetadataFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, buildTime: DateQueryOperatorInput): Site
+  site(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, buildTime: DateQueryOperatorInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
   allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
@@ -2314,6 +2314,8 @@ type Site implements Node {
   children: [Node!]!
   internal: Internal!
   siteMetadata: SiteSiteMetadata
+  port: Int
+  host: String
   polyfill: Boolean
   pathPrefix: String
   buildTime(
@@ -2440,6 +2442,8 @@ enum SiteFieldsEnum {
   siteMetadata___title
   siteMetadata___description
   siteMetadata___author
+  port
+  host
   polyfill
   pathPrefix
   buildTime
@@ -2451,6 +2455,8 @@ input SiteFilterInput {
   children: NodeFilterListInput
   internal: InternalFilterInput
   siteMetadata: SiteSiteMetadataFilterInput
+  port: IntQueryOperatorInput
+  host: StringQueryOperatorInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
   buildTime: DateQueryOperatorInput
@@ -2667,9 +2673,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginCreator___pluginOptions___pathCheck
   pluginCreator___pluginOptions___repositoryName
   pluginCreator___pluginOptions___accessToken
-  pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -2869,9 +2875,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
+  pluginOptions___pathCheck
   pluginOptions___repositoryName
   pluginOptions___accessToken
-  pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -3000,9 +3006,9 @@ type SitePluginPluginOptions {
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
+  pathCheck: Boolean
   repositoryName: String
   accessToken: String
-  pathCheck: Boolean
 }
 
 type SitePluginPluginOptionsAlias {
@@ -3063,9 +3069,9 @@ input SitePluginPluginOptionsFilterInput {
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
+  pathCheck: BooleanQueryOperatorInput
   repositoryName: StringQueryOperatorInput
   accessToken: StringQueryOperatorInput
-  pathCheck: BooleanQueryOperatorInput
 }
 
 input SitePluginSortInput {

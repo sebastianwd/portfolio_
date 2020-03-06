@@ -2498,6 +2498,8 @@ export type Query_siteArgs = {
   children: Maybe<NodeFilterListInput>,
   internal: Maybe<InternalFilterInput>,
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>,
+  port: Maybe<IntQueryOperatorInput>,
+  host: Maybe<StringQueryOperatorInput>,
   polyfill: Maybe<BooleanQueryOperatorInput>,
   pathPrefix: Maybe<StringQueryOperatorInput>,
   buildTime: Maybe<DateQueryOperatorInput>
@@ -2542,6 +2544,8 @@ export type Site = Node & {
   readonly children: ReadonlyArray<Node>,
   readonly internal: Internal,
   readonly siteMetadata: Maybe<SiteSiteMetadata>,
+  readonly port: Maybe<Scalars['Int']>,
+  readonly host: Maybe<Scalars['String']>,
   readonly polyfill: Maybe<Scalars['Boolean']>,
   readonly pathPrefix: Maybe<Scalars['String']>,
   readonly buildTime: Maybe<Scalars['Date']>,
@@ -2672,6 +2676,8 @@ export enum SiteFieldsEnum {
   siteMetadata___title = 'siteMetadata.title',
   siteMetadata___description = 'siteMetadata.description',
   siteMetadata___author = 'siteMetadata.author',
+  port = 'port',
+  host = 'host',
   polyfill = 'polyfill',
   pathPrefix = 'pathPrefix',
   buildTime = 'buildTime'
@@ -2683,6 +2689,8 @@ export type SiteFilterInput = {
   readonly children: Maybe<NodeFilterListInput>,
   readonly internal: Maybe<InternalFilterInput>,
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>,
+  readonly port: Maybe<IntQueryOperatorInput>,
+  readonly host: Maybe<StringQueryOperatorInput>,
   readonly polyfill: Maybe<BooleanQueryOperatorInput>,
   readonly pathPrefix: Maybe<StringQueryOperatorInput>,
   readonly buildTime: Maybe<DateQueryOperatorInput>,
@@ -2911,9 +2919,9 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___pluginOptions___repositoryName = 'pluginCreator.pluginOptions.repositoryName',
   pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
-  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
@@ -3125,9 +3133,9 @@ export enum SitePluginFieldsEnum {
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
+  pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   pluginOptions___repositoryName = 'pluginOptions.repositoryName',
   pluginOptions___accessToken = 'pluginOptions.accessToken',
-  pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
@@ -3256,9 +3264,9 @@ export type SitePluginPluginOptions = {
   readonly outputPath: Maybe<Scalars['String']>,
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>,
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>,
+  readonly pathCheck: Maybe<Scalars['Boolean']>,
   readonly repositoryName: Maybe<Scalars['String']>,
   readonly accessToken: Maybe<Scalars['String']>,
-  readonly pathCheck: Maybe<Scalars['Boolean']>,
 };
 
 export type SitePluginPluginOptionsAlias = {
@@ -3319,9 +3327,9 @@ export type SitePluginPluginOptionsFilterInput = {
   readonly outputPath: Maybe<StringQueryOperatorInput>,
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>,
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>,
+  readonly pathCheck: Maybe<BooleanQueryOperatorInput>,
   readonly repositoryName: Maybe<StringQueryOperatorInput>,
   readonly accessToken: Maybe<StringQueryOperatorInput>,
-  readonly pathCheck: Maybe<BooleanQueryOperatorInput>,
 };
 
 export type SitePluginSortInput = {
@@ -3447,3 +3455,8 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+export type PagesQueryQueryVariables = {};
+
+
+export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };

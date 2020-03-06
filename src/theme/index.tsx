@@ -1,3 +1,5 @@
+import mediaQueryGenerator, { Breakpoint } from './media-query'
+
 export interface Theme {
   name: string
   background: string
@@ -12,6 +14,12 @@ export interface Theme {
 export interface StyledComponent extends React.HTMLAttributes<HTMLElement> {
   [x: string]: any
   theme?: Theme
+}
+
+export const bp = {
+  from: (breakpointName: Breakpoint) =>
+    mediaQueryGenerator(breakpointName, 'from'),
+  to: (breakpointName: Breakpoint) => mediaQueryGenerator(breakpointName, 'to'),
 }
 
 const themes: Record<string, Theme> = {

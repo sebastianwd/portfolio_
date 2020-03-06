@@ -1866,6 +1866,26 @@
                 "defaultValue": null
               },
               {
+                "name": "port",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IntQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "host",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "StringQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "polyfill",
                 "description": "",
                 "type": {
@@ -11787,6 +11807,16 @@
             "defaultValue": null
           },
           {
+            "name": "pathCheck",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "repositoryName",
             "description": "",
             "type": {
@@ -11802,16 +11832,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "pathCheck",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "BooleanQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null
@@ -12882,6 +12902,18 @@
             "deprecationReason": null
           },
           {
+            "name": "pathCheck",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "repositoryName",
             "description": null,
             "args": [],
@@ -12900,18 +12932,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pathCheck",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,
@@ -14493,6 +14513,12 @@
             "deprecationReason": null
           },
           {
+            "name": "pluginCreator___pluginOptions___pathCheck",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pluginCreator___pluginOptions___repositoryName",
             "description": null,
             "isDeprecated": false,
@@ -14500,12 +14526,6 @@
           },
           {
             "name": "pluginCreator___pluginOptions___accessToken",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___pathCheck",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -23127,6 +23147,30 @@
             "deprecationReason": null
           },
           {
+            "name": "port",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "host",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "polyfill",
             "description": null,
             "args": [],
@@ -23314,6 +23358,26 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "SiteSiteMetadataFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "port",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IntQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "host",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null
@@ -23930,6 +23994,18 @@
           },
           {
             "name": "siteMetadata___author",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "port",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "host",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -25040,6 +25116,12 @@
             "deprecationReason": null
           },
           {
+            "name": "pluginOptions___pathCheck",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pluginOptions___repositoryName",
             "description": null,
             "isDeprecated": false,
@@ -25047,12 +25129,6 @@
           },
           {
             "name": "pluginOptions___accessToken",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___pathCheck",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
