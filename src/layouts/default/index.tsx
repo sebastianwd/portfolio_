@@ -106,10 +106,10 @@ const Wrapper = styled.div`
   overflow-x: hidden;
   width: 100%;
   grid-template-areas:
-    'main nav'
-    'main nav'
-    'main nav';
-  grid-template-columns: minmax(0, 1fr) auto;
+    'nav main'
+    'nav main'
+    'nav main';
+  grid-template-columns: auto minmax(0, 1fr);
 `
 
 export default DefaultLayout

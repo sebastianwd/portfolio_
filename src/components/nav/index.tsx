@@ -11,43 +11,45 @@ import { Typograhy } from '@components'
 import { StyledComponent } from '@theme'
 import { keyframes } from '@emotion/core'
 import AnchorLink from '../anchor-link'
+import WavyBackground from './wavy-background'
 
 const Nav = () => {
   return (
     <NavContainer>
       <Inner>
+        <WavyBackground />
         <Circle />
         <ul>
           <NavItem>
             <NavLink to="#home">
+              <img src={home} alt="home" />
               <Title as="span" data-text="HOME" weight="light" size={3}>
                 home
               </Title>
-              <img src={home} alt="home" />
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="#about">
+              <img src={about} alt="about" />
               <Title as="span" weight="light" size={3}>
                 about
               </Title>
-              <img src={about} alt="about" />
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="#projects">
+              <img src={portfolio} alt="portfolio" />
               <Title as="span" weight="light" size={3}>
                 portfolio
               </Title>
-              <img src={portfolio} alt="portfolio" />
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink to="#contact">
+              <img src={contact} alt="contact" />
               <Title as="span" weight="light" size={3}>
                 contact
               </Title>
-              <img src={contact} alt="contact" />
             </NavLink>
           </NavItem>
         </ul>
@@ -76,7 +78,7 @@ ${generate()}
 `
 
 const NavItem = styled.li<StyledComponent>`
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.surface};
   cursor: pointer;
   margin-bottom: ${rhythm(1.2)};
   list-style: none;
@@ -87,13 +89,31 @@ const Circle = styled.div<StyledComponent>`
   border-radius: 50%;
   height: 10px;
   width: 10px;
-  margin-left: 80%;
+  margin-right: 26%;
+  align-self: center;
 `
 
 const Inner = styled.div<StyledComponent>`
   display: flex;
   flex-direction: column;
   align-self: center;
+  clip-path: url(#svg-blob__clip);
+  background-color: ${props => props.theme.surface};
+  padding: 20px 20px;
+  padding-left: 5px;
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    #svg-blob__clip {
+      transform: scale(0.22, 0.5);
+    }
+  }
 
   & > ul {
     position: relative;
@@ -107,7 +127,7 @@ const Inner = styled.div<StyledComponent>`
       content: '';
       height: 100%;
       position: absolute;
-      right: 20%;
+      left: 20%;
       background: ${props => props.theme.primary};
       width: 2px;
       z-index: -1;
@@ -119,7 +139,7 @@ const NavContainer = styled.nav<StyledComponent>`
   position: sticky;
   grid-area: nav;
   display: flex;
-  padding-right: ${rhythm(1)};
+  padding-left: ${rhythm(0.8)};
   top: 0;
   max-height: 100%;
   overflow: hidden;
@@ -128,7 +148,7 @@ const NavContainer = styled.nav<StyledComponent>`
 
 const Title = styled(Typograhy)<StyledComponent>`
   text-transform: uppercase;
-  margin-right: 8px;
+  margin-left: 8px;
   color: ${props => props.theme.primary};
   position: relative;
   &::before {
@@ -161,7 +181,7 @@ const NavLink = styled(AnchorLink)<StyledComponent>`
   display: flex;
   align-items: center;
   transition: filter 0.2s;
-  justify-content: flex-end;
+  justify-content: flex-start;
   position: relative;
 
   & img {

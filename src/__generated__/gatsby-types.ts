@@ -3376,11 +3376,6 @@ export type GatsbyFluidImageQuery = { readonly images: { readonly edges: Readonl
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
 
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
-
 export type PrismicProjectsAndCategoriesQueryVariables = {};
 
 
@@ -3407,6 +3402,11 @@ export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
       & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
     )> }
   )> };
+
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

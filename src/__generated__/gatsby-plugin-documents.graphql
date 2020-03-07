@@ -15,17 +15,6 @@ query GatsbyFluidImage {
   }
 
 
-  query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
-
-
   query PrismicProjectsAndCategories {
     allPrismicCategory {
       edges {
@@ -80,6 +69,17 @@ query ProjectBySlug($uid: String!) {
     }
   }
 }
+
+
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
 
 
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
