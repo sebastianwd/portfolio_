@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef, useEffect } from 'react'
+import React, { useCallback, useRef, useEffect } from 'react'
 import styled from '@emotion/styled'
 import Parallax from 'parallax-js'
 import { Nav } from '@components'
@@ -16,53 +16,20 @@ const DefaultLayout = (props: Props) => {
 
   const sceneRef = useRef<HTMLDivElement>(null)
 
-  const scrollerRef = useRef<HTMLDivElement>(null)
-
-  const [isScrolled, setScrolled] = useState(false)
-
-  const pathName = typeof document !== 'undefined' && document.location.pathname
-
-  const sessionKey = `scrollPosition_${pathName}`
-
   const handleMouseMove = useCallback(({ clientX, clientY }: MouseEvent) => {
     console.log(clientX, clientY)
   }, [])
-
-  const handleScroll = useCallback(() => {
-    if (isScrolled) {
-      return
-    }
-    sessionStorage.setItem(sessionKey, '')
-
-    setScrolled(true)
-  }, [setScrolled])
-
-  const handleBeforeUnload = () => {
-    const scrollPosition = scrollerRef.current?.scrollTop
-
-    sessionStorage.setItem(sessionKey, String(scrollPosition))
-  }
 
   useEventListener('mousemove', handleMouseMove)
 
   useEffect(() => {
     const parallax = new Parallax(sceneRef.current) as any
 
-    const scrollPosition = sessionStorage.getItem(sessionKey)
-
-    if (scrollPosition && scrollerRef.current) {
-      scrollerRef.current.scrollTop = Number(scrollPosition)
-    }
-
-    return () => {
-      handleBeforeUnload()
-
-      parallax.disable()
-    }
+    return () => parallax.disable()
   }, [])
 
   return (
-    <Wrapper id="scroller" ref={scrollerRef} onScroll={handleScroll}>
+    <Wrapper>
       <Scene ref={sceneRef}>
         <Circles data-depth="0.2" />
         <Triangles data-depth="0.6" />

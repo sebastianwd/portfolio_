@@ -2913,15 +2913,15 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___alias____generated = 'pluginCreator.pluginOptions.alias._generated',
   pluginCreator___pluginOptions___alias____utils = 'pluginCreator.pluginOptions.alias._utils',
   pluginCreator___pluginOptions___extensions = 'pluginCreator.pluginOptions.extensions',
-  pluginCreator___pluginOptions___pathToConfigModule = 'pluginCreator.pluginOptions.pathToConfigModule',
   pluginCreator___pluginOptions___component = 'pluginCreator.pluginOptions.component',
   pluginCreator___pluginOptions___outputPath = 'pluginCreator.pluginOptions.outputPath',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
-  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___pluginOptions___repositoryName = 'pluginCreator.pluginOptions.repositoryName',
   pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
+  pluginCreator___pluginOptions___fonts = 'pluginCreator.pluginOptions.fonts',
+  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
@@ -3127,15 +3127,15 @@ export enum SitePluginFieldsEnum {
   pluginOptions___alias____generated = 'pluginOptions.alias._generated',
   pluginOptions___alias____utils = 'pluginOptions.alias._utils',
   pluginOptions___extensions = 'pluginOptions.extensions',
-  pluginOptions___pathToConfigModule = 'pluginOptions.pathToConfigModule',
   pluginOptions___component = 'pluginOptions.component',
   pluginOptions___outputPath = 'pluginOptions.outputPath',
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql = 'pluginOptions.emitSchema.src___generated___gatsby_schema_graphql',
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
-  pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   pluginOptions___repositoryName = 'pluginOptions.repositoryName',
   pluginOptions___accessToken = 'pluginOptions.accessToken',
+  pluginOptions___fonts = 'pluginOptions.fonts',
+  pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
@@ -3259,14 +3259,14 @@ export type SitePluginPluginOptions = {
   readonly icon: Maybe<Scalars['String']>,
   readonly alias: Maybe<SitePluginPluginOptionsAlias>,
   readonly extensions: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>,
-  readonly pathToConfigModule: Maybe<Scalars['String']>,
   readonly component: Maybe<Scalars['String']>,
   readonly outputPath: Maybe<Scalars['String']>,
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>,
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>,
-  readonly pathCheck: Maybe<Scalars['Boolean']>,
   readonly repositoryName: Maybe<Scalars['String']>,
   readonly accessToken: Maybe<Scalars['String']>,
+  readonly fonts: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>,
+  readonly pathCheck: Maybe<Scalars['Boolean']>,
 };
 
 export type SitePluginPluginOptionsAlias = {
@@ -3322,14 +3322,14 @@ export type SitePluginPluginOptionsFilterInput = {
   readonly icon: Maybe<StringQueryOperatorInput>,
   readonly alias: Maybe<SitePluginPluginOptionsAliasFilterInput>,
   readonly extensions: Maybe<StringQueryOperatorInput>,
-  readonly pathToConfigModule: Maybe<StringQueryOperatorInput>,
   readonly component: Maybe<StringQueryOperatorInput>,
   readonly outputPath: Maybe<StringQueryOperatorInput>,
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>,
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>,
-  readonly pathCheck: Maybe<BooleanQueryOperatorInput>,
   readonly repositoryName: Maybe<StringQueryOperatorInput>,
   readonly accessToken: Maybe<StringQueryOperatorInput>,
+  readonly fonts: Maybe<StringQueryOperatorInput>,
+  readonly pathCheck: Maybe<BooleanQueryOperatorInput>,
 };
 
 export type SitePluginSortInput = {
@@ -3390,6 +3390,16 @@ export type PrismicProjectsAndCategoriesQuery = { readonly allPrismicCategory: {
         )> }
       ) }> } };
 
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
+export type PagesQueryQueryVariables = {};
+
+
+export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
 export type ProjectBySlugQueryVariables = {
   uid: Scalars['String']
 };
@@ -3402,11 +3412,6 @@ export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
       & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
     )> }
   )> };
-
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3455,8 +3460,3 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-export type PagesQueryQueryVariables = {};
-
-
-export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };

@@ -4,10 +4,9 @@ import styled from '@emotion/styled'
 import { map } from 'lodash'
 import { FluidObject } from 'gatsby-image'
 import { keyframes, css } from '@emotion/core'
-import { StyledComponent, Theme } from '@theme'
+import { StyledComponent, Theme, spacing } from '@theme'
 import { GatsbyImage, Typograhy } from '@components'
 import { rgba, lighten, darken } from 'polished'
-import { rhythm } from '@theme/typography'
 import { useTheme } from 'emotion-theming'
 import eyeIcon from '@images/eye-icon.svg'
 
@@ -104,13 +103,13 @@ const Icon = styled.img`
 const CardHeader = styled.div<StyledCardProps>`
   position: relative;
   background-color: ${props => darken(0.01, props.theme.background)};
-  padding: ${rhythm(0.6)} ${rhythm(0.5)};
+  padding: ${spacing(1.8)} ${spacing(1.5)};
 `
 
 const Title = styled(Typograhy)`
   transition: all 0.3s ease-in-out 0.7s;
   font-family: 'Open Sans' !important;
-  margin-bottom: ${rhythm(0.4)};
+  margin-bottom: ${spacing(1.2)};
 `
 
 const Description = styled(Typograhy)`
@@ -126,13 +125,13 @@ const Tags = styled.div<StyledComponent>`
   top: 4%;
   width: 100%;
   height: 100%;
-  padding-right: ${rhythm(0.64)};
+  padding-right: ${spacing(2)};
 
   & span {
     opacity: 0;
     transform: translateY(-80%);
     transition: all 0.3s ease-in-out;
-    font-size: ${rhythm(0.42)};
+    font-size: ${spacing(1.2)};
     padding: 6px 12px;
     font-family: 'Open Sans' !important;
     color: ${prop => prop.theme.primary};

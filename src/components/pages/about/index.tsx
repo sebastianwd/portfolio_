@@ -2,8 +2,7 @@ import React from 'react'
 import { Typograhy } from '@components'
 import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
-import { rhythm } from '@theme/typography'
-import { StyledComponent, Theme } from '@theme'
+import { StyledComponent, Theme, spacing } from '@theme'
 import { keyframes } from '@emotion/core'
 import reactIcon from '@images/react-icon-big.svg'
 import graphqlIcon from '@images/graphql-icon-big.png'
@@ -81,9 +80,9 @@ const spin = keyframes`
 `
 
 const Container = styled.div`
-  max-width: ${rhythm(70)};
+  max-width: ${spacing(200)};
   margin: 0 auto;
-  padding: 0 ${rhythm(5.5)};
+  padding: 0 ${spacing(16)};
   display: flex;
   align-items: center;
   min-height: 100%;

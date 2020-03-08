@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Typograhy } from '@components'
 import styled from '@emotion/styled'
-import { rhythm } from '@theme/typography'
 import { keyframes } from '@emotion/core'
+import { spacing } from '@theme'
 
 interface Item {
   value: string
@@ -34,7 +34,7 @@ const WordSpinner = (props: WordSpinnerProps) => {
     <Container>
       <Item onAnimationIteration={animateNext}>
         {file && <Icon src={file} alt="" />}
-        <Typograhy as="span" variant="secondary" size={7}>
+        <Typograhy as="span" variant="secondary" size={5}>
           {value}
         </Typograhy>
       </Item>
@@ -59,12 +59,12 @@ const swipeUp = keyframes`
 `
 
 const Icon = styled.img`
-  height: ${rhythm(1.3)};
+  height: ${spacing(4)};
   margin: 0 6px;
 `
 
 const Container = styled.span`
-  height: ${rhythm(1.4)};
+  height: ${spacing(4.2)};
   display: inline-flex;
   vertical-align: top;
   position: relative;

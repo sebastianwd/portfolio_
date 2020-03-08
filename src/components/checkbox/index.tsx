@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { StyledComponent } from '@theme'
-import { rhythm } from '@theme/typography'
+import { StyledComponent, spacing } from '@theme'
 
 interface Props {
   id?: string
@@ -20,7 +19,7 @@ const Checkbox: React.FC<Props> = props => {
 
 const Wrapper = styled.div<StyledComponent>`
   position: relative;
-  margin: ${rhythm(0.5)};
+  margin: ${spacing(1.5)};
   text-align: left;
 `
 
@@ -63,7 +62,7 @@ const Input = styled.input<StyledComponent>`
   user-select: none;
   visibility: hidden;
   margin: 0;
-  width: ${rhythm(1)};
+  width: ${spacing(3)};
   display: block;
   float: left;
   font-size: inherit;

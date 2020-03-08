@@ -22,6 +22,13 @@ export const bp = {
   to: (breakpointName: Breakpoint) => mediaQueryGenerator(breakpointName, 'to'),
 }
 
+/**
+ *
+ * @param amount the multiplier of the base spacing
+ * @returns the amount x10 in pixels
+ */
+export const spacing = (amount: number) => `${amount}rem`
+
 const themes: Record<string, Theme> = {
   default: {
     name: 'default',

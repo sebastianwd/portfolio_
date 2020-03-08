@@ -5,13 +5,17 @@ import portfolio from '@images/portfolio.svg'
 import contact from '@images/contact.svg'
 import styled from '@emotion/styled'
 import { times, random, floor } from 'lodash'
-import { rhythm } from '@theme/typography'
+import { Link } from 'gatsby'
 import { lighten } from 'polished'
 import { Typograhy } from '@components'
-import { StyledComponent } from '@theme'
+import { StyledComponent, spacing } from '@theme'
 import { keyframes } from '@emotion/core'
-import AnchorLink from '../anchor-link'
 import WavyBackground from './wavy-background'
+
+interface StyledLink extends StyledComponent {
+  activeClassName?: string
+  to: string
+}
 
 const Nav = () => {
   return (
@@ -21,7 +25,7 @@ const Nav = () => {
         <Circle />
         <ul>
           <NavItem>
-            <NavLink to="#home">
+            <NavLink to="/" activeClassName="active-link">
               <img src={home} alt="home" />
               <Title as="span" data-text="HOME" weight="light" size={3}>
                 home
@@ -29,7 +33,7 @@ const Nav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="#about">
+            <NavLink to="/about" activeClassName="active-link">
               <img src={about} alt="about" />
               <Title as="span" weight="light" size={3}>
                 about
@@ -37,7 +41,7 @@ const Nav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="#projects">
+            <NavLink to="/projects" activeClassName="active-link">
               <img src={portfolio} alt="portfolio" />
               <Title as="span" weight="light" size={3}>
                 portfolio
@@ -45,7 +49,7 @@ const Nav = () => {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="#contact">
+            <NavLink to="/contact" activeClassName="active-link">
               <img src={contact} alt="contact" />
               <Title as="span" weight="light" size={3}>
                 contact
@@ -80,7 +84,7 @@ ${generate()}
 const NavItem = styled.li<StyledComponent>`
   background: ${props => props.theme.surface};
   cursor: pointer;
-  margin-bottom: ${rhythm(1.2)};
+  margin-bottom: ${spacing(3.2)};
   list-style: none;
 `
 
@@ -120,7 +124,7 @@ const Inner = styled.div<StyledComponent>`
     margin-bottom: 0;
 
     & li:first-of-type {
-      margin-top: ${rhythm(1.3)};
+      margin-top: ${spacing(4)};
     }
 
     &::before {
@@ -139,7 +143,7 @@ const NavContainer = styled.nav<StyledComponent>`
   position: sticky;
   grid-area: nav;
   display: flex;
-  padding-left: ${rhythm(0.8)};
+  padding-left: ${spacing(2.4)};
   top: 0;
   max-height: 100%;
   overflow: hidden;
@@ -151,6 +155,7 @@ const Title = styled(Typograhy)<StyledComponent>`
   margin-left: 8px;
   color: ${props => props.theme.primary};
   position: relative;
+
   &::before {
     content: attr(data-text);
     position: absolute;
@@ -162,6 +167,7 @@ const Title = styled(Typograhy)<StyledComponent>`
     overflow: hidden;
     clip: rect(0, 900px, 0, 0);
     animation: ${glitch} 3s linear infinite alternate-reverse;
+    visibility: hidden;
   }
 
   &::after {
@@ -177,7 +183,7 @@ const Title = styled(Typograhy)<StyledComponent>`
   }
 `
 
-const NavLink = styled(AnchorLink)<StyledComponent>`
+const NavLink = styled(Link)<StyledLink>`
   display: flex;
   align-items: center;
   transition: filter 0.2s;
@@ -189,10 +195,15 @@ const NavLink = styled(AnchorLink)<StyledComponent>`
     z-index: 1;
   }
 
-  &:hover {
+  &:hover,
+  &.active-link {
     filter: drop-shadow(0 0 12px ${props => props.theme.primary});
 
     ${Title} {
+      &::before {
+        visibility: visible;
+      }
+
       &::after {
         transform: scaleX(1);
       }

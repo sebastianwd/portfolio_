@@ -2667,15 +2667,15 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___alias____generated
   pluginCreator___pluginOptions___alias____utils
   pluginCreator___pluginOptions___extensions
-  pluginCreator___pluginOptions___pathToConfigModule
   pluginCreator___pluginOptions___component
   pluginCreator___pluginOptions___outputPath
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginCreator___pluginOptions___pathCheck
   pluginCreator___pluginOptions___repositoryName
   pluginCreator___pluginOptions___accessToken
+  pluginCreator___pluginOptions___fonts
+  pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
   pluginCreator___ssrAPIs
@@ -2869,15 +2869,15 @@ enum SitePluginFieldsEnum {
   pluginOptions___alias____generated
   pluginOptions___alias____utils
   pluginOptions___extensions
-  pluginOptions___pathToConfigModule
   pluginOptions___component
   pluginOptions___outputPath
   pluginOptions___emitSchema___src___generated___gatsby_schema_graphql
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql
-  pluginOptions___pathCheck
   pluginOptions___repositoryName
   pluginOptions___accessToken
+  pluginOptions___fonts
+  pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -3001,14 +3001,14 @@ type SitePluginPluginOptions {
   icon: String
   alias: SitePluginPluginOptionsAlias
   extensions: [String]
-  pathToConfigModule: String
   component: String
   outputPath: String
   emitSchema: SitePluginPluginOptionsEmitSchema
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocuments
-  pathCheck: Boolean
   repositoryName: String
   accessToken: String
+  fonts: [String]
+  pathCheck: Boolean
 }
 
 type SitePluginPluginOptionsAlias {
@@ -3064,14 +3064,14 @@ input SitePluginPluginOptionsFilterInput {
   icon: StringQueryOperatorInput
   alias: SitePluginPluginOptionsAliasFilterInput
   extensions: StringQueryOperatorInput
-  pathToConfigModule: StringQueryOperatorInput
   component: StringQueryOperatorInput
   outputPath: StringQueryOperatorInput
   emitSchema: SitePluginPluginOptionsEmitSchemaFilterInput
   emitPluginDocuments: SitePluginPluginOptionsEmitPluginDocumentsFilterInput
-  pathCheck: BooleanQueryOperatorInput
   repositoryName: StringQueryOperatorInput
   accessToken: StringQueryOperatorInput
+  fonts: StringQueryOperatorInput
+  pathCheck: BooleanQueryOperatorInput
 }
 
 input SitePluginSortInput {

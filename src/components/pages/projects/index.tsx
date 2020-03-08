@@ -3,8 +3,7 @@ import { Typograhy } from '@components'
 import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
 import { map, flatMap, get, assign } from 'lodash'
-import { rhythm } from '@theme/typography'
-import { Theme } from '@theme'
+import { Theme, spacing } from '@theme'
 import Checkbox from '@components/checkbox'
 import { useStaticQuery, graphql } from 'gatsby'
 import { FluidObject } from 'gatsby-image'
@@ -162,20 +161,20 @@ const ProjectsPage = () => {
 }
 
 const marginBottom = css`
-  margin-bottom: ${rhythm(4)};
+  margin-bottom: ${spacing(12)};
 `
 
 const Container = styled.div`
-  max-width: ${rhythm(70)};
+  max-width: ${spacing(200)};
   margin: 0 auto;
-  padding-left: ${rhythm(5.5)};
+  padding: 0 ${spacing(16)};
   display: flex;
   align-items: center;
   min-height: 100%;
 `
 
 const Gallery = styled.div`
-  max-width: ${rhythm(36)};
+  max-width: ${spacing(100)};
 `
 
 const Inner = styled.div`

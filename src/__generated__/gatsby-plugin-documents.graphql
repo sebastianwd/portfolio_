@@ -58,6 +58,26 @@ query GatsbyFluidImage {
   }
 
 
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
+
+
+query PagesQuery {
+  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
+    nodes {
+      path
+    }
+  }
+}
+
+
 query ProjectBySlug($uid: String!) {
   prismicProject(uid: { eq: $uid }) {
     uid
@@ -69,17 +89,6 @@ query ProjectBySlug($uid: String!) {
     }
   }
 }
-
-
-  query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
 
 
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
@@ -288,13 +297,4 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
   srcWebp
   srcSetWebp
   sizes
-}
-
-
-query PagesQuery {
-  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
-    nodes {
-      path
-    }
-  }
 }

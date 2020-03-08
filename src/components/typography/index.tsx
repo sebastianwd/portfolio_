@@ -1,4 +1,6 @@
 import React from 'react'
+import { InterpolationWithTheme } from '@emotion/core'
+import { Theme } from '@theme'
 
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'a' | 'label'
@@ -11,7 +13,7 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const fontFamilies = {
-  primary: 'Roboto',
+  primary: 'Inter',
   secondary: 'Poppins',
   alternate: 'La Belle Aurore',
 }
@@ -36,10 +38,10 @@ const Typography = (props: TypographyProps) => {
     ...other
   } = props
 
-  const textStyle: React.CSSProperties = {
+  const textStyle: InterpolationWithTheme<Theme> = {
     fontWeight: fontWeights[weight],
     fontFamily: fontFamilies[variant],
-    ...(size && { fontSize: `${size / 5}em` }),
+    ...(size && { fontSize: `${(size * 0.4).toFixed(2)}rem` }),
     ...(inline && { display: 'inline-block' }),
     ...(color && { color }),
   }
@@ -51,7 +53,8 @@ const Typography = (props: TypographyProps) => {
 
   return (
     <Component
-      style={{ ...textStyle, ...style }}
+      style={{ ...style }}
+      css={textStyle}
       {...(Component === 'a' && linkProps)}
       {...other}
     >

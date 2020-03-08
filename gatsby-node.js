@@ -31,3 +31,20 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 }
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  // this allows to load custom libraries with  no es6 module config
+
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /lib/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    })
+  }
+}

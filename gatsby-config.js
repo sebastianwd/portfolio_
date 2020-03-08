@@ -53,12 +53,6 @@ module.exports = {
     },
     `gatsby-plugin-emotion`,
     {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/theme/typography`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: require.resolve(`./src/layouts/index.tsx`),
@@ -84,6 +78,18 @@ module.exports = {
         repositoryName: `sportfolio`,
         accessToken: `${process.env.PRISMIC_API_KEY}`,
         linkResolver: ({ node, key, value }) => doc => `/${doc.uid}`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Inter\:300,400,700`,
+          `Poppins\:400,500`, // you can also specify font weights and styles
+          `Open Sans\:400`,
+          `La Belle Aurore`,
+        ],
+        display: 'swap',
       },
     },
   ],

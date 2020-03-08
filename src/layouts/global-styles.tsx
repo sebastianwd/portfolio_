@@ -1,7 +1,7 @@
 import React from 'react'
 import { css, Global } from '@emotion/core'
 import { useTheme } from 'emotion-theming'
-import { Theme } from '@theme'
+import { Theme, bp, spacing } from '@theme'
 
 const styles = (theme: Theme) => css`
   * {
@@ -69,7 +69,6 @@ const styles = (theme: Theme) => css`
   }
 
   h1 {
-    font-size: 2em;
     margin: 0.67em 0;
   }
 
@@ -268,7 +267,10 @@ const styles = (theme: Theme) => css`
   }
 
   body {
+    color: hsla(0, 0%, 0%, 0.8);
     height: 100%;
+    font-family: 'Inter', sans-serif;
+    word-wrap: break-word;
     overflow: hidden;
     color: ${theme.textPrimary};
     background-color: ${theme.background};
@@ -288,15 +290,50 @@ const styles = (theme: Theme) => css`
     cursor: pointer;
   }
 
-  html {
-    font-size: 125%;
+  p {
+    padding: 0;
+    margin-bottom: 1.5rem;
+  }
 
-    @media (max-width: 900px) {
-      font-size: 110%;
+  h2 {
+    padding: 0;
+    margin-bottom: 2.5rem;
+    color: inherit;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  ul {
+    margin-left: 2.5rem;
+    margin-bottom: 2.5rem;
+    padding: 0;
+    list-style-position: outside;
+    list-style-image: none;
+  }
+
+  li {
+    margin-bottom: calc(1.5rem / 2);
+  }
+
+  p,
+  a,
+  li,
+  label {
+    font-size: ${spacing(1.6)};
+    line-height: 1.8;
+  }
+
+  html {
+    font-size: 62.5%;
+
+    ${bp.to('md')} {
+      font-size: 56.25%;
     }
 
-    @media (max-width: 600px) {
-      font-size: 100%;
+    ${bp.to('sm')} {
+      font-size: 50%;
     }
   }
 `

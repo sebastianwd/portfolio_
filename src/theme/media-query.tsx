@@ -1,8 +1,8 @@
 const breakpoints = {
-  xs: '480',
-  sm: '768',
-  md: '992',
-  lg: '1200',
+  xs: '600',
+  sm: '900',
+  md: '1200',
+  lg: '1800',
 }
 
 const directions = {
