@@ -49,6 +49,14 @@ const Wrapper = styled.div`
   z-index: -1;
   height: 100%;
 
+  ${bp.to('xs')} {
+    margin: 40px auto 0;
+    height: calc(100vw - 80px);
+    max-width: 150px;
+    max-height: 150px;
+    margin-bottom: 10%;
+  }
+
   canvas {
     touch-action: none;
     cursor: inherit;

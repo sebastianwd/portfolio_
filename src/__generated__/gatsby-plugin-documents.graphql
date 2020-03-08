@@ -15,60 +15,6 @@ query GatsbyFluidImage {
   }
 
 
-  query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
-
-
-  query PrismicProjectsAndCategories {
-    allPrismicCategory {
-      edges {
-        node {
-          data {
-            name
-          }
-        }
-      }
-    }
-    allPrismicProject {
-      edges {
-        node {
-          uid
-          data {
-            title
-            overview
-            categories {
-              category {
-                id
-                document {
-                  data {
-                    name
-                  }
-                }
-              }
-            }
-            preview_image {
-              localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
   base64
   width
@@ -276,6 +222,60 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
   srcSetWebp
   sizes
 }
+
+
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
+
+
+  query PrismicProjectsAndCategories {
+    allPrismicCategory {
+      edges {
+        node {
+          data {
+            name
+          }
+        }
+      }
+    }
+    allPrismicProject {
+      edges {
+        node {
+          uid
+          data {
+            title
+            overview
+            categories {
+              category {
+                id
+                document {
+                  data {
+                    name
+                  }
+                }
+              }
+            }
+            preview_image {
+              localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
 
 query ProjectBySlug($uid: String!) {

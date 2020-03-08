@@ -87,7 +87,6 @@ const HomePage = () => {
 }
 
 const offsetTag = css`
-  z-index: 99;
   transform: translate(-50px, -50px);
 
   ${bp.to('sm')} {
@@ -136,8 +135,8 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   flex: 1 0 100%;
-  height: 100%;
   justify-content: center;
+  min-height: 100%;
   overflow: hidden;
   padding: ${spacing(6)} 0;
 

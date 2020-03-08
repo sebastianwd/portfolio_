@@ -3376,25 +3376,6 @@ export type GatsbyFluidImageQuery = { readonly images: { readonly edges: Readonl
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
 
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
-
-export type PrismicProjectsAndCategoriesQueryVariables = {};
-
-
-export type PrismicProjectsAndCategoriesQuery = { readonly allPrismicCategory: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<PrismicCategoryData, 'name'>> } }> }, readonly allPrismicProject: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<PrismicProject, 'uid'>
-        & { readonly data: Maybe<(
-          Pick<PrismicProjectData, 'title' | 'overview'>
-          & { readonly categories: Maybe<ReadonlyArray<Maybe<{ readonly category: Maybe<(
-              Pick<PrismicProjectDataCategoriesCategory, 'id'>
-              & { readonly document: Maybe<ReadonlyArray<Maybe<{ readonly data: Maybe<Pick<PrismicCategoryData, 'name'>> }>>> }
-            )> }>>>, readonly preview_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }> }
-        )> }
-      ) }> } };
-
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 export type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -3442,6 +3423,25 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
+export type PrismicProjectsAndCategoriesQueryVariables = {};
+
+
+export type PrismicProjectsAndCategoriesQuery = { readonly allPrismicCategory: { readonly edges: ReadonlyArray<{ readonly node: { readonly data: Maybe<Pick<PrismicCategoryData, 'name'>> } }> }, readonly allPrismicProject: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<PrismicProject, 'uid'>
+        & { readonly data: Maybe<(
+          Pick<PrismicProjectData, 'title' | 'overview'>
+          & { readonly categories: Maybe<ReadonlyArray<Maybe<{ readonly category: Maybe<(
+              Pick<PrismicProjectDataCategoriesCategory, 'id'>
+              & { readonly document: Maybe<ReadonlyArray<Maybe<{ readonly data: Maybe<Pick<PrismicCategoryData, 'name'>> }>>> }
+            )> }>>>, readonly preview_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }> }
+        )> }
+      ) }> } };
 
 export type ProjectBySlugQueryVariables = {
   uid: Scalars['String']
