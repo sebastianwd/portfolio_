@@ -8,6 +8,7 @@ import GlobalStyles from './global-styles'
 import ProjectLayout from './project'
 import DefaultLayout from './default'
 import 'animate.css'
+import 'bootstrap-4-grid'
 
 interface Props {
   children: React.ReactNode

@@ -42,15 +42,10 @@ const brands = [
 const HomePage = () => {
   return (
     <Section>
-      <Container>
+      <Container className="container">
         <Row>
-          <LeftContent>
-            <Tag
-              as="span"
-              style={{ transform: 'translate(-50px,-50px)' }}
-              size={5}
-              variant="alternate"
-            >
+          <LeftContent className="col-sm-9 col-md-8">
+            <Tag as="span" css={offsetTag} size={5} variant="alternate">
               {'<body>'}
             </Tag>
             <Tag as="span" size={5} variant="alternate">
@@ -61,7 +56,7 @@ const HomePage = () => {
               size={10}
               css={heading}
               words="Hi, I am Sebastian Luque "
-              delay={80}
+              delay={60}
             >
               <Tag
                 as="span"
@@ -82,7 +77,7 @@ const HomePage = () => {
               <WordSpinner items={brands} />
             </Typograhy>
           </LeftContent>
-          <RightContent>
+          <RightContent className="col-sm-3 col-md-4">
             <ParticleCanvas src={siteLogo} />
           </RightContent>
         </Row>
@@ -90,6 +85,15 @@ const HomePage = () => {
     </Section>
   )
 }
+
+const offsetTag = css`
+  z-index: 99;
+  transform: translate(-50px, -50px);
+
+  ${bp.to('sm')} {
+    transform: translateY(-50%);
+  }
+`
 
 const heading = css`
   margin-top: ${spacing(1)};
@@ -104,35 +108,42 @@ const inlineTag = css`
   animation-delay: 2s;
 `
 
+const RightContent = styled.div`
+  z-index: 4;
+`
+
 const Row = styled.div`
-  min-height: 100%;
-  align-items: center;
-  flex-grow: 1;
-  display: inline-flex;
-  margin: 0 auto;
+  display: flex;
 
   ${bp.to('sm')} {
     flex-direction: column;
+    align-items: center;
   }
 `
 
-const RightContent = styled.div`
-  flex-basis: 40%;
+const LeftContent = styled.div`
+  z-index: 5;
+  margin-bottom: 10%;
+
+  ${bp.to('sm')} {
+    margin-top: 10%;
+  }
 `
 
-const LeftContent = styled.div``
-
-const Container = styled.div`
-  max-width: ${spacing(118)};
-  padding-left: 45px;
-  padding-right: 45px;
-`
+const Container = styled.div``
 
 const Section = styled.section`
-  padding: ${spacing(6)} 0;
   display: flex;
   flex-direction: column;
+  flex: 1 0 100%;
+  height: 100%;
   justify-content: center;
+  overflow: hidden;
+  padding: ${spacing(6)} 0;
+
+  ${bp.to('sm')} {
+    justify-content: flex-start;
+  }
 `
 
 const Tag = styled(Typograhy)<StyledComponent>`

@@ -15,6 +15,17 @@ query GatsbyFluidImage {
   }
 
 
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
+
+
   query PrismicProjectsAndCategories {
     allPrismicCategory {
       edges {
@@ -56,39 +67,6 @@ query GatsbyFluidImage {
       }
     }
   }
-
-
-  query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
-
-
-query PagesQuery {
-  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
-    nodes {
-      path
-    }
-  }
-}
-
-
-query ProjectBySlug($uid: String!) {
-  prismicProject(uid: { eq: $uid }) {
-    uid
-    data {
-      title
-      content {
-        html
-      }
-    }
-  }
-}
 
 
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
@@ -297,4 +275,26 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
   srcWebp
   srcSetWebp
   sizes
+}
+
+
+query ProjectBySlug($uid: String!) {
+  prismicProject(uid: { eq: $uid }) {
+    uid
+    data {
+      title
+      content {
+        html
+      }
+    }
+  }
+}
+
+
+query PagesQuery {
+  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
+    nodes {
+      path
+    }
+  }
 }

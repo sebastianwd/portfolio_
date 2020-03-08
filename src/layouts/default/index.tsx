@@ -6,6 +6,7 @@ import { useEventListener } from '@hooks'
 import circles from '@images/parallax-1.png'
 import triangles from '@images/parallax-2.png'
 import { css } from '@emotion/core'
+import { bp } from '@theme'
 
 interface Props {
   children: React.ReactNode
@@ -29,14 +30,16 @@ const DefaultLayout = (props: Props) => {
   }, [])
 
   return (
-    <Wrapper>
+    <>
       <Scene ref={sceneRef}>
         <Circles data-depth="0.2" />
         <Triangles data-depth="0.6" />
       </Scene>
-      <Container>{children}</Container>
-      <Nav />
-    </Wrapper>
+      <Wrapper>
+        <Container>{children}</Container>
+        <Nav />
+      </Wrapper>
+    </>
   )
 }
 
@@ -48,7 +51,10 @@ const fullHeight = css`
 
 const Container = styled.main`
   grid-area: main;
-  min-height: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
 `
 
 const Scene = styled.div`
@@ -60,6 +66,7 @@ const Circles = styled.div`
   opacity: 0.5;
   ${fullHeight}
 `
+
 const Triangles = styled.div`
   background: url(${triangles}) 0% 0% / cover transparent;
   opacity: 0.5;
@@ -69,14 +76,21 @@ const Triangles = styled.div`
 const Wrapper = styled.div`
   display: grid;
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 100%;
+  overflow: hidden;
   grid-template-areas:
     'nav main'
     'nav main'
     'nav main';
   grid-template-columns: auto minmax(0, 1fr);
+
+  ${bp.to('sm')} {
+    grid-template-areas:
+      'main'
+      'main'
+      'nav';
+    grid-template-columns: auto;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
 `
 
 export default DefaultLayout

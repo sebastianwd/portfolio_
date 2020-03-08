@@ -336,6 +336,18 @@ const styles = (theme: Theme) => css`
       font-size: 50%;
     }
   }
+
+  ${bp.from('lg')} {
+    .container {
+      max-width: ${spacing(140)};
+    }
+  }
+  ${bp.to('md')} {
+    .container {
+      width: 100%;
+      max-width: 100% !important;
+    }
+  }
 `
 
 const GlobalStyles = () => {

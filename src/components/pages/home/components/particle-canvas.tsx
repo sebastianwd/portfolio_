@@ -1,84 +1,72 @@
 import React, { useRef, useEffect } from 'react'
+import styled from '@emotion/styled'
+import { bp, spacing } from '@theme'
 import NextParticle from '../../../../lib/next-particle'
 
 interface Props {
   src: string
 }
 
-const windowGlobal = typeof window !== 'undefined' ? window : null
-
 const ParticleCanvas = (props: Props) => {
   const { src } = props
 
   const particleRef = useRef<HTMLImageElement | null>(null)
 
-  let canvasSize = '800'
-
   let nextParticle: any = null
-
-  const windowWidth = Math.max(windowGlobal?.innerWidth || 0)
-
-  if (windowWidth < 768) {
-    canvasSize = '400'
-  } else if (windowWidth >= 768) {
-    canvasSize = '800'
-  }
-
-  const resizeCanvas = () => {
-    if (!nextParticle) {
-      return
-    }
-
-    const width = Math.max(
-      document.documentElement.clientWidth,
-      window.innerWidth || 0
-    )
-    if (width < 768 && nextParticle.width !== 400) {
-      nextParticle.width = '400'
-      nextParticle.height = '400'
-      nextParticle.start()
-    } else if (width >= 768 && nextParticle.width !== 800) {
-      nextParticle.width = '800'
-      nextParticle.height = '900'
-      nextParticle.start()
-    }
-  }
 
   useEffect(() => {
     nextParticle = new NextParticle(particleRef.current)
 
-    window.addEventListener('resize', resizeCanvas)
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas)
-      nextParticle.stop()
-    }
+    return () => nextParticle.stop()
   }, [])
 
   return (
-    <div>
-      <div>
-        <img
-          alt="logo"
-          id="logo"
-          className="d-none"
-          data-renderer="webgl"
-          ref={particleRef}
-          data-width={canvasSize}
-          data-height={100 + +canvasSize}
-          data-min-width="250"
-          data-max-width="180"
-          data-max-height="180"
-          data-mouse-force="40"
-          data-noise="40"
-          data-particle-size="3"
-          data-particle-gap="3"
-          data-min-height="250"
-          src={src}
-        />
-      </div>
-    </div>
+    <Wrapper>
+      <img
+        alt="logo"
+        id="logo"
+        className="d-none"
+        data-renderer="webgl"
+        ref={particleRef}
+        data-width={1200}
+        data-height={1200}
+        data-min-width="250"
+        data-max-width="180"
+        data-max-height="180"
+        data-mouse-force="40"
+        data-noise="40"
+        data-particle-size="3"
+        data-particle-gap="3"
+        data-min-height="250"
+        src={src}
+      />
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  position: relative;
+  z-index: -1;
+  height: 100%;
+
+  canvas {
+    touch-action: none;
+    cursor: inherit;
+    max-width: 400%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    ${bp.to('sm')} {
+      margin-top: 20%;
+    }
+
+    ${bp.to('xs')} {
+      margin-top: 20%;
+      height: ${spacing(80)} !important;
+    }
+  }
+`
 
 export default ParticleCanvas

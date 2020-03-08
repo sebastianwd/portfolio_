@@ -3376,6 +3376,11 @@ export type GatsbyFluidImageQuery = { readonly images: { readonly edges: Readonl
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
 
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
 export type PrismicProjectsAndCategoriesQueryVariables = {};
 
 
@@ -3389,29 +3394,6 @@ export type PrismicProjectsAndCategoriesQuery = { readonly allPrismicCategory: {
             )> }>>>, readonly preview_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }> }
         )> }
       ) }> } };
-
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
-
-export type PagesQueryQueryVariables = {};
-
-
-export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-export type ProjectBySlugQueryVariables = {
-  uid: Scalars['String']
-};
-
-
-export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
-    Pick<PrismicProject, 'uid'>
-    & { readonly data: Maybe<(
-      Pick<PrismicProjectData, 'title'>
-      & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
-    )> }
-  )> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3460,3 +3442,21 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+export type ProjectBySlugQueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
+    Pick<PrismicProject, 'uid'>
+    & { readonly data: Maybe<(
+      Pick<PrismicProjectData, 'title'>
+      & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
+    )> }
+  )> };
+
+export type PagesQueryQueryVariables = {};
+
+
+export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };

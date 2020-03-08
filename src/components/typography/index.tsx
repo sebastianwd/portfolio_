@@ -35,6 +35,7 @@ const Typography = (props: TypographyProps) => {
     size,
     color,
     inline,
+    wrap,
     ...other
   } = props
 
@@ -44,6 +45,7 @@ const Typography = (props: TypographyProps) => {
     ...(size && { fontSize: `${(size * 0.4).toFixed(2)}rem` }),
     ...(inline && { display: 'inline-block' }),
     ...(color && { color }),
+    ...(wrap && { overflowWrap: 'break-word' }),
   }
 
   const linkProps = {

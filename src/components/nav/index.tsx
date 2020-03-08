@@ -8,7 +8,7 @@ import { times, random, floor } from 'lodash'
 import { Link } from 'gatsby'
 import { lighten } from 'polished'
 import { Typograhy } from '@components'
-import { StyledComponent, spacing } from '@theme'
+import { StyledComponent, spacing, bp } from '@theme'
 import { keyframes } from '@emotion/core'
 import WavyBackground from './wavy-background'
 
@@ -20,7 +20,7 @@ interface StyledLink extends StyledComponent {
 const Nav = () => {
   return (
     <NavContainer>
-      <Inner>
+      <Desktop>
         <WavyBackground />
         <Circle />
         <ul>
@@ -58,7 +58,43 @@ const Nav = () => {
           </NavItem>
         </ul>
         <Circle />
-      </Inner>
+      </Desktop>
+      <Mobile>
+        <ul>
+          <NavItem>
+            <NavLink to="/" activeClassName="active-link">
+              <img src={home} alt="home" />
+              <Title as="span" data-text="HOME" weight="light" size={3}>
+                home
+              </Title>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/about" activeClassName="active-link">
+              <img src={about} alt="about" />
+              <Title as="span" weight="light" size={3}>
+                about
+              </Title>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/projects" activeClassName="active-link">
+              <img src={portfolio} alt="portfolio" />
+              <Title as="span" weight="light" size={3}>
+                portfolio
+              </Title>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/contact" activeClassName="active-link">
+              <img src={contact} alt="contact" />
+              <Title as="span" weight="light" size={3}>
+                contact
+              </Title>
+            </NavLink>
+          </NavItem>
+        </ul>
+      </Mobile>
     </NavContainer>
   )
 }
@@ -81,6 +117,29 @@ const glitch = keyframes`
 ${generate()}
 `
 
+const Mobile = styled.div<StyledComponent>`
+  background: ${props => props.theme.surface};
+  display: flex;
+  flex: 1 0 100%;
+
+  ${bp.from('sm')} {
+    display: none;
+  }
+
+  & > ul {
+    display: flex;
+    padding-top: ${spacing(1)};
+    margin: 0;
+    flex: 1 0 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    & li {
+      margin-bottom: 1.5rem;
+    }
+  }
+`
+
 const NavItem = styled.li<StyledComponent>`
   background: ${props => props.theme.surface};
   cursor: pointer;
@@ -93,11 +152,11 @@ const Circle = styled.div<StyledComponent>`
   border-radius: 50%;
   height: 10px;
   width: 10px;
-  margin-right: 26%;
+  margin-right: 31%;
   align-self: center;
 `
 
-const Inner = styled.div<StyledComponent>`
+const Desktop = styled.div<StyledComponent>`
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -105,6 +164,10 @@ const Inner = styled.div<StyledComponent>`
   background-color: ${props => props.theme.surface};
   padding: 20px 20px;
   padding-left: 5px;
+
+  ${bp.to('sm')} {
+    display: none;
+  }
 
   svg {
     position: absolute;
@@ -115,7 +178,7 @@ const Inner = styled.div<StyledComponent>`
     pointer-events: none;
 
     #svg-blob__clip {
-      transform: scale(0.22, 0.5);
+      transform: scale(0.22, 0.48);
     }
   }
 
@@ -148,6 +211,10 @@ const NavContainer = styled.nav<StyledComponent>`
   max-height: 100%;
   overflow: hidden;
   right: 0;
+
+  ${bp.to('sm')} {
+    padding: 0;
+  }
 `
 
 const Title = styled(Typograhy)<StyledComponent>`
@@ -155,6 +222,10 @@ const Title = styled(Typograhy)<StyledComponent>`
   margin-left: 8px;
   color: ${props => props.theme.primary};
   position: relative;
+
+  ${bp.to('sm')} {
+    margin: 0;
+  }
 
   &::before {
     content: attr(data-text);
@@ -190,9 +261,14 @@ const NavLink = styled(Link)<StyledLink>`
   justify-content: flex-start;
   position: relative;
 
+  ${bp.to('sm')} {
+    flex-direction: column;
+  }
+
   & img {
     padding: 4px 0;
     z-index: 1;
+    height: 48px;
   }
 
   &:hover,
