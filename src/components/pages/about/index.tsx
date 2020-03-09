@@ -2,7 +2,7 @@ import React from 'react'
 import { Typograhy } from '@components'
 import styled from '@emotion/styled'
 import { useTheme } from 'emotion-theming'
-import { StyledComponent, Theme, spacing } from '@theme'
+import { StyledComponent, Theme, spacing, bp } from '@theme'
 import { keyframes } from '@emotion/core'
 import reactIcon from '@images/react-icon-big.svg'
 import graphqlIcon from '@images/graphql-icon-big.png'
@@ -13,60 +13,62 @@ const AboutPage = () => {
   const theme: Theme = useTheme()
 
   return (
-    <Container id="about">
-      <Inner>
-        <LeftContent>
-          <Typograhy as="h2" weight="bold" color={theme.primary} size={13}>
-            About me /&gt;
-          </Typograhy>
-          <Typograhy as="p">
-            I am Sebastian. A full stack web developer based in Lima, Peru.
-            <br /> I like to create cool stuff using my web development skills.
-          </Typograhy>
-          <Typograhy as="p">
-            Over the years, I have gained a lot of experience with designing
-            <br /> and developing websites, web services and mobile apps.
-          </Typograhy>
-          <Typograhy as="p">
-            Currently I’m mainly developing with{' '}
-            <ExternalLink as="a" href="https://reactjs.org/">
-              React
-            </ExternalLink>{' '}
-            and{' '}
-            <ExternalLink as="a" href="https://graphql.org/">
-              GraphQL
-            </ExternalLink>{' '}
-            at work,
-            <br /> but I like to experiment with different kind of languages and
-            programming tools.
-            <br /> Some other things I’ve dealt with are:
-          </Typograhy>
-          <ul>
-            <li>
-              <ExternalLink as="a" href="https://www.docker.com/">
-                Docker
+    <Section>
+      <div className="container" style={{ paddingRight: 0 }}>
+        <Row>
+          <LeftContent className="col-sm-7 col-md-6">
+            <Typograhy as="h2" weight="bold" color={theme.primary} size={13}>
+              About me /&gt;
+            </Typograhy>
+            <Typograhy as="p">
+              I am Sebastian. A full stack web developer based in Lima, Peru. I
+              like to create cool stuff using my web development skills.
+            </Typograhy>
+            <Typograhy as="p">
+              Over the years, I have gained a lot of experience with designing
+              and developing websites, web services and mobile apps.
+            </Typograhy>
+            <Typograhy as="p">
+              Currently I’m mainly developing with{' '}
+              <ExternalLink as="a" href="https://reactjs.org/">
+                React
               </ExternalLink>{' '}
-              containers
-            </li>
-            <li>Setting up CI/CD pipelines</li>
-            <li>
-              UI design with{' '}
-              <ExternalLink as="a" href="https://www.figma.com/">
-                Figma{' '}
-              </ExternalLink>
-            </li>
-          </ul>
-        </LeftContent>
-        <RightContent>
-          <Pyramid>
-            <div />
-            <div />
-            <div />
-            <div />
-          </Pyramid>
-        </RightContent>
-      </Inner>
-    </Container>
+              and{' '}
+              <ExternalLink as="a" href="https://graphql.org/">
+                GraphQL
+              </ExternalLink>{' '}
+              at work,
+              <br /> but I like to experiment with different kind of languages
+              and programming tools.
+              <br /> Some other things I’ve dealt with are:
+            </Typograhy>
+            <ul>
+              <li>
+                <ExternalLink as="a" href="https://www.docker.com/">
+                  Docker
+                </ExternalLink>{' '}
+                containers
+              </li>
+              <li>Setting up CI/CD pipelines</li>
+              <li>
+                UI design with{' '}
+                <ExternalLink as="a" href="https://www.figma.com/">
+                  Figma{' '}
+                </ExternalLink>
+              </li>
+            </ul>
+          </LeftContent>
+          <RightContent className="col-sm-5 col-md-6">
+            <Pyramid>
+              <div />
+              <div />
+              <div />
+              <div />
+            </Pyramid>
+          </RightContent>
+        </Row>
+      </div>
+    </Section>
   )
 }
 
@@ -79,27 +81,45 @@ const spin = keyframes`
     }
 `
 
-const Container = styled.div`
+const Section = styled.section`
   max-width: ${spacing(200)};
   margin: 0 auto;
-  padding: 0 ${spacing(16)};
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   min-height: 100%;
+
+  ${bp.to('sm')} {
+    justify-content: flex-start;
+  }
 `
 
-const Inner = styled.div`
+const Row = styled.div`
   display: flex;
-  flex-basis: 100%;
+
+  ${bp.to('sm')} {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const LeftContent = styled.div`
-  max-width: 50%;
+  margin-bottom: 10%;
+
+  ${bp.to('sm')} {
+    margin-top: 10%;
+  }
 `
 
 const RightContent = styled.div`
-  flex-basis: 40%;
   position: relative;
+  display: flex;
+  align-items: flex-start;
+
+  ${bp.to('sm')} {
+    height: ${spacing(50)};
+    overflow: hidden;
+  }
 `
 
 const ExternalLink = styled(Typograhy)<StyledComponent>`
@@ -110,11 +130,12 @@ const ExternalLink = styled(Typograhy)<StyledComponent>`
 const Pyramid = styled.div`
   position: absolute;
   left: 50%;
-  height: 500px;
-  width: 100px;
+  height: ${spacing(50)};
+  width: ${spacing(50)};
   transform-style: preserve-3d;
   animation: ${spin} 10s linear infinite;
   transform-origin: 116px 200px 116px;
+  box-sizing: content-box;
 
   & > div {
     position: absolute;

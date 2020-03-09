@@ -4,14 +4,16 @@ import { StyledComponent, spacing } from '@theme'
 
 interface Props {
   id?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  checked: boolean
 }
 
 const Checkbox: React.FC<Props> = props => {
-  const { id, children } = props
+  const { id, children, onChange, checked } = props
 
   return (
     <Wrapper>
-      <Input type="checkbox" id={id} />
+      <Input type="checkbox" id={id} onChange={onChange} checked={checked} />
       <Label htmlFor={id}>{children}</Label>
     </Wrapper>
   )

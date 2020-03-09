@@ -348,6 +348,14 @@ const styles = (theme: Theme) => css`
       max-width: 100% !important;
     }
   }
+
+  button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+  }
 `
 
 const GlobalStyles = () => {

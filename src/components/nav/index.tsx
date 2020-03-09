@@ -122,7 +122,7 @@ const Mobile = styled.div<StyledComponent>`
   display: flex;
   flex: 1 0 100%;
 
-  ${bp.from('sm')} {
+  ${bp.from('md')} {
     display: none;
   }
 
@@ -165,7 +165,7 @@ const Desktop = styled.div<StyledComponent>`
   padding: 20px 20px;
   padding-left: 5px;
 
-  ${bp.to('sm')} {
+  ${bp.to('md')} {
     display: none;
   }
 
@@ -212,7 +212,7 @@ const NavContainer = styled.nav<StyledComponent>`
   overflow: hidden;
   right: 0;
 
-  ${bp.to('sm')} {
+  ${bp.to('md')} {
     padding: 0;
   }
 `
@@ -223,7 +223,7 @@ const Title = styled(Typograhy)<StyledComponent>`
   color: ${props => props.theme.primary};
   position: relative;
 
-  ${bp.to('sm')} {
+  ${bp.to('md')} {
     margin: 0;
   }
 
@@ -261,7 +261,7 @@ const NavLink = styled(Link)<StyledLink>`
   justify-content: flex-start;
   position: relative;
 
-  ${bp.to('sm')} {
+  ${bp.to('md')} {
     flex-direction: column;
   }
 

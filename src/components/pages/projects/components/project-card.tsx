@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { map } from 'lodash'
 import { FluidObject } from 'gatsby-image'
@@ -17,6 +17,7 @@ interface Props {
   slug: string
   categoryNames?: (string | undefined)[]
   fluidImage?: FluidObject | FluidObject[]
+  link?: string
 }
 
 interface StyledCardProps extends StyledComponent {
@@ -25,7 +26,8 @@ interface StyledCardProps extends StyledComponent {
 
 const ProjectCard = (props: Props) => {
   const {
-    slug,
+    // slug,
+    link,
     fluidImage,
     title,
     description,
@@ -38,7 +40,8 @@ const ProjectCard = (props: Props) => {
   return (
     <Article animationDelay={animationDelay}>
       <div>
-        <Link to={`/project/${slug}/`} css={overlay} />
+        {/* TODO: Finish projects pages <Link to={`/project/${slug}/`} css={overlay} /> */}
+        <Typograhy as="a" href={link} css={overlay} />
         <Overlay />
         <CardImage>
           {fluidImage && (
@@ -47,10 +50,10 @@ const ProjectCard = (props: Props) => {
           <Icon src={eyeIcon} alt="view" />
         </CardImage>
         <CardHeader>
-          <Title as="h4" size={4.5}>
+          <Title as="h4" size={4.2}>
             {title}
           </Title>
-          <Description as="p" size={4} color={theme.textSecondary}>
+          <Description as="p" size={3.5} color={theme.textSecondary}>
             {description}
           </Description>
           <Tags>
@@ -109,7 +112,7 @@ const CardHeader = styled.div<StyledCardProps>`
 const Title = styled(Typograhy)`
   transition: all 0.3s ease-in-out 0.7s;
   font-family: 'Open Sans' !important;
-  margin-bottom: ${spacing(1.2)};
+  margin-bottom: ${spacing(0.4)};
 `
 
 const Description = styled(Typograhy)`
@@ -131,7 +134,7 @@ const Tags = styled.div<StyledComponent>`
     opacity: 0;
     transform: translateY(-80%);
     transition: all 0.3s ease-in-out;
-    font-size: ${spacing(1.2)};
+    font-size: ${spacing(1.3)};
     padding: 6px 12px;
     font-family: 'Open Sans' !important;
     color: ${prop => prop.theme.primary};
@@ -161,7 +164,7 @@ const CardImage = styled.div<StyledCardProps>`
   display: flex;
   position: relative;
   justify-content: center;
-  height: 200px;
+  height: ${spacing(18)};
 
   ${Icon} {
     opacity: 0;
@@ -171,7 +174,7 @@ const CardImage = styled.div<StyledCardProps>`
 
 const Article = styled.article<StyledCardProps>`
   position: relative;
-  background-color: ${props => props.theme.background};
+  background-color: ${props => darken(0.01, props.theme.background)};
   transition: transform 0.5s ease-in-out;
   border-radius: 7px;
   overflow: hidden;

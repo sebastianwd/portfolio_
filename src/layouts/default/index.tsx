@@ -18,7 +18,7 @@ const DefaultLayout = (props: Props) => {
   const sceneRef = useRef<HTMLDivElement>(null)
 
   const handleMouseMove = useCallback(({ clientX, clientY }: MouseEvent) => {
-    console.log(clientX, clientY)
+    return null
   }, [])
 
   useEventListener('mousemove', handleMouseMove)
@@ -83,7 +83,7 @@ const Wrapper = styled.div`
     'nav main';
   grid-template-columns: auto minmax(0, 1fr);
 
-  ${bp.to('sm')} {
+  ${bp.to('md')} {
     grid-template-areas:
       'main'
       'main'

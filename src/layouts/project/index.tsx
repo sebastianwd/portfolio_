@@ -18,12 +18,14 @@ const ProjectLayout = (props: Props) => {
 const Container = styled.div`
   grid-area: main;
   min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 `
 
 const Wrapper = styled.div`
   display: grid;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
 `
 
 export default ProjectLayout
