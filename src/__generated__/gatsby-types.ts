@@ -2264,10 +2264,10 @@ export type Query = {
   readonly allSitePage: SitePageConnection,
   readonly imageSharp: Maybe<ImageSharp>,
   readonly allImageSharp: ImageSharpConnection,
-  readonly prismicProject: Maybe<PrismicProject>,
-  readonly allPrismicProject: PrismicProjectConnection,
   readonly prismicProjectBodyImageGallery: Maybe<PrismicProjectBodyImageGallery>,
   readonly allPrismicProjectBodyImageGallery: PrismicProjectBodyImageGalleryConnection,
+  readonly prismicProject: Maybe<PrismicProject>,
+  readonly allPrismicProject: PrismicProjectConnection,
   readonly prismicCategory: Maybe<PrismicCategory>,
   readonly allPrismicCategory: PrismicCategoryConnection,
   readonly site: Maybe<Site>,
@@ -2422,6 +2422,25 @@ export type Query_allImageSharpArgs = {
 };
 
 
+export type Query_prismicProjectBodyImageGalleryArgs = {
+  id: Maybe<StringQueryOperatorInput>,
+  parent: Maybe<NodeFilterInput>,
+  children: Maybe<NodeFilterListInput>,
+  internal: Maybe<InternalFilterInput>,
+  slice_type: Maybe<StringQueryOperatorInput>,
+  items: Maybe<PrismicProjectBodyImageGalleryItemsFilterListInput>,
+  prismicId: Maybe<StringQueryOperatorInput>
+};
+
+
+export type Query_allPrismicProjectBodyImageGalleryArgs = {
+  filter: Maybe<PrismicProjectBodyImageGalleryFilterInput>,
+  sort: Maybe<PrismicProjectBodyImageGallerySortInput>,
+  skip: Maybe<Scalars['Int']>,
+  limit: Maybe<Scalars['Int']>
+};
+
+
 export type Query_prismicProjectArgs = {
   id: Maybe<StringQueryOperatorInput>,
   parent: Maybe<NodeFilterInput>,
@@ -2443,25 +2462,6 @@ export type Query_prismicProjectArgs = {
 export type Query_allPrismicProjectArgs = {
   filter: Maybe<PrismicProjectFilterInput>,
   sort: Maybe<PrismicProjectSortInput>,
-  skip: Maybe<Scalars['Int']>,
-  limit: Maybe<Scalars['Int']>
-};
-
-
-export type Query_prismicProjectBodyImageGalleryArgs = {
-  id: Maybe<StringQueryOperatorInput>,
-  parent: Maybe<NodeFilterInput>,
-  children: Maybe<NodeFilterListInput>,
-  internal: Maybe<InternalFilterInput>,
-  slice_type: Maybe<StringQueryOperatorInput>,
-  items: Maybe<PrismicProjectBodyImageGalleryItemsFilterListInput>,
-  prismicId: Maybe<StringQueryOperatorInput>
-};
-
-
-export type Query_allPrismicProjectBodyImageGalleryArgs = {
-  filter: Maybe<PrismicProjectBodyImageGalleryFilterInput>,
-  sort: Maybe<PrismicProjectBodyImageGallerySortInput>,
   skip: Maybe<Scalars['Int']>,
   limit: Maybe<Scalars['Int']>
 };
@@ -3376,11 +3376,6 @@ export type GatsbyFluidImageQuery = { readonly images: { readonly edges: Readonl
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
       ) }> } };
 
-export type HelmetDataQueryVariables = {};
-
-
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
-
 export type PrismicProjectsAndCategoriesQueryVariables = {};
 
 
@@ -3397,6 +3392,24 @@ export type PrismicProjectsAndCategoriesQuery = { readonly allPrismicCategory: {
             )> }>>>, readonly preview_image: Maybe<{ readonly localFile: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }> }
         )> }
       ) }> } };
+
+export type ProjectBySlugQueryVariables = {
+  uid: Scalars['String']
+};
+
+
+export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
+    Pick<PrismicProject, 'uid'>
+    & { readonly data: Maybe<(
+      Pick<PrismicProjectData, 'title'>
+      & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
+    )> }
+  )> };
+
+export type HelmetDataQueryVariables = {};
+
+
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3445,19 +3458,6 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-export type ProjectBySlugQueryVariables = {
-  uid: Scalars['String']
-};
-
-
-export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
-    Pick<PrismicProject, 'uid'>
-    & { readonly data: Maybe<(
-      Pick<PrismicProjectData, 'title'>
-      & { readonly content: Maybe<Pick<PrismicProjectDataContent, 'html'>> }
-    )> }
-  )> };
 
 export type PagesQueryQueryVariables = {};
 

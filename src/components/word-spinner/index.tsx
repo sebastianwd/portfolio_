@@ -65,6 +65,7 @@ const Icon = styled.img`
 
 const Container = styled.span`
   height: ${spacing(4.2)};
+  min-width: ${spacing(15)};
   display: inline-flex;
   vertical-align: top;
   position: relative;

@@ -137,7 +137,9 @@ const ProjectsPage = () => {
             >
               Work /&gt;
             </Typograhy>
-            <Typograhy>Some of the personal projects I&apos;ve made.</Typograhy>
+            <Typograhy size={4.5}>
+              Some of the personal projects I&apos;ve made.
+            </Typograhy>
             <div style={{ position: 'relative' }}>
               <FilterButton onClick={handleClick}>
                 <img src={filterIcon} alt="filter icon" />

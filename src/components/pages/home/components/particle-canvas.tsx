@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import styled from '@emotion/styled'
 import { bp, spacing } from '@theme'
+import { useMedia } from '@hooks'
 import NextParticle from '../../../../lib/next-particle'
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 
 const ParticleCanvas = (props: Props) => {
   const { src } = props
+
+  const size = useMedia(['(max-width: 600px)'], [400], 900)
 
   const particleRef = useRef<HTMLImageElement | null>(null)
 
@@ -28,13 +31,13 @@ const ParticleCanvas = (props: Props) => {
         className="d-none"
         data-renderer="webgl"
         ref={particleRef}
-        data-width={1200}
-        data-height={1200}
+        data-width={size}
+        data-height={size}
         data-min-width="250"
         data-max-width="180"
         data-max-height="180"
         data-mouse-force="40"
-        data-noise="40"
+        data-noise="20"
         data-particle-size="3"
         data-particle-gap="3"
         data-min-height="250"
@@ -48,6 +51,7 @@ const Wrapper = styled.div`
   position: relative;
   z-index: -1;
   height: 100%;
+  transform: translate3d(0, 0, 0);
 
   ${bp.to('xs')} {
     margin: 40px auto 0;

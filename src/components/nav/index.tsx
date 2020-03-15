@@ -72,7 +72,7 @@ const Nav = () => {
           <NavItem>
             <NavLink to="/about" activeClassName="active-link">
               <img src={about} alt="about" />
-              <Title as="span" weight="light" size={3}>
+              <Title as="span" data-text="ABOUT" weight="light" size={3}>
                 about
               </Title>
             </NavLink>
@@ -80,7 +80,7 @@ const Nav = () => {
           <NavItem>
             <NavLink to="/projects" activeClassName="active-link">
               <img src={portfolio} alt="portfolio" />
-              <Title as="span" weight="light" size={3}>
+              <Title as="span" weight="light" data-text="PORTFOLIO" size={3}>
                 portfolio
               </Title>
             </NavLink>
@@ -88,7 +88,7 @@ const Nav = () => {
           <NavItem>
             <NavLink to="/contact" activeClassName="active-link">
               <img src={contact} alt="contact" />
-              <Title as="span" weight="light" size={3}>
+              <Title as="span" weight="light" data-text="CONTACT" size={3}>
                 contact
               </Title>
             </NavLink>
@@ -152,7 +152,6 @@ const Circle = styled.div<StyledComponent>`
   border-radius: 50%;
   height: 10px;
   width: 10px;
-  margin-right: 31%;
   align-self: center;
 `
 
@@ -162,8 +161,7 @@ const Desktop = styled.div<StyledComponent>`
   align-self: center;
   clip-path: url(#svg-blob__clip);
   background-color: ${props => props.theme.surface};
-  padding: 20px 20px;
-  padding-left: 5px;
+  padding: 16px 20px;
 
   ${bp.to('md')} {
     display: none;
@@ -178,13 +176,15 @@ const Desktop = styled.div<StyledComponent>`
     pointer-events: none;
 
     #svg-blob__clip {
-      transform: scale(0.22, 0.48);
+      transform: scale(0.125, 0.48);
     }
   }
 
   & > ul {
     position: relative;
-    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 
     & li:first-of-type {
       margin-top: ${spacing(4)};
@@ -194,7 +194,7 @@ const Desktop = styled.div<StyledComponent>`
       content: '';
       height: 100%;
       position: absolute;
-      left: 20%;
+      align-self: center;
       background: ${props => props.theme.primary};
       width: 2px;
       z-index: -1;
@@ -219,12 +219,16 @@ const NavContainer = styled.nav<StyledComponent>`
 
 const Title = styled(Typograhy)<StyledComponent>`
   text-transform: uppercase;
-  margin-left: 8px;
   color: ${props => props.theme.primary};
   position: relative;
 
   ${bp.to('md')} {
     margin: 0;
+    font-size: ${spacing(1)};
+  }
+
+  ${bp.from('md')} {
+    font-size: ${spacing(1)};
   }
 
   &::before {
@@ -256,9 +260,10 @@ const Title = styled(Typograhy)<StyledComponent>`
 
 const NavLink = styled(Link)<StyledLink>`
   display: flex;
+  flex-direction: column;
   align-items: center;
   transition: filter 0.2s;
-  justify-content: flex-start;
+  justify-content: center;
   position: relative;
 
   ${bp.to('md')} {
@@ -268,7 +273,12 @@ const NavLink = styled(Link)<StyledLink>`
   & img {
     padding: 4px 0;
     z-index: 1;
-    height: 48px;
+    height: 36px;
+
+    ${bp.to('md')} {
+      height: 28px;
+      width: 28px;
+    }
   }
 
   &:hover,

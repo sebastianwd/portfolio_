@@ -50,10 +50,10 @@ const ProjectCard = (props: Props) => {
           <Icon src={eyeIcon} alt="view" />
         </CardImage>
         <CardHeader>
-          <Title as="h4" size={4.2}>
+          <Title as="h4" size={4.4}>
             {title}
           </Title>
-          <Description as="p" size={3.5} color={theme.textSecondary}>
+          <Description as="p" size={3.8} color={theme.textSecondary}>
             {description}
           </Description>
           <Tags>

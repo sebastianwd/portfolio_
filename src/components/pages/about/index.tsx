@@ -21,8 +21,8 @@ const AboutPage = () => {
               About me /&gt;
             </Typograhy>
             <Typograhy as="p">
-              I am Sebastian. A full stack web developer based in Lima, Peru. I
-              like to create cool stuff using my web development skills.
+              I am Sebastian Luque. A full stack web developer based in Lima,
+              Peru. I like to create cool stuff using my web development skills.
             </Typograhy>
             <Typograhy as="p">
               Over the years, I have gained a lot of experience with designing
@@ -38,8 +38,8 @@ const AboutPage = () => {
                 GraphQL
               </ExternalLink>{' '}
               at work,
-              <br /> but I like to experiment with different kind of languages
-              and programming tools.
+              <br /> but I like to experiment with different programming
+              languages and tools.
               <br /> Some other things I’ve dealt with are:
             </Typograhy>
             <ul>
@@ -88,6 +88,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: center;
   min-height: 100%;
+  padding: ${spacing(6)} 0;
 
   ${bp.to('sm')} {
     justify-content: flex-start;
@@ -119,6 +120,8 @@ const RightContent = styled.div`
   ${bp.to('sm')} {
     height: ${spacing(50)};
     overflow: hidden;
+    transform: translateY(-30%);
+    z-index: -1;
   }
 `
 

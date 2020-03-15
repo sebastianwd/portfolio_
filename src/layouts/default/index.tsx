@@ -59,6 +59,7 @@ const Container = styled.main`
 
 const Scene = styled.div`
   ${fullHeight}
+  overflow: hidden;
 `
 
 const Circles = styled.div`

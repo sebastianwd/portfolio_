@@ -55,7 +55,7 @@ const HomePage = () => {
               as="h1"
               size={10}
               css={heading}
-              words="Hi, I am Sebastian Luque "
+              words="Hi, I am Sebastian"
               delay={60}
             >
               <Tag
@@ -87,11 +87,8 @@ const HomePage = () => {
 }
 
 const offsetTag = css`
-  transform: translate(-50px, -50px);
-
-  ${bp.to('sm')} {
-    transform: translateY(-50%);
-  }
+  position: absolute;
+  transform: translateY(-10rem);
 `
 
 const heading = css`
@@ -109,6 +106,12 @@ const inlineTag = css`
 
 const RightContent = styled.div`
   z-index: 4;
+
+  ${bp.to('sm')} {
+    flex-direction: column;
+    align-items: center;
+    z-index: -1;
+  }
 `
 
 const Row = styled.div`
