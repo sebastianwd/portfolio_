@@ -5,7 +5,7 @@
     "checkJs": false,
     "module": "ESNext",
     "target": "ES2018",
-    "lib": ["es6", "dom", "esnext.asynciterable"],
+    "lib": ["es6", "esnext.asynciterable", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "preserve",

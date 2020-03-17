@@ -55,9 +55,9 @@ const Wrapper = styled.div`
 
   ${bp.to('xs')} {
     margin: 40px auto 0;
-    height: calc(100vw - 80px);
+    height: calc(60vw - 80px);
     max-width: 150px;
-    max-height: 150px;
+    max-height: 100px;
     margin-bottom: 10%;
   }
 
