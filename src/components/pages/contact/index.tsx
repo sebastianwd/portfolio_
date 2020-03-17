@@ -38,7 +38,7 @@ const ContactPage = () => {
           </Typograhy>
           <Form onSubmit={handleSubmit} className="row" method="POST">
             <input
-              id="honeypot"
+              id="honeypots"
               type="text"
               name="honeypot"
               onChange={handleChange}
