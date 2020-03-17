@@ -31,9 +31,17 @@ const StyledButton = styled.button<StyledComponent>`
   cursor: pointer;
   border: 0.2em solid ${props => props.theme.primary};
 
-  &:active,
-  &:hover {
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:hover:not(:disabled) {
     box-shadow: 0 -1px 10px ${props => props.theme.primary};
+  }
+
+  &:active:not(:disabled) {
+    opacity: 0.8;
+    transform: translateY(1px);
   }
 
   &:link,
@@ -71,7 +79,7 @@ const StyledButton = styled.button<StyledComponent>`
     transform: skewX(45deg);
     transition: all 0.45s cubic-bezier(0.86, 0, 0.07, 1);
   }
-  &:hover {
+  &:hover:not(:disabled) {
     &::before {
       right: 80%;
     }

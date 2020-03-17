@@ -4,29 +4,48 @@ import { Typograhy, Button } from '@components'
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useTheme } from 'emotion-theming'
+import qs from 'querystring'
 import { StyledComponent, Theme, spacing } from '@theme'
 
 const actionUrl =
   'https://script.google.com/macros/s/AKfycbwS1NBUrkPWEEt0MEe_4SoP7yjpuSTBBR8f-0eZMA/exec'
+
+const config = {
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+}
+
 const ContactPage = () => {
   const theme: Theme = useTheme()
 
   const [formState, setFormState] = useState({})
 
+  const [loading, setLoading] = useState(false)
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true)
     e.preventDefault()
 
     try {
-      await axios.post(actionUrl, formState)
+      await axios.post(actionUrl, qs.stringify(formState), config)
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(err)
+    } finally {
+      setLoading(false)
     }
   }
 
   const handleChange = (
     e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormState({ [e.currentTarget.name]: e.currentTarget.value })
+    const { name, value } = e.currentTarget
+
+    setFormState(state => ({
+      ...state,
+      [name]: value,
+    }))
   }
 
   return (
@@ -36,9 +55,9 @@ const ContactPage = () => {
           <Typograhy as="h2" weight="bold" color={theme.primary} size={13}>
             Contact /&gt;
           </Typograhy>
-          <Form onSubmit={handleSubmit} className="row" method="POST">
+          <Form onSubmit={handleSubmit} className="row gform" method="POST">
             <input
-              id="honeypots"
+              id="honeypot"
               type="text"
               name="honeypot"
               onChange={handleChange}
@@ -98,7 +117,7 @@ const ContactPage = () => {
               </InputWrapper>
             </div>
             <div className="col-12 ml-auto mt-4">
-              <Button type="submit" id="sendMessage">
+              <Button type="submit" id="sendMessage" disabled={loading}>
                 send
               </Button>
             </div>

@@ -1,9 +1,15 @@
-query HelmetData {
-    site {
-      siteMetadata {
-        title
-        description
-        author
+query GatsbyFluidImage {
+    images: allFile {
+      edges {
+        node {
+          relativePath
+          name
+          childImageSharp {
+            fluid(maxWidth: 600) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
@@ -54,18 +60,12 @@ query HelmetData {
   }
 
 
-  query GatsbyFluidImage {
-    images: allFile {
-      edges {
-        node {
-          relativePath
-          name
-          childImageSharp {
-            fluid(maxWidth: 600) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
+  query HelmetData {
+    site {
+      siteMetadata {
+        title
+        description
+        author
       }
     }
   }
@@ -290,4 +290,13 @@ fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
   srcWebp
   srcSetWebp
   sizes
+}
+
+
+query PagesQuery {
+  allSitePage(filter: { path: { ne: "/dev-404-page/" } }) {
+    nodes {
+      path
+    }
+  }
 }
