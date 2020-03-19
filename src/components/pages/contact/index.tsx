@@ -4,7 +4,6 @@ import { Typograhy, Button } from '@components'
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useTheme } from 'emotion-theming'
-import { times } from 'lodash'
 import qs from 'querystring'
 import { StyledComponent, Theme, spacing, bp } from '@theme'
 import { css } from '@emotion/core'
@@ -31,6 +30,8 @@ const ContactPage = () => {
 
     try {
       await axios.post(actionUrl, qs.stringify(formState), config)
+
+      alert('Message sent')
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err)

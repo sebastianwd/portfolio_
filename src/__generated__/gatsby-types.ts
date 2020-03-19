@@ -3544,14 +3544,6 @@ export type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>,
 };
 
-export type GatsbyFluidImageQueryVariables = {};
-
-
-export type GatsbyFluidImageQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<File, 'relativePath' | 'name'>
-        & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
-      ) }> } };
-
 export type PrismicProjectsAndCategoriesQueryVariables = {};
 
 
@@ -3569,10 +3561,13 @@ export type PrismicProjectsAndCategoriesQuery = { readonly allPrismicCategory: {
         )> }
       ) }> } };
 
-export type HelmetDataQueryVariables = {};
+export type GatsbyFluidImageQueryVariables = {};
 
 
-export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+export type GatsbyFluidImageQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<File, 'relativePath' | 'name'>
+        & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }
+      ) }> } };
 
 export type ProjectBySlugQueryVariables = {
   uid: Scalars['String']
@@ -3587,10 +3582,10 @@ export type ProjectBySlugQuery = { readonly prismicProject: Maybe<(
     )> }
   )> };
 
-export type PagesQueryQueryVariables = {};
+export type HelmetDataQueryVariables = {};
 
 
-export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+export type HelmetDataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -3639,3 +3634,8 @@ export type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSi
 export type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 export type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+export type PagesQueryQueryVariables = {};
+
+
+export type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };

@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useEffect } from 'react'
 import styled from '@emotion/styled'
 import Parallax from 'parallax-js'
+import { RouteComponentProps } from '@reach/router'
 import { Nav } from '@components'
 import { useEventListener } from '@hooks'
 import circles from '@images/parallax-1.png'
@@ -9,13 +10,14 @@ import { css } from '@emotion/core'
 import { bp, spacing } from '@theme'
 import linkedinIcon from '@images/linkedin-icon.svg'
 import githubIcon from '@images/github-icon.svg'
+import Transition from './transition'
 
-interface Props {
+interface Props extends RouteComponentProps {
   children: React.ReactNode
 }
 
 const DefaultLayout = (props: Props) => {
-  const { children } = props
+  const { children, location } = props
 
   const sceneRef = useRef<HTMLDivElement>(null)
 
@@ -54,7 +56,7 @@ const DefaultLayout = (props: Props) => {
             <Icon src={githubIcon} alt="github" />
           </a>
         </IconContainer>
-        <Container>{children}</Container>
+        <Transition location={location}>{children}</Transition>
         <Nav />
       </Wrapper>
     </>
@@ -83,14 +85,6 @@ const fullHeight = css`
   height: 100%;
 `
 
-const Container = styled.main`
-  grid-area: main;
-  min-height: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100%;
-`
-
 const Scene = styled.div`
   ${fullHeight}
   overflow: hidden;
@@ -109,6 +103,8 @@ const Triangles = styled.div`
 `
 
 const Wrapper = styled.div`
+  perspective: 1200px;
+  transform-style: preserve-3d;
   display: grid;
   height: 100%;
   overflow: hidden;

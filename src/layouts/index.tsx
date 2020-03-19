@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { ThemeProvider } from 'emotion-theming'
+import { RouteComponentProps } from '@reach/router'
 import { ThemesContextProvider, ThemesContext } from '@context'
 import { SitePageContext } from '@generated/gatsby-types'
 import { gsap } from 'gsap'
@@ -14,7 +15,8 @@ interface Props {
   children: React.ReactNode
 }
 
-interface LayoutProps extends Props {
+interface LayoutProps extends RouteComponentProps {
+  children: React.ReactNode
   pageContext: SitePageContext
 }
 
@@ -31,14 +33,14 @@ const App = (props: Props) => {
 }
 
 const Layout = (props: LayoutProps) => {
-  const { children, pageContext } = props
+  const { children, pageContext, location } = props
 
   const renderLayout = (): JSX.Element => {
     if (pageContext.layout === 'project') {
       return <ProjectLayout>{children}</ProjectLayout>
     }
 
-    return <DefaultLayout>{children}</DefaultLayout>
+    return <DefaultLayout location={location}>{children}</DefaultLayout>
   }
 
   return (
