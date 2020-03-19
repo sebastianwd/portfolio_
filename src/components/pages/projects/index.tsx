@@ -226,6 +226,7 @@ const Section = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100%;
+  padding: ${spacing(6)} 0;
 
   ${bp.to('sm')} {
     justify-content: flex-start;
@@ -291,7 +292,7 @@ const LeftContent = styled.div`
 `
 
 const RightContent = styled.div`
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   flex-grow: 1;
 `
 

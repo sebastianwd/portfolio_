@@ -4,8 +4,10 @@ import { Typograhy, Button } from '@components'
 import styled from '@emotion/styled'
 import axios from 'axios'
 import { useTheme } from 'emotion-theming'
+import { times } from 'lodash'
 import qs from 'querystring'
-import { StyledComponent, Theme, spacing } from '@theme'
+import { StyledComponent, Theme, spacing, bp } from '@theme'
+import { css } from '@emotion/core'
 
 const actionUrl =
   'https://script.google.com/macros/s/AKfycbwS1NBUrkPWEEt0MEe_4SoP7yjpuSTBBR8f-0eZMA/exec'
@@ -51,11 +53,11 @@ const ContactPage = () => {
   return (
     <Section>
       <div className="container">
-        <LeftContent className="col-sm-7 col-md-6">
+        <LeftContent className="col-md-12 col-lg-7">
           <Typograhy as="h2" weight="bold" color={theme.primary} size={13}>
             Contact /&gt;
           </Typograhy>
-          <Form onSubmit={handleSubmit} className="row gform" method="POST">
+          <Form onSubmit={handleSubmit} className="row m-0 gform" method="POST">
             <input
               id="honeypot"
               type="text"
@@ -64,7 +66,7 @@ const ContactPage = () => {
               value=""
               aria-hidden="true"
             />
-            <div className="col-md-6 col-sm-12">
+            <div className="col-md-12 pr-lg-4 p-0 col-lg-6 animated fadeInUp fast">
               <InputWrapper>
                 <input
                   type="text"
@@ -77,7 +79,7 @@ const ContactPage = () => {
                 <FocusBorder />
               </InputWrapper>
             </div>
-            <div className="col-md-6 col-sm-12">
+            <div className="col-md-12 p-0 col-lg-6 animated fadeInUp fast">
               <InputWrapper>
                 <input
                   type="email"
@@ -90,7 +92,7 @@ const ContactPage = () => {
                 <FocusBorder />
               </InputWrapper>
             </div>
-            <div className="col-xs-12 col-md-12">
+            <div className="col-12  p-0  animated fadeInUp fast">
               <InputWrapper>
                 <input
                   type="text"
@@ -103,7 +105,7 @@ const ContactPage = () => {
                 <FocusBorder />
               </InputWrapper>
             </div>
-            <div className="col-xs-12 col-md-12">
+            <div className="col-12 p-0 animated fadeInUp fast">
               <InputWrapper>
                 <textarea
                   onChange={handleChange}
@@ -116,8 +118,8 @@ const ContactPage = () => {
                 <FocusBorder />
               </InputWrapper>
             </div>
-            <div className="col-12 ml-auto mt-4">
-              <Button type="submit" id="sendMessage" disabled={loading}>
+            <div className="col-12 ml-auto p-0  mt-4 animated fadeIn delay-1s">
+              <Button type="submit" disabled={loading}>
                 send
               </Button>
             </div>
@@ -128,8 +130,20 @@ const ContactPage = () => {
   )
 }
 
+const delayChild = (index: number) =>
+  css`
+    > :nth-of-type(${index}) {
+      animation-delay: ${`0.${index}s`};
+    }
+  `
+
 const Form = styled.form<StyledComponent>`
   width: 100%;
+
+  ${delayChild(1)}
+  ${delayChild(2)}
+  ${delayChild(3)}
+  ${delayChild(4)}
 `
 
 const FocusBorder = styled.div<StyledComponent>`
@@ -142,7 +156,13 @@ const FocusBorder = styled.div<StyledComponent>`
   transition: 0.4s;
 `
 
-const LeftContent = styled.div``
+const LeftContent = styled.div`
+  margin-bottom: 6%;
+
+  ${bp.to('sm')} {
+    margin-top: 10%;
+  }
+`
 
 const InputWrapper = styled.div<StyledComponent>`
   margin: ${spacing(1)} 0;
@@ -175,7 +195,11 @@ const Section = styled.section<StyledComponent>`
   flex-direction: column;
   justify-content: center;
   min-height: 100%;
-  padding: 6rem 0;
+  padding: ${spacing(6)} 0;
+
+  ${bp.to('sm')} {
+    justify-content: flex-start;
+  }
 
   #honeypot {
     display: none;

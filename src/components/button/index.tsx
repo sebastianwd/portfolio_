@@ -33,6 +33,7 @@ const StyledButton = styled.button<StyledComponent>`
 
   &:disabled {
     opacity: 0.5;
+    cursor: not-allowed;
   }
 
   &:hover:not(:disabled) {

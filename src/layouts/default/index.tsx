@@ -6,7 +6,9 @@ import { useEventListener } from '@hooks'
 import circles from '@images/parallax-1.png'
 import triangles from '@images/parallax-2.png'
 import { css } from '@emotion/core'
-import { bp } from '@theme'
+import { bp, spacing } from '@theme'
+import linkedinIcon from '@images/linkedin-icon.svg'
+import githubIcon from '@images/github-icon.svg'
 
 interface Props {
   children: React.ReactNode
@@ -36,12 +38,44 @@ const DefaultLayout = (props: Props) => {
         <Triangles data-depth="0.6" />
       </Scene>
       <Wrapper>
+        <IconContainer>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/sebastian-luque-891b90185/"
+            rel="noopener noreferrer"
+          >
+            <Icon src={linkedinIcon} alt="linkedin" />
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/sebastianwd"
+            rel="noopener noreferrer"
+          >
+            <Icon src={githubIcon} alt="github" />
+          </a>
+        </IconContainer>
         <Container>{children}</Container>
         <Nav />
       </Wrapper>
     </>
   )
 }
+
+const IconContainer = styled.div`
+  position: absolute;
+  right: 24px;
+  top: 20px;
+  z-index: 999;
+
+  > :not(:last-child) {
+    margin-right: 20px;
+  }
+`
+
+const Icon = styled.img`
+  height: ${spacing(4.5)};
+  cursor: pointer;
+`
 
 const fullHeight = css`
   position: absolute;
