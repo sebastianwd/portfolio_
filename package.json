@@ -8,7 +8,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "animate.css": "^3.7.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap-4-grid": "^3.4.0",
     "emotion-theming": "^10.0.27",
     "gatsby": "^2.19.43",
